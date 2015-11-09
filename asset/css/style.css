@@ -1,0 +1,773 @@
+@font-face
+{
+	font-family: Ubuntu;
+	src: url(../fonts/Ubuntu-Regular.ttf);
+}
+
+@font-face
+{
+	font-family: OpenSansCond;
+	src: url(../fonts/OpenSans-CondLight.ttf);
+}
+
+@font-face
+{
+	font-family: OpenSansCondBold;
+	src: url(../fonts/OpenSans-CondBold.ttf);
+}
+
+#container
+{
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 10px;
+	font-family: 'Ubuntu';
+}
+
+#navigator #top-navigator
+{
+	margin-bottom: 20px;
+}
+
+#navigator #top-navigator #logo img
+{
+	width: 200px;
+	height: 200px;
+	float: left;
+}
+
+#navigator #top-navigator #title a
+{
+	text-decoration: none;
+	color: rgb(23,100,154);
+}
+
+#navigator #top-navigator #title
+{
+	font-family: 'OpenSansCondBold';
+	color: rgb(23,100,154);
+	font-size: 40px;
+	padding-top: 50px;
+}
+
+#navigator #top-navigator #title .sub
+{
+	margin-top: -20px;
+	font-family: 'OpenSansCond';
+}
+
+#navigator #top-navigator #search form
+{
+	margin-top: 10px;
+	margin-right: 20px;
+	float: right;
+}
+
+#navigator #top-navigator #search input
+{
+	width: 200px;
+	border-radius: 5px 0 0 5px;
+}
+
+#navigator #top-navigator #search .input-group-addon
+{
+	color: #fff;
+}
+
+#navigator-bar .dropdown
+{
+	display: inline-block;
+	margin-right: -3px;
+	width: auto;
+	height: auto;
+}
+
+#navigator-bar
+{
+	font-family: 'OpenSansCond';
+	line-height: 0.8;
+	width: 960px;
+}
+
+#navigator-bar .dropdown button
+{
+	background-color: rgb(64,179,223);
+	color: white;
+	border: 0 solid;
+	width: 192px;
+	height: 60px;
+	font-size: 25px;
+	padding: 0;	
+}
+
+#navigator-bar .dropdown.open button
+{
+	background-color: rgb(21,101,154);
+}
+
+#navigator-bar .dropdown .dropdown-menu
+{
+	width: 192px;
+	margin-top: 0px;
+	background-color: rgb(64,179,223);
+	color: white;
+	border: 0 solid;
+	border-radius: 0;
+}
+
+#navigator-bar .dropdown .dropdown-menu li a:hover
+{
+	color: rgb(21,101,154);
+
+}
+
+#navigator-bar .dropdown .dropdown-menu li a
+{
+	font-size: 18px;
+	color: white;
+}
+
+#content
+{
+	margin-top: 20px;
+	min-height: 500px;
+}
+
+#content #content-left
+{
+	width: 600px;
+	float: left;
+}
+
+#content #content-right
+{
+	width: 330px;
+	float: left;
+	margin-left: 30px;
+	padding-bottom: 20px;
+}
+
+#content #content-left .nav-agenda
+{
+	text-align: center;
+	font-size: 17px;
+	margin-bottom: 50px;
+}
+
+#content-visi
+{
+	text-align: center;
+}
+
+#content-visi #nav-visi
+{
+	height: 50px;
+	font-size: 30px;
+
+}
+
+#content-visi #nav-visi span
+{
+	cursor: pointer;
+	color: rgb(64,179,223);
+}
+
+#content-visi #nav-visi span:hover
+{
+	color: rgb(21,101,154);
+}
+
+#content-visi .title
+{
+	font-size: 50px;
+}
+
+#content-visi .desc
+{
+	font-size: 16px;
+}
+
+#content-visi li
+{
+	text-align: left;
+}
+
+#firman
+{
+	margin-top: 30px;
+}
+
+#firman .firman-img
+{
+	float: left;
+}
+
+#firman .firman-content
+{
+	float: left;
+	margin-left: 10px;
+	width: 480px;
+}
+
+#firman .title,
+#berita .title,
+#agenda .title,
+#div-login .title
+{
+	font-family: 'OpenSansCond';
+	font-size: 30px;
+	font-weight: bolder;
+	color: rgb(21,101,154);
+}
+
+#firman .content
+{
+	font-size: 14px;
+	
+	font-style: italic;
+}
+
+#firman .crop
+{
+	width: 100px;
+	height: 100px;
+}
+
+#content #content-left #judul-daftar
+{
+	-webkit-box-shadow: 0px 5px 5px -3px #555;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 25px;
+}
+
+#content #content-left #judul-daftar span
+{
+	font-family: "OpenSansCondBold";
+	font-size: 50px;
+}
+
+#berita .berita-item
+{
+	margin-bottom: 10px;
+	padding: 5px 10px;
+}
+
+#berita .berita-item .badge
+{
+	font-weight: normal;
+	background-color: rgb(64,179,223);
+}
+
+#berita .berita-item .row-bawah
+{
+	margin: 0px;
+}
+
+#berita .berita-item a, 
+#berita .berita-item a span,
+#berita .berita-item a span:hover,
+#agenda .agenda-item a
+{
+	text-decoration: none;
+}
+
+#berita .berita-item:hover,
+#agenda .agenda-item:hover
+{
+	border-radius: 8px;
+	-webkit-box-shadow: 0 0 8px rgb(168,203,23);
+}
+
+#berita .berita-item span.tanggal,
+#agenda .agenda-item span.tanggal
+{
+	font-weight: bolder;
+	color: rgb(168,203,25);
+}
+
+#berita .berita-item span.judul,
+#agenda .agenda-item span.judul
+{
+	color: rgb(25,100,157);
+}
+
+#berita .all-berita,
+#agenda .all-agenda
+{
+	text-align: right;
+	margin-top: 25px;
+}
+
+#berita .all-berita a,
+#agenda .all-agenda a
+{
+	font-style: italic;
+	color: rgb(25,100,157);
+}
+
+#agenda
+{
+	margin-top: 30px;
+}
+
+#agenda .agenda-item
+{
+	padding-left: 10px;
+}
+
+#agenda .agenda-item .label
+{
+	padding-bottom: 2px;
+}
+
+#agenda .agenda-item span.judul
+{
+	margin-left: 10px;
+}
+
+#div-login form
+{
+	margin-left: 10px;
+}
+
+#div-login input
+{
+	width: 35%;
+	margin-right: 10px;
+}
+
+#div-login button
+{
+	background-color: rgb(64,179,223);
+	color: white;
+	border: 0 solid;
+	padding: 3px 10px;
+	font-size: 20px;
+	font-family: 'OpenSansCondBold';
+
+}
+
+#div-login .logout
+{
+	text-align: center;
+	margin: 10px 0px;
+}
+
+.carousel-inner .item img.carousel-img
+{
+	width: 600px;
+	height: 360px;
+}
+
+.carousel-inner .carousel-caption
+{
+	left: 0%;
+	right: 0%;
+	background-color: rgba(80,80,180,0.7);
+	text-align: right;
+	padding-right: 75px;
+  	padding-left: 75px;
+}
+
+.carousel-inner .carousel-caption h3
+{
+	line-height: 25px;
+}
+
+.carousel-inner .carousel-caption a
+{
+	text-decoration: none;
+	color: #fff;
+}
+
+footer
+{
+	font-family: 'OpenSansCond';
+	font-size: 18px;
+	color: #fff;
+	background-color: rgb(64,179,223);
+	width: 100%;
+	height: 55px;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#login
+{
+	margin-right: auto;
+	margin-left: auto;
+	width: 300px;
+	height: 400px;
+	text-align: center;
+	margin-top: 20px;
+	border: 1px solid rgb(168,203,23);
+	-webkit-box-shadow: 0 0 8px rgb(168,203,23);
+	padding: 50px 10px;
+	margin-bottom: 20px;
+
+}
+
+#login .alert
+{
+	margin-top: 20px;
+}
+
+#login label
+{
+	color: rgb(64,179,223);
+}
+
+#login input
+{
+	color: rgb(168,203,23);
+}
+
+#login button.btn-login
+{
+	background-color: rgb(64,179,223);
+	border: 0;
+	color: #fff;
+	font-size: 20px;
+	font-family: 'OpenSansCondBold';
+	padding: 5px 15px;
+}
+
+.blank
+{
+	width: 100%;
+	height: 50px; 
+}
+
+/* CSS BERITA */
+
+#baca-berita
+{
+	
+}
+
+
+#baca-berita .konten
+{
+	font-size: 15px;
+	border-style: solid none;
+	padding-bottom: 10px;
+	border-top: 0px;
+    border-bottom: 1px solid #888;
+}
+
+#baca-berita .judul
+{
+	font-size: 25px;
+	font-weight: bolder;
+}
+
+#baca-berita .tanggal
+{
+	color: #A0A0A0;
+}
+
+#baca-berita img
+{
+	margin-top: 20px;
+	margin-bottom: 10px;
+	width: 600px;
+	height: 360px;
+}
+
+#baca-berita .label-berita
+{
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#baca-berita .label-berita .label
+{
+	font-weight: normal;
+	margin-left: 5px;
+}
+
+#baca-berita .label-berita a
+{
+	text-decoration: none;
+}
+
+#baca-berita .konten a
+{
+	color: rgb(64,179,223);
+	text-decoration: none;
+	font-weight: bolder;
+}
+
+#baca-berita .konten blockquote
+{
+	
+	font-size: 20px;
+}
+
+#daftar-berita .berita .col-xs-3
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#daftar-berita .berita .col-xs-9
+{
+	
+}
+
+#daftar-berita .berita
+{
+	margin-bottom: 40px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #CCC;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+#daftar-berita .berita a
+{
+	color: #000;
+}
+
+#daftar-berita .berita img
+{
+	width: 150px;
+	height: 90px;
+}
+
+#daftar-berita .berita span.tanggal
+{
+	color: #A0A0A0;
+	font-size: 13px;
+}
+
+#daftar-berita .berita span.judul
+{
+	font-size: 20px;
+	font-weight: bolder;
+	color: #000;
+}
+
+#daftar-berita .not-found
+{
+	margin-left: 15px;
+	font-size: 20px;
+}
+
+#daftar-agenda .berita .col-xs-2
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#daftar-agenda .berita
+{
+	margin-bottom: 40px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #CCC;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+#daftar-agenda .berita a
+{
+	color: #000;
+}
+
+#daftar-agenda .berita span.tanggal
+{
+	font-weight: bolder;
+	color: rgb(168,203,25);
+	font-size: 18px;
+}
+
+#daftar-agenda .berita span.nama:hover
+{
+	text-decoration: underline;
+}
+
+#daftar-agenda .berita span.nama
+{
+	font-size: 18px;
+	color: #000;
+}
+
+#pager-berita .pagination span.gap
+{
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+}
+
+#pager-berita div.status
+{
+	font-style: italic;
+	color: #888;
+	margin-bottom: -10px;
+}
+
+/* END OF CSS BERITA */
+
+/* CSS ADMIN */
+
+.panel.panel-purple
+{
+	border-color: purple;
+}
+
+.panel.panel-purple .panel-heading
+{
+	background-image: linear-gradient(to bottom,purple 0,purple 100%);
+}
+
+.panel.panel-purple .panel-heading .row
+{
+	background-color: purple;
+	border-color: purple;
+}
+
+.panel.panel-purple .panel-footer
+{
+	color: purple;
+}
+
+.list-berita .list-group-item .col-xs-9 .date,
+.last-berita .list-group-item .col-xs-9 .date
+{
+	font-weight: bolder;
+	color: rgb(168,203,25);	
+}
+
+.list-berita .list-group-item .col-xs-1,
+.last-berita .list-group-item .col-xs-1
+{
+	text-align: center;
+}
+
+.list-berita .list-group-item .col-xs-1 span.hapus,
+.last-berita .list-group-item .col-xs-1 span.hapus
+{
+	color: #337ab7;
+	cursor: pointer;
+}
+
+.list-berita .modal-body .judul
+{
+	color: #337ab7;
+	font-weight: bolder;
+}
+
+.list-berita
+{
+	max-height: 300px;
+	overflow: scroll;
+}
+
+#form-berita-baru .form-group .auto-label
+{
+	font-size: 12px;
+	padding: 2px 6px;
+}
+
+#form-berita-baru .preview-gambar
+{
+	margin-bottom: 10px;
+	width: 100px;
+	height: 80px;
+	text-align: right;
+}
+
+#form-berita-baru .preview-gambar img
+{
+	width: 100px;
+	height: 60px;
+}
+
+#form-berita-baru .ganti-gambar
+{
+	background-color: rgb(64,179,223);
+	color: #fff;
+	padding: 0px;
+	margin: 0px;
+	width: 100px;
+	height: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.input-label
+{
+	
+}
+
+/* END OF CSS ADMIN */
+
+.welcome
+{
+	height: 100px;
+	width: auto;
+	font-size: 15px;
+}
+
+.welcome span.username
+{
+	font-weight: bolder;
+	color: rgb(64,179,223);
+}
+
+.clear
+{
+	clear: both;
+}
+
+.under-construct
+{
+	text-align: center;
+	font-family: 'OpenSansCondBold';
+	font-size: 30px;
+	background-color: rgb(180,80,80);
+	padding-bottom: 50px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 960px;
+	margin-left: 15px;
+	-webkit-box-shadow: 0 0 5px 3px #A0A0A0;
+}
+
+.under-construct .super
+{
+	font-size: 200px;
+	color: #ddd;
+	height: 230px;
+}
+
+.under-construct h1
+{
+	font-size: 100px;
+}
+
+.under-construct span
+{
+	font-family: 'OpenSansCond';
+}
+
+.label-ypki
+{
+	font-weight: normal;
+	background-color: #5bc0de;
+}
+
+.label-smaki
+{
+	font-weight: normal;
+	background-color: rgb(92,184,92);
+}
+
+.href
+{
+	display: none;
+}

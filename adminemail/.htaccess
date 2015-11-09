@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^adminemail.ypki.or.id$ [OR]
+RewriteCond %{HTTP_HOST} ^www.adminemail.ypki.or.id$
+RewriteRule ^/?$ "https\:\/\/www\.google\.com\/a\/cpanel\/ypki\.or\.id" [R=301,L]
+

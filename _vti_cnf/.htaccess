@@ -1,0 +1,11 @@
+# -FrontPage-
+
+Options None
+
+<Limit GET POST PUT DELETE>
+order deny,allow
+deny from all
+</Limit>
+AuthName ypki.or.id
+AuthUserFile /home/ypkiori1/public_html/_vti_pvt/service.pwd
+AuthGroupFile /home/ypkiori1/public_html/_vti_pvt/service.grp

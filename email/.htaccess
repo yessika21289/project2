@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^email.ypki.or.id$ [OR]
+RewriteCond %{HTTP_HOST} ^www.email.ypki.or.id$
+RewriteRule ^/?$ "http\:\/\/mail\.google\.com\/hosted\/ypki\.or\.id" [R=301,L]
+
