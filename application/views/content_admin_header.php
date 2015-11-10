@@ -111,3 +111,5 @@
                     </ul>
                 </li>
             </ul>
+            <?php include('admin_left_nav.php');?>
+        </nav>

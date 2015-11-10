@@ -71,11 +71,16 @@ class Admin extends MY_Controller {
 		$this->load->model('ypki'); 
 		$data['berita'] = $this->ypki->getAllBerita($instansi);
 		
+		if(!isset($task) || $task == 'hapus')
+			$data['active_berita'] = 1;
+		else
+			$data['active_berita_baru'] = 1;
 		$this->load->view("content_admin_header", $data);
 
 		if(empty($task))
-			$this->load->view("content_admin_berita");	
-
+		{
+			$this->load->view("content_admin_berita");
+		}
 		else if($task=="baru")
 		{
 			if (isset($_POST['submit']))
@@ -234,10 +239,17 @@ class Admin extends MY_Controller {
 		$this->load->model('ypki'); 
 		$data['berita'] = $this->ypki->getAllAgenda($instansi);
 		
+		if(!isset($task) || $task == 'hapus')
+			$data['active_agenda'] = 1;
+		else
+			$data['active_agenda_baru'] = 1;
+
 		$this->load->view("content_admin_header", $data);
 
 		if(empty($task))
+		{
 			$this->load->view("content_admin_agenda");	
+		}
 		else if($task=="baru")
 		{
 			if (isset($_POST['submit']))
