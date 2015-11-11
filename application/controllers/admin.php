@@ -80,8 +80,8 @@ class Admin extends MY_Controller {
 		{
 			if (isset($_POST['submit']))
 			{
-				if ($_POST['input-opt'] == 1)
-				{
+				/*if ($_POST['input-opt'] == 1)
+				{*/
 					if($this->ypki->addBerita($_POST, $_FILES["gambar"]) == 1)
 					{
 						$data['submit_confirm'] = 1;
@@ -98,7 +98,7 @@ class Admin extends MY_Controller {
 					{
 						$data['submit_confirm'] = 0;	
 					}
-				}
+				/*}
 				else if ($_POST['input-opt'] == 2)
 				{
 					if($this->ypki->addBeritaLinked($_POST))
@@ -117,7 +117,7 @@ class Admin extends MY_Controller {
 					{
 						$data['submit_confirm'] = 0;	
 					}	
-				}
+				}*/
 			}
 			
 			$this->load->view("content_admin_berita_baru", $data);

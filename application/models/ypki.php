@@ -223,6 +223,25 @@
 
 			if(move_uploaded_file($files['tmp_name'], $upload))
 			{
+				//crop image---------------------------------------------------
+				$size = getimagesize($upload);
+				$img_width = $size[0];
+				$img_height = $size[1];
+
+				$config['image_library'] = 'gd2';
+				$config['source_image']	= $upload;
+				$config['maintain_ratio'] = FALSE;
+				$config['x_axis']	= ($img_width - 600) / 2;
+				$config['y_axis']	= ($img_height - 360) / 2;
+				$config['width']	= 600;
+				$config['height']	= 360;
+
+				$this->load->library('image_lib', $config); 
+
+				$this->image_lib->crop();
+
+				//------------------------------------------------------------
+				
 				$sqlstr = "INSERT INTO gambar VALUES('','".$filename."','foto')";
 				$result = $this->db->query($sqlstr);
 
