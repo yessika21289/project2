@@ -11,14 +11,24 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/style.css'; ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/sb-admin.css'; ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/font-awesome.min.css'; ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/wbbtheme.css'; ?>">
 
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.min.js'; ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/admin.js'; ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/bootstrap.min.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.timeago.js'; ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.wysibb.min.js'; ?>"></script>
-	
+    <script type="text/javascript" src="<?php echo base_url().'asset/js/tinymce/tinymce.min.js'; ?>"></script>
+
+    <script type="text/javascript">
+        tinymce.init({
+            selector: "#editor",
+            plugins: [
+                "print preview ",
+                "searchreplace visualblocks fullscreen",
+                "contextmenu paste"
+            ],
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link"
+        });
+    </script>
 </head>
 <body>
 	

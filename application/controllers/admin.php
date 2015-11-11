@@ -261,8 +261,24 @@ class Admin extends MY_Controller {
 					$data['submit_confirm'] = 0;	
 				}
 			}
+
+			$this->load->helper(array('form', 'url'));
+
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('judul', 'Judul', 'required');
+			$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('content_admin_agenda_baru', $data);
+			}
+			else
+			{
+				$this->load->view('formsuccess');
+			}
 			
-			$this->load->view("content_admin_agenda_baru", $data);	
+//			$this->load->view("content_admin_agenda_baru", $data);
 			$this->session->unset_userdata('submit_confirm');
 		}
 		else if($task=="ubah")

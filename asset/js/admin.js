@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 	$(".list-berita span.hapus").click(function(){
 		var id = $(this).attr("id").substr(1);
-		
+
 		var judul = $("span#j"+id).html();
 		$(".modal-body .judul").html(judul);
 
@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 	$(".last-berita span.hapus").click(function(){
 		var id = $(this).attr("id").substr(1);
-		
+
 		var judul = $("span#j"+id).html();
 		$(".modal-body .judul").html(judul);
 
@@ -46,11 +46,6 @@ $(document).ready(function(){
 		$(".list-berita .list-group").hide();
 		$(".list-berita .y"+tahun).show();
 	});
-
-	var wbbOpt = {
-	buttons: "bold,italic,underline,strike,sup,sub,|,fontcolor,|,link,|,bullist,numlist,|,code,quote"
-	}
-	$("#editor").wysibb(wbbOpt);
 
 	/*
 		END OF ADMIN SCRIPT
@@ -93,7 +88,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			bbJudul = true;	
+			bbJudul = true;
 			$(this).parent().removeClass("has-error");
 			$(".error-judul").hide();
 		}
@@ -103,7 +98,7 @@ $(document).ready(function(){
 			$("#form-berita-baru .input-submit").removeAttr("disabled");
 		else
 			$("#form-berita-baru .input-submit").attr("disabled","");
-	});	
+	});
 
 	$("#form-berita-baru .input-tanggal").focusout(function(){
 		if ($(this).val() == "")
@@ -114,7 +109,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			bbTanggal = true;	
+			bbTanggal = true;
 			$(this).parent().removeClass("has-error");
 			$(".error-tanggal").hide();
 		}
@@ -133,7 +128,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			bbGambar = true;	
+			bbGambar = true;
 			$(this).parent().removeClass("has-error");
 			$(".error-gambar").hide();
 		}
@@ -141,7 +136,7 @@ $(document).ready(function(){
 			$("#form-berita-baru .input-submit").removeAttr("disabled");
 		else
 			$("#form-berita-baru .input-submit").attr("disabled","");
-	});	
+	});
 
 	$("#form-berita-baru .input-link").change(function(){
 		if ($(this).val() == "")
@@ -152,7 +147,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			bbGambar = true;	
+			bbGambar = true;
 			$(this).parent().removeClass("has-error");
 			$(".error-link").hide();
 		}
@@ -160,13 +155,13 @@ $(document).ready(function(){
 			$("#form-berita-baru .input-submit").removeAttr("disabled");
 		else
 			$("#form-berita-baru .input-submit").attr("disabled","");
-	});	
+	});
 
 	$("#form-berita-baru .form-input-gambar").hide();
 	$("#form-berita-baru .form-input-link").hide();
 
 	$("#form-berita-baru .ganti-gambar").click(function(){
-		
+
 		$("#form-berita-baru .form-select-gambar").css("display","inherit");
 		$("#form-berita-baru .input-gambar").val("");
 		$("#form-berita-baru .input-link").val("");
@@ -175,24 +170,24 @@ $(document).ready(function(){
 		bbGambar = false;
 		$("#form-berita-baru .input-submit").attr("disabled","");
 
-	});	
+	});
 
 	$("#form-berita-baru .form-select-gambar input").change(function(){
-		
+
 		if($(this).val() == "1")
 		{
-			$("#form-berita-baru .form-input-gambar").show();	
-			$("#form-berita-baru .form-input-link").hide();	
-			$("#form-berita-baru .input-link").val("");	
+			$("#form-berita-baru .form-input-gambar").show();
+			$("#form-berita-baru .form-input-link").hide();
+			$("#form-berita-baru .input-link").val("");
 		}
 		else if($(this).val() == "2")
 		{
-			$("#form-berita-baru .form-input-gambar").hide();	
-			$("#form-berita-baru .input-gambar").val("");	
-			$("#form-berita-baru .form-input-link").show();	
+			$("#form-berita-baru .form-input-gambar").hide();
+			$("#form-berita-baru .input-gambar").val("");
+			$("#form-berita-baru .form-input-link").show();
 		}
 
-	});	
+	});
 
 
 
