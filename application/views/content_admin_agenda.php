@@ -125,8 +125,7 @@
         ?>
 
         <div class="row">
-            <div class="col-lg-6">
-                <h2>Daftar Agenda</h2>
+            <div class="col-lg-12">
                 <div class="form-group">
                     <label>Pilih tahun</label>
                     <select class="berita-select form-control">
@@ -198,7 +197,7 @@
                                 echo "</div>";
                                 echo "<div class='col-xs-1'>";
                                 $link = substr($v->tanggal,0,4)."/".substr($v->tanggal,5,2)."/".substr($v->tanggal,8,2)."/".urlencode($v->nama);
-                                echo "<a href='".base_url()."agenda/baca/".$link."' title='lihat'>";
+                                echo "<a href='".base_url()."agenda/baca/".$link."' title='lihat' target='Agenda'>";
                                 echo "<span class='glyphicon glyphicon-eye-open'></span></a>";
                                 echo "</div>";
                                 echo "<div class='col-xs-1'>";
@@ -235,13 +234,13 @@
                 </div>
             </div>
             
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <h2>10 Agenda Terakhir</h2>
                 <div class="last-berita">
                     
                     <?php
 
-                        $berita = $this->ypki->getLastAgenda(10, NULL, $instansi);
+                        /*$berita = $this->ypki->getLastAgenda(10, NULL, $instansi);
 
                         echo "<ul class='list-group'>";
                         foreach ($berita as $key => $value)
@@ -268,12 +267,12 @@
                             echo "</div>";
                             echo "</div></li>";
                         }
-                        echo "</ul>";
+                        echo "</ul>";*/
 
                     ?>
 
                 </div>
-            </div>
+            </div> -->
 
         </div>
         <!-- /.row -->
