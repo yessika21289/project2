@@ -65,15 +65,30 @@
 
                 <?php
                     $prefix = "";
-                    if($instansi == "smaki") $prefix = "smaki/";
-                    else if($instansi == "smpki") $prefix = "smpki/";
-                    else if($instansi == "sdki") $prefix = "sdki/";
-                    else if($instansi == "kbtk") $prefix = "kbtk/";
+                    if($instansi == "smaki") {
+                        $prefix = "smaki/";
+                        $title = "SMA Kristen Indonesia";
+                    }
+                    else if($instansi == "smpki") {
+                        $prefix = "smpki/";
+                        $title = "SMP Kristen Indonesia";
+                    }
+                    else if($instansi == "sdki") {
+                        $prefix = "sdki/";
+                        $title = "SD Kristen Indonesia";
+                    }
+                    else if($instansi == "kbtk") {
+                        $prefix = "kbtk/";
+                        $title = "KB / TK Tunas Kasih";
+                    }
+                    else{
+                        $title = "Yayasan Perguruan Kristen Indonesia";
+                    }
                 ?>
 
                 <span class="href"><?php echo base_url(); ?></span>
 
-                <a class="navbar-brand" href="<?php echo base_url().$prefix; ?>">ypki.or.id<?php if($instansi != "ypki") echo "/".$prefix;?></a>
+                <a class="navbar-brand" href="<?php echo base_url().$prefix; ?>"><?php echo $title;?></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -139,3 +154,5 @@
                     </ul>
                 </li>
             </ul>
+            <?php include('admin_left_nav.php');?>
+        </nav>

@@ -248,6 +248,11 @@
 	font-size: 50px;
 }
 
+.berita-select
+{
+	width: 100px;
+}
+
 #berita .berita-item
 {
 	margin-bottom: 10px;

@@ -223,15 +223,35 @@
 
 			if(move_uploaded_file($files['tmp_name'], $upload))
 			{
+				//crop image---------------------------------------------------
+				$size = getimagesize($upload);
+				$img_width = $size[0];
+				$img_height = $size[1];
+
+				$config['image_library'] = 'gd2';
+				$config['source_image']	= $upload;
+				$config['maintain_ratio'] = FALSE;
+				$config['x_axis']	= ($img_width - 600) / 2;
+				$config['y_axis']	= ($img_height - 360) / 2;
+				$config['width']	= 600;
+				$config['height']	= 360;
+
+				$this->load->library('image_lib', $config); 
+
+				$this->image_lib->crop();
+
+				//------------------------------------------------------------
+				
 				$sqlstr = "INSERT INTO gambar VALUES('','".$filename."','foto')";
 				$result = $this->db->query($sqlstr);
 
 				$sqlstr = "INSERT INTO berita VALUES('','".$post['judul']."','".$filename."','".$post['konten']."','".$created."','".$post['instansi']."')";
 				$result = $this->db->query($sqlstr);	
 
+				$id = $this->getLastId("berita");
+
 				if($post['label'] != "")
 				{
-					$id = $this->getLastId("berita");
 
 					$label = $post['label'];
 					$label = explode(",", $label);
@@ -242,21 +262,21 @@
 					foreach ($label as $key => $value)
 					{
 						if($count == 0)
-							$sqlstr .= "(".$id.",'".$value."')";
+							$sqlstr .= "(".$id.",'".trim($value)."')";
 						else
-							$sqlstr .= ",(".$id.",'".$value."')";
+							$sqlstr .= ",(".$id.",'".trim($value)."')";
 
 						$count++;
 					}
 					$result = $this->db->query($sqlstr);	
 				}
 
-				return true;
+				return $id;
 			}
 			return false;
 		}
 
-		public function addBeritaLinked($post)
+		/*public function addBeritaLinked($post)
 		{
 			$sqlstr = "SELECT id FROM gambar WHERE nama = '".$post['link']."'";
 			$result = $this->db->query($sqlstr);
@@ -306,7 +326,7 @@
 			}
 
 			return true;
-		}
+		}*/
 
 		public function updateBerita($post, $files)
 		{
@@ -325,7 +345,7 @@
 
 			if ($files['size']>0)
 			{
-				if(!strpos($files["type"], "images"))
+				if(strpos($files["type"], "image") === false)
 					return false;
 
 				$filex = substr($files["name"],strlen($files["name"])-4,4);
@@ -362,9 +382,9 @@
 				foreach ($label as $key => $value)
 				{
 					if($count == 0)
-						$sqlstr .= "(".$id.",'".$value."')";
+						$sqlstr .= "(".$id.",'".trim($value)."')";
 					else
-						$sqlstr .= ",(".$id.",'".$value."')";
+						$sqlstr .= ",(".$id.",'".trim($value)."')";
 
 					$count++;
 				}
@@ -374,7 +394,7 @@
 			return true;
 		}
 
-		public function updateBeritaLinked($post)
+		/*public function updateBeritaLinked($post)
 		{
 			$post['judul'] = mysql_real_escape_string($post['judul']);
 
@@ -422,7 +442,7 @@
 			}
 
 			return true;
-		}
+		}*/
 
 		public function getNewBerita()
 		{

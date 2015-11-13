@@ -157,8 +157,8 @@ $(document).ready(function(){
 			$("#form-berita-baru .input-submit").attr("disabled","");
 	});
 
-	$("#form-berita-baru .form-input-gambar").hide();
-	$("#form-berita-baru .form-input-link").hide();
+	//$("#form-berita-baru .form-input-gambar").hide();
+	//$("#form-berita-baru .form-input-link").hide();
 
 	$("#form-berita-baru .ganti-gambar").click(function(){
 
