@@ -293,7 +293,7 @@ class Admin extends MY_Controller {
 				}
 			}
 
-			$this->load->helper(array('form', 'url'));
+			/*$this->load->helper(array('form', 'url'));
 
 			$this->load->library('form_validation');
 
@@ -307,9 +307,9 @@ class Admin extends MY_Controller {
 			else
 			{
 				$this->load->view('formsuccess');
-			}
+			}*/
 			
-//			$this->load->view("content_admin_agenda_baru", $data);
+			$this->load->view("content_admin_agenda_baru", $data);
 			$this->session->unset_userdata('submit_confirm');
 		}
 		else if($task=="ubah")

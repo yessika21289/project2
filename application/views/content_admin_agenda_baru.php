@@ -127,7 +127,7 @@
 
                     <div class="form-group">
                         <label>Tanggal</label>
-                            <input type="date" name="tanggal" class="form-control input-tanggal" value="<?php echo $tanggal; ?>" style="width:155px;">
+                            <input type="date" name="tanggal" class="form-control input-tanggal" value="<?php echo $tanggal; ?>" style="width:160px;">
                             <p class="text-right help-block error-tanggal">* tanggal tidak boleh kosong</p>
                     </div>
 
