@@ -85,11 +85,15 @@ class Admin extends MY_Controller {
 		{
 			if (isset($_POST['submit']))
 			{
-				if ($_POST['input-opt'] == 1)
-				{
-					if($this->ypki->addBerita($_POST, $_FILES["gambar"]) == 1)
+				/*if ($_POST['input-opt'] == 1)
+				{*/
+					$insert = $this->ypki->addBerita($_POST, $_FILES["gambar"]);
+					if($insert)
 					{
+						$id = $insert;
+
 						$data['submit_confirm'] = 1;
+						$this->session->set_flashdata('submit_confirm', 1);
 
 						$new = $this->ypki->getNewBerita();
 						$new = $new[0];
@@ -98,12 +102,16 @@ class Admin extends MY_Controller {
 							$data['read_link'] = base_url().$instansi."/berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
 						else
 							$data['read_link'] = base_url()."berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
+
+						$this->session->set_flashdata('read_link', $data['read_link']);
+						redirect(base_url()."admin/berita/ubah/".$id);
 					}
 					else
 					{
-						$data['submit_confirm'] = 0;	
+						$data['submit_confirm'] = 0;
 					}
-				}
+
+				/*}
 				else if ($_POST['input-opt'] == 2)
 				{
 					if($this->ypki->addBeritaLinked($_POST))
@@ -122,7 +130,7 @@ class Admin extends MY_Controller {
 					{
 						$data['submit_confirm'] = 0;	
 					}	
-				}
+				}*/
 			}
 			
 			$this->load->view("content_admin_berita_baru", $data);
@@ -130,12 +138,17 @@ class Admin extends MY_Controller {
 		}
 		else if($task=="ubah")
 		{
+			$id = $this->uri->segment(4);
+			$data['submit_confirm'] = $this->session->flashdata('submit_confirm');
+			$data['update_confirm'] = $this->session->flashdata('update_confirm');
+			$data['read_link'] = $this->session->flashdata('read_link');
+
 			if (isset($_POST['update']))
 			{
-				if (isset($_POST['input-opt']))
+				/*iif (isset($_POST['input-opt']))
 				{
-					if ($_POST['input-opt'] == 1)
-					{
+					f ($_POST['input-opt'] == 1)
+					{*/
 						if($this->ypki->updateBerita($_POST, $_FILES["gambar"]) == 1)
 						{
 							$data['update_confirm'] = 1;
@@ -147,12 +160,19 @@ class Admin extends MY_Controller {
 								$data['read_link'] = base_url().$instansi."/berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
 							else
 								$data['read_link'] = base_url()."berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
+
+
+							$this->session->set_flashdata('update_confirm',1);
+							$this->session->set_flashdata('read_link',$data['read_link']);
 						}
 						else
 						{
-							$data['update_confirm'] = 0;	
-						}	
-					}
+							$data['update_confirm'] = 0;
+							$this->session->set_flashdata('update_confirm',0);
+						}
+
+						redirect(base_url()."admin/berita/ubah/".$id);
+					/*}
 					else if ($_POST['input-opt'] == 2)
 					{
 						if($this->ypki->updateBeritaLinked($_POST))
@@ -191,11 +211,10 @@ class Admin extends MY_Controller {
 					{
 						$data['update_confirm'] = 0;	
 					}	
-				}
+				}*/
 				
 			}
 
-			$id = $this->uri->segment(4);
 			$berita = $this->ypki->getBerita($id);
 			$data['berita_edit'] = $berita[0];
 			$data['berita_edit']->tipe_gambar = $this->ypki->getTipeGambar($data['berita_edit']->gambar);

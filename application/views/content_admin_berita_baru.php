@@ -34,23 +34,23 @@
         <!-- /.row -->
 
         <?php
-            if (isset($submit_confirm))
+            if (isset($submit_confirm) && ($submit_confirm === 1 || $submit_confirm === 0))
             {
-                if ($submit_confirm == 1)
+                if ($submit_confirm === 1)
                 {
         ?>
         <div class="row">
             <div class="col-xs-10">
                 <div class="alert alert-success alert-dismissible" role="alert">
                   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Berita baru berhasil ditambahkan. <a href="<?php echo $read_link; ?>">Lihat berita</a> 
+                  <strong>Sukses!</strong> Berita baru berhasil ditambahkan. <a href="<?php echo $read_link; ?>" target="lihatBerita">Lihat berita</a> 
                 </div>
             </div>
         </div>
         <!-- /.row -->
         <?php
                 }
-                else if($submit_confirm == 0)
+                else if($submit_confirm === 0)
                 {
         ?>
         <div class="col-xs-10">
@@ -64,23 +64,23 @@
         <?php
                 }
             }
-            else if (isset($update_confirm))
+            else if (isset($update_confirm) && ($update_confirm === 1 || $update_confirm === 0))
             {
-                if ($update_confirm == 1)
+                if ($update_confirm === 1)
                 {
         ?>
         <div class="row">
             <div class="col-xs-10">
                 <div class="alert alert-success alert-dismissible" role="alert">
                   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Berita berhasil diubah. <a href="<?php echo $read_link; ?>">Lihat berita</a>
+                  <strong>Sukses!</strong> Berita berhasil diubah. <a href="<?php echo $read_link; ?>" target="lihatBerita">Lihat berita</a>
                 </div>
             </div>
         </div>
         <!-- /.row -->
         <?php
                 }
-                else if($update_confirm == 0)
+                else if($update_confirm === 0)
                 {
         ?>
         <div class="col-xs-10">
@@ -95,7 +95,7 @@
                 }
             }
         ?>
-
+<?php //print_r($submit_confirm);?>
         <div class="row">        
             
             <div class="col-xs-10">
@@ -137,10 +137,10 @@
                     <div class="form-group">
                         <label>Gambar</label>
 
-                        <div class="form-select-gambar" <?php if ($gambar!="") echo "style='display:none;'"; ?> >
+                        <!-- <div class="form-select-gambar" <?php if ($gambar!="") echo "style='display:none;'"; ?> >
                             <label class="radio-inline"><input type="radio" name="input-opt" value="1" selected>Upload Gambar</label>
                             <label class="radio-inline"><input type="radio" name="input-opt" value="2">Link</label>
-                        </div>
+                        </div> -->
                         <br/>
 
                         <?php
@@ -159,15 +159,15 @@
 
                         <div class="form-input-gambar">
                             <input type="file" name="gambar" accept="image/*" class="input-gambar" value="<?php echo $gambar; ?>"/>
-                            <p class="help-block">gambar yang disarankan berukuran 600x360 (atau memiliki resolusi 5:3)</p>
+                            <p class="help-block">Ukuran gambar : 600px X 360px.<br/>Sistem akan otomatis melakukan <i>cropping</i> bila ukuran gambar tidak sesuai.</p>
                             <p class="text-right help-block error-gambar">* anda harus memilih gambar</p>
                         </div>
 
-                        <div class="form-input-link">
+                        <!-- <div class="form-input-link">
                             <input name="link" class="form-control input-link" value="<?php echo $link; ?>"/>
                             <p class="help-block">gambar yang disarankan berukuran 600x360 (atau memiliki resolusi 5:3)</p>
                             <p class="text-right help-block error-link">* anda harus memasukkan link gambar</p>
-                        </div>
+                        </div> -->
 
 
                     </div>
