@@ -141,7 +141,7 @@
                     </div>
 
                     <div class="text-right">
-                        <button type="reset" class="btn btn-default">Reset</button>
+                        <button type="cancel" class="btn btn-default" onclick="window.location.href='/admin/agenda';return false;">Cancel</button>
                         <?php
                             if (isset($berita_edit))
                                 echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Agenda</button>";
