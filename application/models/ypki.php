@@ -784,7 +784,44 @@
 			}	
 			$result = $this->db->query($sqlstr);
 			return $result->result();
-		}		
+		}
+
+		public function getAllFirman($instansi = "ypki"){
+			if ($instansi = "ypki")
+				$sqlstr = "SELECT * FROM firman ORDER BY created DESC";
+			else
+				$sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."' ORDER BY created DESC";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function addFirman($konten, $tgl, $ins)
+		{
+			$id = $this->getLastId('firman')+1;
+
+			$data = array(
+				'id' => $id,
+				'firman' => $konten,
+				'created' => $tgl,
+				'instansi' => $ins
+			);
+			$this->db->insert('firman', $data);
+
+			return true;
+		}
+
+		public function getNewFirman()
+		{
+			$sqlstr = "SELECT * FROM firman ORDER BY id DESC LIMIT 1";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function getFirmanByTanggal($tgl) {
+			$query = 'SELECT firman FROM firman WHERE created = '.$tgl;
+			$result = $this->db->query($query);
+			return $result->result();
+		}
 	}
 	
 ?>

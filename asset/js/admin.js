@@ -193,3 +193,9 @@ $(document).ready(function(){
 
 
 });
+
+function showFirman(tgl, i) {
+	//var base_url = window.location.origin;
+	//var available_firman = $.get(base_url+'/admin/getFirman/'+tgl);
+	//console.log(available_firman);
+}

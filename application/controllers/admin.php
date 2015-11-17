@@ -68,9 +68,9 @@ class Admin extends MY_Controller {
 		$data = $this->session->all_userdata();
 		$instansi = $this->session->userdata('instansi');
 
-		$this->load->model('ypki'); 
+		$this->load->model('ypki');
 		$data['berita'] = $this->ypki->getAllBerita($instansi);
-		
+
 		if(!isset($task) || $task == 'hapus')
 			$data['active_berita'] = 1;
 		else
@@ -128,11 +128,11 @@ class Admin extends MY_Controller {
 					}
 					else
 					{
-						$data['submit_confirm'] = 0;	
-					}	
+						$data['submit_confirm'] = 0;
+					}
 				}*/
 			}
-			
+
 			$this->load->view("content_admin_berita_baru", $data);
 			$this->session->unset_userdata('submit_confirm');
 		}
@@ -212,7 +212,7 @@ class Admin extends MY_Controller {
 						$data['update_confirm'] = 0;	
 					}	
 				}*/
-				
+
 			}
 
 			$berita = $this->ypki->getBerita($id);
@@ -238,7 +238,7 @@ class Admin extends MY_Controller {
 			}
 
 			$this->load->view("content_admin_berita", $data);
-			
+
 			$this->session->unset_userdata('delete_confirm');
 		}
 		else
@@ -365,5 +365,123 @@ class Admin extends MY_Controller {
 
 		$this->load->view("content_admin_footer");		
 	}
-}
 
+
+	public function firman($task = NULL)
+	{
+		$data = $this->session->all_userdata();
+		$instansi = $this->session->userdata('instansi');
+
+		$this->load->model('ypki');
+		$data['firman'] = $this->ypki->getAllFirman($instansi);
+
+		$this->load->view("content_admin_header", $data);
+
+		if (empty($task))
+			$this->load->view("content_admin_firman");
+
+		else if ($task == "baru") {
+			if (isset($_POST['submit'])) {
+				for($i=1; $i<=7; $i++) {
+					$konten = $_POST['konten_'.$i];
+					$tanggal = $_POST['tanggal_'.$i];
+					$instansi = $_POST['instansi'];
+					$insert[$i] = $this->ypki->addFirman($konten, $tanggal, $instansi);
+				}
+				print_r($insert);
+//						if ($instansi != "ypki")
+//							$data['read_link'] = base_url() . $instansi . "/berita/baca/" . substr($new->created, 0, 10) . "/" . urlencode($new->judul);
+//						else
+//							$data['read_link'] = base_url() . "berita/baca/" . substr($new->created, 0, 10) . "/" . urlencode($new->judul);
+//				} else {
+//					$data['submit_confirm'] = 0;
+//				}
+			}
+
+			$this->load->view("content_admin_firman_baru", $data);
+			$this->session->unset_userdata('submit_confirm');
+		} else if ($task == "ubah") {
+			if (isset($_POST['update'])) {
+				if (isset($_POST['input-opt'])) {
+					if ($_POST['input-opt'] == 1) {
+						if ($this->ypki->updateBerita($_POST, $_FILES["gambar"]) == 1) {
+							$data['update_confirm'] = 1;
+
+							$tanggal = $this->ypki->getCol("created", "berita", $_POST['id']);
+							$tanggal = $tanggal[0]->created;
+
+							if ($instansi != "ypki")
+								$data['read_link'] = base_url() . $instansi . "/berita/baca/" . substr($tanggal, 0, 10) . "/" . urlencode($_POST['judul']);
+							else
+								$data['read_link'] = base_url() . "berita/baca/" . substr($tanggal, 0, 10) . "/" . urlencode($_POST['judul']);
+						} else {
+							$data['update_confirm'] = 0;
+						}
+					} else if ($_POST['input-opt'] == 2) {
+						if ($this->ypki->updateBeritaLinked($_POST)) {
+							$data['update_confirm'] = 1;
+
+							$tanggal = $this->ypki->getCol("created", "berita", $_POST['id']);
+							$tanggal = $tanggal[0]->created;
+
+							if ($instansi != "ypki")
+								$data['read_link'] = base_url() . $instansi . "/berita/baca/" . substr($tanggal, 0, 10) . "/" . urlencode($_POST['judul']);
+							else
+								$data['read_link'] = base_url() . "berita/baca/" . substr($tanggal, 0, 10) . "/" . urlencode($_POST['judul']);
+						} else {
+							$data['update_confirm'] = 0;
+						}
+					}
+				} else {
+					if ($this->ypki->updateBerita($_POST, $_FILES["gambar"]) == 1) {
+						$data['update_confirm'] = 1;
+
+						$tanggal = $this->ypki->getCol("created", "berita", $_POST['id']);
+						$tanggal = $tanggal[0]->created;
+
+						if ($instansi != "ypki")
+							$data['read_link'] = base_url() . $instansi . "/berita/baca/" . substr($tanggal, 0, 10) . "/" . urlencode($_POST['judul']);
+						else
+							$data['read_link'] = base_url() . "berita/baca/" . substr($tanggal, 0, 10) . "/" . urlencode($_POST['judul']);
+					} else {
+						$data['update_confirm'] = 0;
+					}
+				}
+
+			}
+
+			$id = $this->uri->segment(4);
+			$berita = $this->ypki->getBerita($id);
+			$data['berita_edit'] = $berita[0];
+			$data['berita_edit']->tipe_gambar = $this->ypki->getTipeGambar($data['berita_edit']->gambar);
+
+			$data['berita_label'] = $this->ypki->getLabelString($id);
+			$this->load->view("content_admin_berita_baru", $data);
+			$this->session->unset_userdata('berita_edit');
+			$this->session->unset_userdata('berita_label');
+			$this->session->unset_userdata('update_confirm');
+		} else if ($task == "hapus") {
+			$id = $this->uri->segment(4);
+			if ($this->ypki->deleteBerita($id)) {
+				$data['delete_confirm'] = 1;
+			} else {
+				$data['delete_confirm'] = 0;
+			}
+
+			$this->load->view("content_admin_berita", $data);
+
+			$this->session->unset_userdata('delete_confirm');
+		} else {
+			redirect(base_url() . "admin/berita");
+		}
+
+
+		$this->load->view("content_admin_footer");
+	}
+
+	public function getFirman($tgl = NULL) {
+		$firman = '';
+		$firman = $this->ypki->getFirmanByTanggal($tgl);
+
+	}
+}

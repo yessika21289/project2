@@ -20,7 +20,7 @@
 
     <script type="text/javascript">
         tinymce.init({
-            selector: "#editor",
+            selector: ".editor",
             plugins: [
                 "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
