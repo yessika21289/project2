@@ -795,68 +795,31 @@
 			return $result->result();
 		}
 
-		public function addFirman($post)
+		public function addFirman($konten, $tgl, $ins)
 		{
-			$post['judul'] = mysql_real_escape_string($post['judul']);
+			$id = $this->getLastId('firman')+1;
 
-			$post['konten'] = preg_replace('/[\xA0]/', ' ', $post['konten']);
-			$post['konten'] = preg_replace('/[\x80-\xFF]/', '', $post['konten']);
-			$post['konten'] = htmlspecialchars($post['konten']);
-			$post['konten'] = mysql_real_escape_string($post['konten']);
-			//$konten = nl2br($konten);
+			$data = array(
+				'id' => $id,
+				'firman' => $konten,
+				'created' => $tgl,
+				'instansi' => $ins
+			);
+			$this->db->insert('firman', $data);
 
-			if ( function_exists( 'date_default_timezone_set' ) )
-				date_default_timezone_set('Asia/Jakarta');
-
-			$waktu = date("YmdHis");
-
-			$filex = substr($files["name"],strlen($files["name"])-4,4);
-
-			$filename = $waktu.$filex;
-
-			$upload = "./asset/img/".$filename;
-
-			$created = date("Y/m/d H:i:s");
-
-			if(move_uploaded_file($files['tmp_name'], $upload))
-			{
-				$sqlstr = "INSERT INTO gambar VALUES('','".$filename."','foto')";
-				$result = $this->db->query($sqlstr);
-
-				$sqlstr = "INSERT INTO berita VALUES('','".$post['judul']."','".$filename."','".$post['konten']."','".$created."','".$post['instansi']."')";
-				$result = $this->db->query($sqlstr);
-
-				if($post['label'] != "")
-				{
-					$id = $this->getLastId("berita");
-
-					$label = $post['label'];
-					$label = explode(",", $label);
-
-					$sqlstr = "INSERT INTO label VALUES";
-					$count = 0;
-
-					foreach ($label as $key => $value)
-					{
-						if($count == 0)
-							$sqlstr .= "(".$id.",'".$value."')";
-						else
-							$sqlstr .= ",(".$id.",'".$value."')";
-
-						$count++;
-					}
-					$result = $this->db->query($sqlstr);
-				}
-
-				return true;
-			}
-			return false;
+			return true;
 		}
 
 		public function getNewFirman()
 		{
 			$sqlstr = "SELECT * FROM firman ORDER BY id DESC LIMIT 1";
 			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function getFirmanByTanggal($tgl) {
+			$query = 'SELECT firman FROM firman WHERE created = '.$tgl;
+			$result = $this->db->query($query);
 			return $result->result();
 		}
 	}

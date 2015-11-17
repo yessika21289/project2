@@ -7,10 +7,10 @@
             <div class="col-lg-12">
                 <h1 class="page-header">
                     <?php
-                    if (isset($berita_edit))
-                        echo "Ubah Agenda";
+                    if (isset($firman_edit))
+                        echo "Ubah Firman";
                     else
-                        echo "Agenda Baru";
+                        echo "Firman Baru";
                     ?>
                 </h1>
                 <ol class="breadcrumb">
@@ -18,14 +18,14 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li>
-                        <i class="fa fa-file-text"></i>  <a href="<?php echo base_url()?>admin/agenda">Agenda</a>
+                        <i class="fa fa-file-text"></i>  <a href="<?php echo base_url()?>admin/firman">Firman</a>
                     </li>
                     <li class="active">
                         <?php
-                        if (isset($berita_edit))
-                            echo "<i class='fa fa-pencil'></i> Ubah Agenda";
+                        if (isset($firman_edit))
+                            echo "<i class='fa fa-pencil'></i> Ubah Firman";
                         else
-                            echo "<i class='fa fa-plus'></i> Agenda Baru";
+                            echo "<i class='fa fa-plus'></i> Firman Baru";
                         ?>
                     </li>
                 </ol>
@@ -43,7 +43,7 @@
                 <div class="col-xs-10">
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <strong>Sukses!</strong> Agenda baru berhasil ditambahkan. <a href="<?php echo $read_link; ?>">Lihat agenda</a>
+                        <strong>Sukses!</strong> Firman baru berhasil ditambahkan. <a href="<?php echo $read_link; ?>">Lihat Firman</a>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
         <div class="col-xs-10">
             <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <strong>Gagal!</strong> Terjadi kesalahan. Agenda baru gagal ditambahkan
+                <strong>Gagal!</strong> Terjadi kesalahan. Firman baru gagal ditambahkan
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
             <div class="col-xs-10">
                 <div class="alert alert-success alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <strong>Sukses!</strong> Agenda berhasil diubah. <a href="<?php echo $read_link; ?>">Lihat agenda</a>
+                    <strong>Sukses!</strong> Firman berhasil diubah. <a href="<?php echo $read_link; ?>">Lihat Firman</a>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
     <div class="col-xs-10">
         <div class="alert alert-danger alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <strong>Gagal!</strong> Terjadi kesalahan. Agenda tidak dapat diubah
+            <strong>Gagal!</strong> Terjadi kesalahan. Firman tidak dapat diubah
         </div>
     </div>
 </div>
@@ -100,7 +100,7 @@
 
     <div class="col-xs-10">
 
-        <form id="form-berita-baru" role="form" method="post" action="" enctype="multipart/form-data">
+        <form id="form-firman-baru" role="form" method="post" action="" enctype="multipart/form-data">
 
             <?php
             $konten = "";
@@ -108,41 +108,44 @@
             $ins = $instansi;
             $id = "";
 
-            if (isset($berita_edit))
+            if (isset($firman_edit))
             {
-                $id = $berita_edit->id;
-                $judul = $berita_edit->nama;
-                $konten = $berita_edit->deskripsi;
-                $tanggal = $berita_edit->tanggal;
+                $id = $firman_edit->id;
+                $judul = $firman_edit->nama;
+                $konten = $firman_edit->deskripsi;
+                $tanggal = $firman_edit->tanggal;
                 echo "<input type='hidden' name='id' value='".$id."'>";
             }
             ?>
 
-            <div class="form-group">
-                <label>Tanggal</label>
-                <input type="date" name="tanggal" class="form-control input-tanggal" value="<?php echo $tanggal; ?>">
-                <p class="text-right help-block error-tanggal">* tanggal tidak boleh kosong</p>
-            </div>
+            <?php for($i=1; $i<=7; $i++): ?>
+                <div style="overflow: auto;">
+                    <div class="form-group" style="float: right; margin-left: 20px;">
+                        <label>Firman Tuhan</label>
+                        <textarea id="<?php echo "firman_".$i; ?>" class="editor" name="<?php echo "konten_".$i ?>" class="form-control input-konten" rows="3"><?php echo $konten; ?></textarea>
+                    </div>
+                    <div class="form-group"">
+                        <label>Tanggal</label>
+                        <input type="date" name="<?php echo "tanggal_".$i ?>" class="form-control input-tanggal" value="<?php echo $tanggal; ?>" style="width:155px;" onfocusout="showFirman(this.value, <?php echo $i; ?>)" />
+                        <p class="text-right help-block error-tanggal">* tanggal tidak boleh kosong</p>
+                    </div>
 
-            <div class="form-group">
-                <label>Deskripsi</label>
-                <textarea id="editor" name="konten" class="form-control input-konten" rows="10"><?php echo $konten; ?></textarea>
-            </div>
+                </div>
+                <hr style="height: 12px; border: 0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
+                <div class="form-group">
+                    <input type="hidden" name="instansi" class="form-control input-instansi" value="<?php echo $ins; ?>" />
+                </div>
 
-            <div class="form-group">
-                <input type="hidden" name="instansi" class="form-control input-instansi" value="<?php echo $ins; ?>">
-            </div>
-
-            <div class="text-right">
-                <button type="reset" class="btn btn-default">Reset</button>
-                <?php
-                if (isset($berita_edit))
-                    echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Agenda</button>";
-                else
-                    echo "<button type='submit' class='btn btn-primary input-submit' disabled name='submit'>Buat Agenda</button>";
-                ?>
-            </div>
-
+            <?php endfor; ?>
+        <div class="text-right">
+            <!--                    <button type="reset" class="btn btn-default">Reset</button>-->
+            <?php
+            if (isset($firman_edit))
+                echo "<button type='submit' class='btn btn-primary input-submit' name='update'>Ubah Firman</button>";
+            else
+                echo "<button type='submit' class='btn btn-primary input-submit' name='submit'>Buat Firman</button>";
+            //                ?>
+        </div>
         </form>
 
     </div>
@@ -156,4 +159,4 @@
 </div>
 <!-- /#page-wrapper -->
 
-<input type="hidden" class="page-type" value="agenda" />
+<input type="hidden" class="page-type" value="firman" />
