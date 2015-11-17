@@ -797,17 +797,18 @@
 
 		public function addFirman($konten, $tgl, $ins)
 		{
-			$id = $this->getLastId('firman')+1;
-
-			$data = array(
-				'id' => $id,
-				'firman' => $konten,
-				'created' => $tgl,
-				'instansi' => $ins
-			);
-			$this->db->insert('firman', $data);
-
-			return true;
+			if(!empty($konten) && !empty($tgl)) {
+                $id = $this->getLastId('firman')+1;
+                $data = array(
+                    'id' => $id,
+                    'firman' => $konten,
+                    'created' => $tgl,
+                    'instansi' => $ins
+                );
+                $this->db->insert('firman', $data);
+                return true;
+            }
+            else return false;
 		}
 
 		public function getNewFirman()
