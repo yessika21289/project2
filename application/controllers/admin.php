@@ -71,91 +71,107 @@ class Admin extends MY_Controller {
 		$this->load->model('ypki');
 		$data['berita'] = $this->ypki->getAllBerita($instansi);
 
-		if (!isset($task) || $task == 'hapus')
+		if(!isset($task) || $task == 'hapus')
 			$data['active_berita'] = 1;
 		else
 			$data['active_berita_baru'] = 1;
 		$this->load->view("content_admin_header", $data);
 
-		if (empty($task))
+		if(empty($task))
+		{
 			$this->load->view("content_admin_berita");
+		}
+		else if($task=="baru")
+		{
+			if (isset($_POST['submit']))
+			{
+				/*if ($_POST['input-opt'] == 1)
+				{*/
+					$insert = $this->ypki->addBerita($_POST, $_FILES["gambar"]);
+					if($insert)
+					{
+						$id = $insert;
 
-		else if ($task == "baru") {
-			if (isset($_POST['submit'])) {
-				if ($_POST['input-opt'] == 1) {
-					if ($this->ypki->addBerita($_POST, $_FILES["gambar"]) == 1) {
 						$data['submit_confirm'] = 1;
 						$this->session->set_flashdata('submit_confirm', 1);
 
 						$new = $this->ypki->getNewBerita();
 						$new = $new[0];
 
-						if ($instansi != "ypki")
-							$data['read_link'] = base_url() . $instansi . "/berita/baca/" . substr($new->created, 0, 10) . "/" . urlencode($new->judul);
+						if($instansi != "ypki")
+							$data['read_link'] = base_url().$instansi."/berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
 						else
-							$data['read_link'] = base_url() . "berita/baca/" . substr($new->created, 0, 10) . "/" . urlencode($new->judul);
+							$data['read_link'] = base_url()."berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
 
 						$this->session->set_flashdata('read_link', $data['read_link']);
-						redirect(base_url() . "admin/berita/ubah/" . $id);
-					} else {
+						redirect(base_url()."admin/berita/ubah/".$id);
+					}
+					else
+					{
 						$data['submit_confirm'] = 0;
 					}
 
-					/*}
-                    else if ($_POST['input-opt'] == 2)
-                    {
-                        if($this->ypki->addBeritaLinked($_POST))
-                        {
-                            $data['submit_confirm'] = 1;
+				/*}
+				else if ($_POST['input-opt'] == 2)
+				{
+					if($this->ypki->addBeritaLinked($_POST))
+					{
+						$data['submit_confirm'] = 1;
 
-                            $new = $this->ypki->getNewBerita();
-                            $new = $new[0];
+						$new = $this->ypki->getNewBerita();
+						$new = $new[0];
 
-                            if($instansi != "ypki")
-                                $data['read_link'] = base_url().$instansi."/berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
-                            else
-                                $data['read_link'] = base_url()."berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
-                        }
-                        else
-                        {
-                            $data['submit_confirm'] = 0;
-                        }
-                    }*/
-				}
-
-				$this->load->view("content_admin_berita_baru", $data);
-				$this->session->unset_userdata('submit_confirm');
-			} else if ($task == "ubah") {
-				$id = $this->uri->segment(4);
-				$data['submit_confirm'] = $this->session->flashdata('submit_confirm');
-				$data['update_confirm'] = $this->session->flashdata('update_confirm');
-				$data['read_link'] = $this->session->flashdata('read_link');
-
-				if (isset($_POST['update'])) {
-					/*iif (isset($_POST['input-opt']))
-                    {
-                        f ($_POST['input-opt'] == 1)
-                        {*/
-					if ($this->ypki->updateBerita($_POST, $_FILES["gambar"]) == 1) {
-						$data['update_confirm'] = 1;
-
-						$tanggal = $this->ypki->getCol("created", "berita", $_POST['id']);
-						$tanggal = $tanggal[0]->created;
-
-						if ($instansi != "ypki")
-							$data['read_link'] = base_url() . $instansi . "/berita/baca/" . substr($tanggal, 0, 10) . "/" . urlencode($_POST['judul']);
+						if($instansi != "ypki")
+							$data['read_link'] = base_url().$instansi."/berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
 						else
-							$data['read_link'] = base_url() . "berita/baca/" . substr($tanggal, 0, 10) . "/" . urlencode($_POST['judul']);
-
-
-						$this->session->set_flashdata('update_confirm', 1);
-						$this->session->set_flashdata('read_link', $data['read_link']);
-					} else {
-						$data['update_confirm'] = 0;
-						$this->session->set_flashdata('update_confirm', 0);
+							$data['read_link'] = base_url()."berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
 					}
+					else
+					{
+						$data['submit_confirm'] = 0;
+					}
+				}*/
+			}
 
-					redirect(base_url() . "admin/berita/ubah/" . $id);
+			$this->load->view("content_admin_berita_baru", $data);
+			$this->session->unset_userdata('submit_confirm');
+		}
+		else if($task=="ubah")
+		{
+			$id = $this->uri->segment(4);
+			$data['submit_confirm'] = $this->session->flashdata('submit_confirm');
+			$data['update_confirm'] = $this->session->flashdata('update_confirm');
+			$data['read_link'] = $this->session->flashdata('read_link');
+
+			if (isset($_POST['update']))
+			{
+				/*iif (isset($_POST['input-opt']))
+				{
+					f ($_POST['input-opt'] == 1)
+					{*/
+						if($this->ypki->updateBerita($_POST, $_FILES["gambar"]) == 1)
+						{
+							$data['update_confirm'] = 1;
+
+							$tanggal = $this->ypki->getCol("created","berita",$_POST['id']);
+							$tanggal = $tanggal[0]->created;
+
+							if($instansi != "ypki")
+								$data['read_link'] = base_url().$instansi."/berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
+							else
+								$data['read_link'] = base_url()."berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
+
+
+							$this->session->set_flashdata('update_confirm',1);
+							$this->session->set_flashdata('read_link',$data['read_link']);
+						}
+						else
+						{
+							$data['update_confirm'] = 0;
+							$this->session->set_flashdata('update_confirm',0);
+						}
+
+						redirect(base_url()."admin/berita/ubah/".$id);
 					/*}
 					else if ($_POST['input-opt'] == 2)
 					{
@@ -197,34 +213,41 @@ class Admin extends MY_Controller {
 					}	
 				}*/
 
-				}
-
-				$id = $this->uri->segment(4);
-				$berita = $this->ypki->getBerita($id);
-				$data['berita_edit'] = $berita[0];
-				$data['berita_edit']->tipe_gambar = $this->ypki->getTipeGambar($data['berita_edit']->gambar);
-
-				$data['berita_label'] = $this->ypki->getLabelString($id);
-				$this->load->view("content_admin_berita_baru", $data);
-				$this->session->unset_userdata('berita_edit');
-				$this->session->unset_userdata('berita_label');
-				$this->session->unset_userdata('update_confirm');
-			} else if ($task == "hapus") {
-				$id = $this->uri->segment(4);
-				if ($this->ypki->deleteBerita($id)) {
-					$data['delete_confirm'] = 1;
-				} else {
-					$data['delete_confirm'] = 0;
-				}
-
-				$this->load->view("content_admin_berita", $data);
-
-				$this->session->unset_userdata('delete_confirm');
-			} else {
-				redirect(base_url() . "admin/berita");
 			}
-			$this->load->view("content_admin_footer");
+
+			$berita = $this->ypki->getBerita($id);
+			$data['berita_edit'] = $berita[0];
+			$data['berita_edit']->tipe_gambar = $this->ypki->getTipeGambar($data['berita_edit']->gambar);
+
+			$data['berita_label'] = $this->ypki->getLabelString($id);
+			$this->load->view("content_admin_berita_baru", $data);
+			$this->session->unset_userdata('berita_edit');
+			$this->session->unset_userdata('berita_label');
+			$this->session->unset_userdata('update_confirm');
 		}
+		else if($task=="hapus")
+		{
+			$id = $this->uri->segment(4);
+			if( $this->ypki->deleteBerita($id) )
+			{
+				$data['delete_confirm'] = 1;
+			}
+			else
+			{
+				$data['delete_confirm'] = 0;
+			}
+
+			$this->load->view("content_admin_berita", $data);
+
+			$this->session->unset_userdata('delete_confirm');
+		}
+		else
+		{
+			redirect(base_url()."admin/berita");
+		}
+
+
+		$this->load->view("content_admin_footer");
 	}
 
 	public function agenda($task = NULL)
