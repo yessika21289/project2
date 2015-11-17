@@ -823,6 +823,32 @@
 			$result = $this->db->query($query);
 			return $result->result();
 		}
+
+        public function getFirmanByTahun($tahun, $instansi = "ypki"){
+            if ($instansi == "ypki")
+                $sqlstr = "SELECT * FROM firman WHERE MID(created,1,4) = '".$tahun."' ORDER BY created DESC";
+            else
+                $sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."' AND MID(created,1,4) = '".$tahun."' ORDER BY created DESC";
+            $result = $this->db->query($sqlstr);
+            return $result->result();
+        }
+
+        public function getJumlahFirmanByBulan($bulan, $instansi = "ypki"){
+            if ($instansi == "ypki")
+                $sqlstr = "SELECT * FROM firman WHERE MID(created,6,2) = '".$bulan."'";
+            else
+                $sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."' AND MID(created,6,2) = '".$bulan."'";
+            $result = $this->db->query($sqlstr);
+            return $result->num_rows();
+        }
+
+        public function getFirman($id){
+            if(!empty($id)) {
+                $query = $this->db->get_where('firman', array('id' => $id));
+                return $query->result();
+            }
+
+        }
 	}
 	
 ?>

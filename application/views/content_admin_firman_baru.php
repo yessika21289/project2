@@ -107,18 +107,22 @@
             $tanggal = "";
             $ins = $instansi;
             $id = "";
+            $j = 7;
 
             if (isset($firman_edit))
             {
                 $id = $firman_edit->id;
-                $judul = $firman_edit->nama;
-                $konten = $firman_edit->deskripsi;
-                $tanggal = $firman_edit->tanggal;
+                $konten = $firman_edit->firman;
+                $tanggal = $firman_edit->created;
+                $j = 1;
                 echo "<input type='hidden' name='id' value='".$id."'>";
             }
             ?>
 
-            <?php for($i=1; $i<=7; $i++): ?>
+            <?php
+                for($i=1; $i<=$j; $i++):
+
+            ?>
                 <div style="overflow: auto;">
                     <div class="form-group" style="float: right; margin-left: 2%; width:80%;">
                         <label>Firman Tuhan</label>

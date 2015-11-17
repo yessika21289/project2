@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Berita
-                    <a href="<?php echo base_url()?>admin/berita/baru">
+                    Firman Tuhan
+                    <a href="<?php echo base_url()?>admin/firman/baru">
                         <button type="button" class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Buat Berita Baru
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Buat Firman Baru
                         </button>
                     </a>
                 </h1>
@@ -18,7 +18,7 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-file-text"></i> Berita
+                        <i class="fa fa-file-text"></i> Firman Tuhan
                     </li>
                 </ol>
             </div>
@@ -34,7 +34,7 @@
                     <div class="col-xs-10">
                         <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <strong>Sukses!</strong> Berita berhasil dihapus
+                            <strong>Sukses!</strong> Firman berhasil dihapus
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
             <div class="col-xs-10">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <strong>Gagal!</strong> Terjadi kesalahan. Berita gagal dihapus
+                    <strong>Gagal!</strong> Terjadi kesalahan. Firman gagal dihapus
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
         $tahun_cek = array();
         $tahun = array();
 
-        foreach ($berita as $key => $value)
+        foreach ($firman as $key => $value)
         {
             $y = substr($value->created,0,4);
             if(!isset($tahun_cek[$y]))
@@ -75,11 +75,10 @@
         ?>
 
         <div class="row">
-            <div class="col-lg-6">
-                <h2>Daftar Berita</h2>
+            <div class="col-lg-12">
                 <div class="form-group">
                     <label>Pilih tahun</label>
-                    <select class="berita-select form-control">
+                    <select class="firman-select form-control">
                         <?php
                         foreach ($tahun as $key => $value)
                         {
@@ -91,12 +90,12 @@
                         ?>
                     </select>
                 </div>
-                <div class="list-berita">
+                <div class="list-firman">
                     <?php
 
                     foreach ($tahun as $key => $value)
                     {
-                        $list = $this->ypki->getBeritaByTahun($value, $instansi);
+                        $list = $this->ypki->getFirmanByTahun($value, $instansi);
 
                         if(date('Y') == $value)
                             echo "<ul class='list-group y".$value." vsb'>";
@@ -132,7 +131,7 @@
 
                             if(!$found)
                             {
-                                $jumlah = $this->ypki->getJumlahBeritaByBulan($bulan, $instansi);
+                                $jumlah = $this->ypki->getJumlahFirmanByBulan($bulan, $instansi);
 
                                 echo "<li class='list-group-item active'><span class='badge'>".$jumlah."</span>".$nama_bulan."</li>";
                                 $found = true;
@@ -144,18 +143,13 @@
                             echo "<span class='date'>".substr($v->created,8,2)."/".$bulan."</span>";
                             if ($instansi == "ypki")
                                 echo "  <span class='label label-default label-".$v->instansi."'>".$v->instansi."</span>";
-                            echo "<span id='j".$v->id."'> ".$v->judul."</span>";
+                            echo "<span id='j".$v->id."'> ".$v->firman."</span>";
                             echo "</div>";
-                            echo "<div class='col-xs-1'>";
-                            $link = substr($v->created,0,4)."/".substr($v->created,5,2)."/".substr($v->created,8,2)."/".urlencode($v->judul);
-                            echo "<a href='".base_url()."berita/baca/".$link."' title='lihat'>";
-                            echo "<span class='glyphicon glyphicon-eye-open'></span></a>";
-                            echo "</div>";
-                            echo "<div class='col-xs-1'>";
-                            echo "<a href='".base_url()."admin/berita/ubah/".$v->id."' title='ubah'>";
+                            echo "<div class='col-xs-1' style='text-align: center; margin-left:30px;'>";
+                            echo "<a href='".base_url()."admin/firman/ubah/".$v->id."' title='ubah'>";
                             echo "<span class='glyphicon glyphicon-pencil'></span></a>";
                             echo "</div>";
-                            echo "<div class='col-xs-1'>";
+                            echo "<div class='col-xs-1' style='text-align: center; margin-left:30px;'>";
                             echo "<span title='hapus' class='glyphicon glyphicon-remove hapus' id='r".$v->id."' data-toggle='modal' data-target='#myModal'></span>";
                             echo "</div>";
                             echo "</div></li>";
@@ -173,7 +167,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Konfirmasi Hapus</h4>
                                 </div>
                                 <div class="modal-body">
-                                    Anda yakin untuk menghapus berita <span class="judul">JUDUL BERITA</span> ?
+                                    Anda yakin untuk menghapus firman <span class="judul">JUDUL FIRMAN</span> ?
                                 </div>
                                 <div class="modal-footer">
                                     <a class="link_hapus" href=""><button type="button" class="btn btn-primary">Ya</button></a>
@@ -185,45 +179,45 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
-                <h2>10 Berita Terakhir</h2>
-                <div class="last-berita">
-
+            <!-- <div class="col-lg-6">
+                <h2>10 Firman Terakhir</h2>
+                <div class="last-firman">
+                    
                     <?php
 
-                    $berita = $this->ypki->getLastBerita(10, NULL, $instansi);
+            /*$firman = $this->ypki->getLastFirman(10, NULL, $instansi);
 
-                    echo "<ul class='list-group'>";
-                    foreach ($berita as $key => $value)
-                    {
-                        echo "<li class='list-group-item'>";
-                        echo "<div class='row'>";
-                        echo "<div class='col-xs-9'>";
-                        echo "<span class='date'>".substr($value->created,8,2)."/".substr($value->created,5,2)."</span>";
-                        if ($instansi == "ypki")
-                            echo "  <span class='label label-default label-".$value->instansi."'>".$value->instansi."</span>";
-                        echo "<span id='j".$value->id."'> ".$value->judul."</span>";
-                        echo "</div>";
-                        echo "<div class='col-xs-1'>";
-                        $link = substr($value->created,0,4)."/".substr($value->created,5,2)."/".substr($value->created,8,2)."/".urlencode($value->judul);
-                        echo "<a href='".base_url()."berita/baca/".$link."' title='lihat'>";
-                        echo "<span class='glyphicon glyphicon-eye-open'></span></a>";
-                        echo "</div>";
-                        echo "<div class='col-xs-1'>";
-                        echo "<a href='".base_url()."admin/berita/ubah/".$value->id."' title='ubah'>";
-                        echo "<span class='glyphicon glyphicon-pencil'></span></a>";
-                        echo "</div>";
-                        echo "<div class='col-xs-1'>";
-                        echo "<span title='hapus' class='glyphicon glyphicon-remove hapus' id='r".$value->id."' data-toggle='modal' data-target='#myModal'></span>";
-                        echo "</div>";
-                        echo "</div></li>";
-                    }
-                    echo "</ul>";
+            echo "<ul class='list-group'>";
+            foreach ($firman as $key => $value)
+            {
+                echo "<li class='list-group-item'>";
+                echo "<div class='row'>";
+                echo "<div class='col-xs-9'>";
+                echo "<span class='date'>".substr($value->created,8,2)."/".substr($value->created,5,2)."</span>";
+                if ($instansi == "ypki")
+                    echo "  <span class='label label-default label-".$value->instansi."'>".$value->instansi."</span>";
+                echo "<span id='j".$value->id."'> ".$value->judul."</span>";
+                echo "</div>";
+                echo "<div class='col-xs-1'>";
+                $link = substr($value->created,0,4)."/".substr($value->created,5,2)."/".substr($value->created,8,2)."/".urlencode($value->judul);
+                echo "<a href='".base_url()."firman/baca/".$link."' title='lihat'>";
+                echo "<span class='glyphicon glyphicon-eye-open'></span></a>";
+                echo "</div>";
+                echo "<div class='col-xs-1'>";
+                echo "<a href='".base_url()."admin/firman/ubah/".$value->id."' title='ubah'>";
+                echo "<span class='glyphicon glyphicon-pencil'></span></a>";
+                echo "</div>";
+                echo "<div class='col-xs-1'>";
+                echo "<span title='hapus' class='glyphicon glyphicon-remove hapus' id='r".$value->id."' data-toggle='modal' data-target='#myModal'></span>";
+                echo "</div>";
+                echo "</div></li>";
+            }
+            echo "</ul>";*/
 
-                    ?>
+            ?>
 
                 </div>
-            </div>
+            </div> -->
 
         </div>
         <!-- /.row -->
@@ -236,4 +230,4 @@
 </div>
 <!-- /#page-wrapper -->
 
-<input type="hidden" class="page-type" value="berita" />
+<input type="hidden" class="page-type" value="firman" />
