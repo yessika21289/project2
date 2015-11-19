@@ -375,6 +375,11 @@ class Admin extends MY_Controller {
 		$this->load->model('ypki');
 		$data['firman'] = $this->ypki->getAllFirman($instansi);
 
+		if(!isset($task) || $task == 'hapus')
+			$data['active_firman'] = 1;
+		else
+			$data['active_firman_baru'] = 1;
+
 		$this->load->view("content_admin_header", $data);
 
 		if (empty($task))
