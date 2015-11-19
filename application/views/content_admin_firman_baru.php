@@ -126,13 +126,13 @@
 
             ?>
                 <div style="overflow: auto;">
-                    <div class="form-group" style="float: right; margin-left: 2%; width:80%;">
+                    <div class="form-group" style="float: right; margin-left: 2%; width:79%;">
                         <label>Firman Tuhan</label>
                         <textarea id="<?php echo "firman_".$i; ?>" name="<?php echo "konten_".$i ?>" class="form-control input-konten" rows="5"><?php echo $konten; ?></textarea>
                     </div>
                     <div class="form-group"">
                         <label>Tanggal</label>
-                        <input type="date" name="<?php echo "tanggal_".$i ?>" class="form-control input-tanggal" value="<?php echo $tanggal; ?>" style="width:18%;" onfocusout="showFirman(this.value, <?php echo $i; ?>)" <?php echo $disable; ?> />
+                        <input type="date" name="<?php echo "tanggal_".$i ?>" class="form-control input-tanggal" value="<?php echo $tanggal; ?>" style="width:19%;" onfocusout="showFirman(this.value, <?php echo $i; ?>)" <?php echo $disable; ?> />
                         <p class="text-right help-block error-tanggal" >* tanggal tidak boleh kosong</p>
                     </div>
 

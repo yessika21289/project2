@@ -464,7 +464,8 @@
 			$sqlstr = "SELECT id FROM ".$table." ORDER BY id DESC LIMIT 1";
 			$result = $this->db->query($sqlstr);
 			$row = $result->result();
-			return $row[0]->id;	
+			if(!empty($row)) return $row[0]->id;
+			else return 0;
 		}
 
 		public function getLabel($id)
