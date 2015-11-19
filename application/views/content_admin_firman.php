@@ -139,11 +139,13 @@
 
                             echo "<li class='list-group-item'>";
                             echo "<div class='row'>";
-                            echo "<div class='col-xs-9'>";
-                            echo "<span class='date'>".substr($v->created,8,2)."/".$bulan."</span>";
+                            echo "<div class='col-xs-2' style='width:105px;'>";
+                            echo "<span class='date' id='t".$v->id."' >".substr($v->created,8,2)."/".$bulan."</span>&nbsp;&nbsp;&nbsp;&nbsp;";
                             if ($instansi == "ypki")
-                                echo "  <span class='label label-default label-".$v->instansi."'>".$v->instansi."</span>";
-                            echo "<span id='j".$v->id."'> ".$v->firman."</span>";
+                                echo "<span class='label label-default label-".$v->instansi."'>".$v->instansi."</span>";
+                            echo "</div>";
+                            echo "<div class='col-xs-8'>";
+                            echo "<span id='j".$v->id."'>".$v->firman."</span>";
                             echo "</div>";
                             echo "<div class='col-xs-1' style='text-align: center; margin-left:30px;'>";
                             echo "<a href='".base_url()."admin/firman/ubah/".$v->id."' title='ubah'>";
@@ -167,7 +169,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Konfirmasi Hapus</h4>
                                 </div>
                                 <div class="modal-body">
-                                    Anda yakin untuk menghapus firman <span class="judul">JUDUL FIRMAN</span> ?
+                                    Anda yakin untuk menghapus firman tanggal <span class="tanggal">TANGGAL FIRMAN</span> ?
                                 </div>
                                 <div class="modal-footer">
                                     <a class="link_hapus" href=""><button type="button" class="btn btn-primary">Ya</button></a>

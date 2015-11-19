@@ -43,7 +43,7 @@
                 <div class="col-xs-10">
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <strong>Sukses!</strong> Firman baru berhasil ditambahkan. <a href="<?php echo $read_link; ?>">Lihat Firman</a>
+                        <strong>Sukses!</strong> Firman baru berhasil ditambahkan. <a href="<?php echo base_url(); ?>admin/firman">Lihat Semua Firman</a>
                     </div>
                 </div>
             </div>
@@ -108,6 +108,7 @@
             $ins = $instansi;
             $id = "";
             $j = 7;
+            $disable = '';
 
             if (isset($firman_edit))
             {
@@ -115,6 +116,7 @@
                 $konten = $firman_edit->firman;
                 $tanggal = $firman_edit->created;
                 $j = 1;
+                $disable = "disabled";
                 echo "<input type='hidden' name='id' value='".$id."'>";
             }
             ?>
@@ -130,8 +132,8 @@
                     </div>
                     <div class="form-group"">
                         <label>Tanggal</label>
-                        <input type="date" name="<?php echo "tanggal_".$i ?>" class="form-control input-tanggal" value="<?php echo $tanggal; ?>" style="width:18%;" onfocusout="showFirman(this.value, <?php echo $i; ?>)" />
-                        <p class="text-right help-block error-tanggal">* tanggal tidak boleh kosong</p>
+                        <input type="date" name="<?php echo "tanggal_".$i ?>" class="form-control input-tanggal" value="<?php echo $tanggal; ?>" style="width:18%;" onfocusout="showFirman(this.value, <?php echo $i; ?>)" <?php echo $disable; ?> />
+                        <p class="text-right help-block error-tanggal" >* tanggal tidak boleh kosong</p>
                     </div>
 
                 </div>

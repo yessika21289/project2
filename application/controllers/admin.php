@@ -382,31 +382,50 @@ class Admin extends MY_Controller {
 
 		else if ($task == "baru") {
 			if (isset($_POST['submit'])) {
-				for($i=1; $i<=7; $i++) {
-					$konten = $_POST['konten_'.$i];
-					$tanggal = $_POST['tanggal_'.$i];
-					$instansi = $_POST['instansi'];
-					$insert[$i] = $this->ypki->addFirman($konten, $tanggal, $instansi);
+				$instansi = $_POST['instansi'];
+				$success = 0;
+				for ($i = 1; $i <= 7; $i++) {
+					$konten = $_POST['konten_' . $i];
+					$tanggal = $_POST['tanggal_' . $i];
+					if($this->ypki->addFirman($konten, $tanggal, $instansi)) $success += 1;
 				}
-//						if ($instansi != "ypki")
-//							$data['read_link'] = base_url() . $instansi . "/berita/baca/" . substr($new->created, 0, 10) . "/" . urlencode($new->judul);
-//						else
-//							$data['read_link'] = base_url() . "berita/baca/" . substr($new->created, 0, 10) . "/" . urlencode($new->judul);
-//				} else {
-//					$data['submit_confirm'] = 0;
-//				}
-				redirect(base_url()."admin/firman");
+				if($success >= 1) $data['submit_confirm'] = 1;
+				else $data['submit_confirm'] = 0;
 			}
-
 			$this->load->view("content_admin_firman_baru", $data);
 			$this->session->unset_userdata('submit_confirm');
 		}
 		else if ($task == "ubah") {
+			$data['submit_confirm'] = $this->session->flashdata('submit_confirm');
+			$data['update_confirm'] = $this->session->flashdata('update_confirm');
+			if(isset($_POST['update'])) {
+				$update = array(
+					'firman' => $_POST['konten_1']
+				);
+
+				$id = $_POST['id'];
+				$this->db->where('id', $id);
+				$this->db->update('firman', $update);
+				redirect(base_url()."admin/firman");
+			}
 			$id = $this->uri->segment(4);
 			$firman = $this->ypki->getFirman($id);
 			$data['firman_edit'] = $firman[0];
 
 			$this->load->view('content_admin_firman_baru', $data);
+		}
+		else if ($task == 'hapus') {
+			$id = $this->uri->segment(4);
+			if($this->ypki->deleteFirman($id)) {
+				$data['delete_confirm'] = 1;
+			}
+			else {
+				$data['delete_confirm'] = 0;
+			}
+
+			$this->load->view("content_admin_firman", $data);
+
+			$this->session->unset_userdata('delete_confirm');
 		}
 //		else if ($task == "ubah") {
 //			if (isset($_POST['update'])) {

@@ -4,9 +4,11 @@ $(document).ready(function(){
 
 	var berita = false;
 	var agenda = false;
+	var firman = false;
 
 	if($(".page-type").val() == "agenda") agenda = true;
 	if($(".page-type").val() == "berita") berita = true;
+	if($(".page-type").val() == "firman") firman = true;
 
 	/*
 		ADMIN SCRIPT
@@ -46,6 +48,22 @@ $(document).ready(function(){
 		$(".list-berita .list-group").hide();
 		$(".list-berita .y"+tahun).show();
 	});
+
+	$(".list-firman .list-group").hide();
+	$(".list-firman .vsb").show();
+
+	$(".list-firman span.hapus").click(function(){
+		var id = $(this).attr("id").substr(1);
+
+		var tanggal = $("span#t"+id).html();
+		$(".modal-body .tanggal").html(tanggal);
+
+		var link = $(".href").html();
+		if(firman) link += "admin/firman/hapus/"+id;
+
+		$(".modal-footer .link_hapus").attr("href",link);
+	});
+
 
 	/*
 		END OF ADMIN SCRIPT

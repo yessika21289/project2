@@ -849,6 +849,15 @@
             }
 
         }
+
+		public function deleteFirman($id)
+		{
+			$sqlstr = "DELETE FROM firman WHERE id=".$id;
+			$result = $this->db->query($sqlstr);
+			if($result)
+				return true;
+			else return false;
+		}
 	}
 	
 ?>
