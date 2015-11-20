@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/bootstrap.min.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.timeago.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/tinymce/tinymce.min.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.form.js';?>"></script>
 
     <script type="text/javascript">
         tinymce.init({
@@ -47,7 +48,25 @@
                 {title: 'Test template 1', content: 'Test 1'},
                 {title: 'Test template 2', content: 'Test 2'}
             ]
-        });</script>
+        });
+
+        $(document).ready(function(){
+            $('#images').on('change',function(){
+                $('#form-album-baru').ajaxForm({
+                    target:'#images_preview',
+                    beforeSubmit:function(e){
+                        $('.uploading').show();
+                    },
+                    success:function(e){
+                        $('.uploading').hide();
+                        window.location.href = '/admin/album/upload/'+$("#directory").val();
+                    },
+                    error:function(e){
+                    }
+                }).submit();
+            });
+        });
+    </script>
 </head>
 <body>
 	

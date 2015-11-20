@@ -10,7 +10,7 @@
                         if (isset($berita_edit))
                             echo "Ubah Berita";
                         else
-                            echo "Album Baru";
+                            echo "Album";
                     ?>
                 </h1>
                 <ol class="breadcrumb">
@@ -98,9 +98,9 @@
 
         <div class="row">        
             
-            <div class="col-xs-10">
+            <div class="col-xs-12">
                 
-                <form id="form-album-baru" role="form" method="post" action="<?php echo base_url().'admin/album/judul';?>" enctype="multipart/form-data">
+                <form id="form-album-baru" role="form" method="post" action="<?php echo base_url().'admin/album/upload_image';?>" enctype="multipart/form-data">
 
                     <?php
                         $judul = "";
@@ -123,31 +123,25 @@
                         }
                     ?>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Nama Album</label>
                             <input name="judul" class="form-control input-judul" value="<?php echo $judul; ?>">
                             <p class="text-right help-block error-judul">* nama album tidak boleh kosong</p>
                     </div>
-
-                    <input type="hidden" name="instansi" value="<?php echo $instansi; ?>">
+ -->
+                    <!-- <input type="hidden" name="instansi" value="<?php echo $instansi; ?>"> -->
                     
-                    <div class="text-right">
-                        <button type="button" class="btn btn-default">Cancel</button>
-                        <?php
-                            if (isset($album_edit))
-                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Nama Album Berita</button>";
-                            else
-                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='submit'>Buat Album</button>";
-                        ?>
-                    </div>
+                    
 
                     <!-- ================================UPLOAD IMAGES============================== -->
 
-                    <!-- <div style="margin-top:50px;">
+                    <div>
                         <div class="upload_div">
-                        
+                            
+                            <input type="hidden" name="directory" id="directory" value="<?php echo $album['directory'];?>"/>
                             <input type="hidden" name="image_form_submit" value="1"/>
-                                <label>Choose Image</label>
+                            <h4>Judul Album: <?php echo $album['judul'];?></h4>
+                                <label>Pilih Gambar</label>
                                 <input type="file" name="images[]" id="images" multiple >
                             <div class="uploading none">
                                 <label>&nbsp;</label>
@@ -156,7 +150,54 @@
                         
                         </div>
                         
-                        <div class="gallery" id="images_preview"></div>
+                        <div class="gallery" id="images_preview">
+                        <?php
+                            $dir = "asset/album/".$album['directory'];
+
+                            if (is_dir($dir)){
+                              if ($dh = opendir($dir)){
+                                $count=0;
+                                while (($file = readdir($dh)) !== false){
+                                  if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store'){
+                                    $count++;
+                                    $image_src = base_url().'/'.$dir.'/'.$file;
+                                    /*$size = getimagesize($image_src);
+                                    $width = $size[0];
+                                    $height = $size[1];
+
+                                    if($width>=$height){
+                                      $style = "width:250px; height:auto;";
+                                    }
+                                    else{
+                                      $style = "height:300px;";
+                                    }*/
+                                    echo '
+                                    <div class="reorder_ul reorder-photos-list" style="width:285px; height: 335px; float:left">
+                                      <div id="image_li_'.$count.'" class="ui-sortable-handle">
+                                          <a href="javascript:void(0);" style="float:none;" class="image_link"><img src="'.$image_src.'" alt=""></a>
+                                        </div>
+                                    </div>
+                                    ';
+                                    //echo "" . $file . "<br>";
+                                  }
+                                }
+                                closedir($dh);
+                              }
+                            }
+                        ?>
+                        </div>
+                    </div>
+
+                    <!-- =========================================================================== -->
+
+                    <!-- <div class="text-right">
+                        <button type="button" class="btn btn-default">Cancel</button>
+                        <?php
+                            /*if (isset($album_edit))
+                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Nama Album Berita</button>";
+                            else
+                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='submit'>Buat Album</button>";*/
+                        ?>
                     </div> -->
                 </form>
 

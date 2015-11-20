@@ -366,25 +366,45 @@ class Admin extends MY_Controller {
 		$this->load->view("content_admin_footer");		
 	}
 
-	public function album($task = NULL)
+	public function album($task = NULL, $directory = NULL)
 	{
 		$instansi = $this->session->userdata('instansi');
 		$data = $this->session->all_userdata();
 
 		$this->load->model('ypki'); 
-		$data['berita'] = $this->ypki->getAllAgenda($instansi);
+		$data['album'] = $this->ypki->getAllAlbum($instansi);
 		
 		if(!isset($task) || $task == 'hapus')
 			$data['active_album'] = 1;
 		else
 			$data['active_album_baru'] = 1;
 
-		$this->load->view("content_admin_header", $data);
-		if(empty($task))
+		if(empty($task)){
+			$this->load->view("content_admin_header", $data);
+			$this->load->view("content_admin_album", $data);
+			$this->load->view("content_admin_footer");
+		}
+		else if($task=="baru")
 		{
+			$this->load->view("content_admin_header", $data);
 			$this->load->view("content_admin_album_baru");
+			$this->load->view("content_admin_footer");
+		}
+		else if($task=="judul"){
+			$judul_album = $_POST['judul'];
+			$directory = str_replace(" ","_",strtolower($judul_album));
+			if($this->ypki->addJudulAlbum($_POST, $directory)){
+				mkdir('asset/album/'.$directory, 0777, true);
+			}
+			redirect('/admin/album/upload/'.$directory);
 		}
 		else if($task=="upload"){
+			$data['album'] = $this->ypki->getAlbum($directory);
+			$this->load->view("content_admin_header", $data);
+			$this->load->view("content_admin_album_upload", $data);
+			$this->load->view("content_admin_footer");
+		}
+		else if($task=="upload_image"){
 			if($_POST['image_form_submit'] == 1)
 			{
 				$images_arr = array();
@@ -396,31 +416,56 @@ class Admin extends MY_Controller {
 					$error 		= $_FILES['images']['error'][$key];
 					
 					############ Remove comments if you want to upload and stored images into the "uploads/" folder #############
+					$filex = explode('.',$image_name);
+					$rev_filex = array_reverse($filex);
+
+					$waktu = date("YmdHis");
+
+					$filename = $waktu.$key.'.'.$rev_filex[0];
 					
-					$target_dir = "asset/album/";
-					$target_file = $target_dir.$_FILES['images']['name'][$key];
+					$target_dir = "asset/album/".$_POST['directory']."/";
+					//echo $target_dir;
+					$target_file = $target_dir.$filename;
 					if(move_uploaded_file($_FILES['images']['tmp_name'][$key],$target_file)){
-						$images_arr[] = $target_file;
+						//$images_arr[] = base_url().'/'.$target_file;
 					}
 					
 					//display images without stored
 					/*$extra_info = getimagesize($_FILES['images']['tmp_name'][$key]);
 			    	$images_arr[] = "data:" . $extra_info["mime"] . ";base64," . base64_encode(file_get_contents($_FILES['images']['tmp_name'][$key]));*/
 				}
-				
-				//Generate images view
-				if(!empty($images_arr)){ $count=0;
-					foreach($images_arr as $image_src){ $count++?>
-						<ul class="reorder_ul reorder-photos-list">
-			            	<li id="image_li_<?php echo $count; ?>" class="ui-sortable-handle">
-			                	<a href="javascript:void(0);" style="float:none;" class="image_link"><img src="<?php echo $image_src; ?>" alt=""></a>
-			               	</li>
-			          	</ul>
-				<?php }
-				}
 			}
 		}
-		$this->load->view("content_admin_footer");
+		else if($task=="hapus")
+		{
+			$id = $this->uri->segment(4);
+			$data['album'] = $this->ypki->getAlbumById($id);
+			if( $this->ypki->deleteAlbum($id) )
+			{
+				$this->delTree('asset/album/'.$data['album']['directory']);
+				$data['delete_confirm'] = 1;
+			}
+			else
+			{
+				$data['delete_confirm'] = 0;
+			}
+
+			//$this->load->view("content_admin_album", $data);
+			redirect('admin/album');
+			
+			$this->session->unset_userdata('delete_confirm');
+		}
 	}
+
+	public function delTree($dir) 
+	{ 
+	   	$files = array_diff(scandir($dir), array('.','..')); 
+	   	//print_r($files);
+	    foreach ($files as $file) { 
+	    	//print_r($file);
+	      (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file"); 
+	    } 
+	    return rmdir($dir); 
+	 } 
 }
 
