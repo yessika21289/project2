@@ -133,7 +133,7 @@
 
                     <div class="form-group">
                         <label>Deskripsi</label>
-                        <textarea id="editor" name="konten" class="form-control input-konten" rows="10"><?php echo $konten; ?></textarea>
+                        <textarea class="editor" name="konten" class="form-control input-konten" rows="10"><?php echo $konten; ?></textarea>
                     </div>
 
                     <div class="form-group">

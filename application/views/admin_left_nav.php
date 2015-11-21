@@ -27,18 +27,26 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#drop-gambar"><i class="fa fa-fw fa-image"></i> Gambar <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="drop-gambar" class="collapse">
+                <a href="javascript:;" data-toggle="collapse" data-target="#drop-album"><i class="fa fa-fw fa-image"></i> Album <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="drop-album" class="<?php echo (isset($active_album) || isset($active_album_baru)) ? 'collapse in' : 'collapse'?>">
                     <li>
-                        <a href="<?php echo base_url()?>admin/gambar/baru">Gambar Baru</a>
+                        <a href="<?php echo base_url()?>admin/album/baru">Album Baru</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>admin/gambar">Lihat Semua Gambar</a>
+                        <a href="<?php echo base_url()?>admin/album">Lihat Semua Album</a>
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="<?php echo base_url()?>admin/firman"><i class="fa fa-fw fa-heart"></i> Firman Tuhan</a>
+            <li class="<?php echo (isset($active_firman) || isset($active_firman_baru)) ? 'active' : ''?>">
+                <a href="javascript:;" data-toggle="collapse" data-target="#drop-firman"><i class="fa fa-fw fa-calendar"></i> Firman Tuhan <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="drop-firman" class="<?php echo (isset($active_firman) || isset($active_firman_baru)) ? 'collapse in' : 'collapse'?>">
+                    <li>
+                        <a href="<?php echo base_url()?>admin/firman/baru">Firman Tuhan Baru</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url()?>admin/firman">Lihat Semua Firman Tuhan</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="<?php echo base_url()?>admin/visi"><i class="fa fa-fw fa-bookmark"></i> Visi & Misi</a>

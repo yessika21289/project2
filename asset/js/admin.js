@@ -4,9 +4,13 @@ $(document).ready(function(){
 
 	var berita = false;
 	var agenda = false;
+	var firman = false;
+	var album 	= false;
 
 	if($(".page-type").val() == "agenda") agenda = true;
 	if($(".page-type").val() == "berita") berita = true;
+	if($(".page-type").val() == "firman") firman = true;
+	if($(".page-type").val() == "album") album = true;
 
 	/*
 		ADMIN SCRIPT
@@ -24,19 +28,7 @@ $(document).ready(function(){
 		var link = $(".href").html();
 		if(berita) link += "admin/berita/hapus/"+id;
 		else if(agenda) link += "admin/agenda/hapus/"+id;
-
-		$(".modal-footer .link_hapus").attr("href",link);
-	});
-
-	$(".last-berita span.hapus").click(function(){
-		var id = $(this).attr("id").substr(1);
-
-		var judul = $("span#j"+id).html();
-		$(".modal-body .judul").html(judul);
-
-		var link = $(".href").html();
-		if(berita) link += "admin/berita/hapus/"+id;
-		else if(agenda) link += "admin/agenda/hapus/"+id;
+		else if(album) link += "admin/album/hapus/"+id;
 
 		$(".modal-footer .link_hapus").attr("href",link);
 	});
@@ -46,6 +38,22 @@ $(document).ready(function(){
 		$(".list-berita .list-group").hide();
 		$(".list-berita .y"+tahun).show();
 	});
+
+	$(".list-firman .list-group").hide();
+	$(".list-firman .vsb").show();
+
+	$(".list-firman span.hapus").click(function(){
+		var id = $(this).attr("id").substr(1);
+
+		var tanggal = $("span#t"+id).html();
+		$(".modal-body .tanggal").html(tanggal);
+
+		var link = $(".href").html();
+		if(firman) link += "admin/firman/hapus/"+id;
+
+		$(".modal-footer .link_hapus").attr("href",link);
+	});
+
 
 	/*
 		END OF ADMIN SCRIPT
@@ -77,6 +85,10 @@ $(document).ready(function(){
 	if (agenda && $("#form-berita-baru .input-judul").val()!="" && $("#form-berita-baru .input-tanggal").val() != "")
 	{
 		$("#form-berita-baru .input-submit").removeAttr("disabled");
+	}
+	if (album && $("#form-album-baru .input-judul").val()!="")
+	{
+		$("#form-album-baru .input-submit").removeAttr("disabled");
 	}
 
 	$("#form-berita-baru .input-judul").focusout(function(){
@@ -117,6 +129,21 @@ $(document).ready(function(){
 			$("#form-berita-baru .input-submit").removeAttr("disabled");
 		else
 			$("#form-berita-baru .input-submit").attr("disabled","");
+	});
+
+	$("#form-album-baru .input-judul").focusout(function(){
+		if ($(this).val() == "")
+		{
+			$(this).parent().addClass("has-error");
+			$(".error-judul").show();
+			$("#form-album-baru .input-submit").attr("disabled","");
+		}
+		else
+		{
+			$(this).parent().removeClass("has-error");
+			$(".error-judul").hide();
+			$("#form-album-baru .input-submit").removeAttr("disabled");
+		}
 	});
 
 	$("#form-berita-baru .input-gambar").change(function(){
@@ -193,3 +220,9 @@ $(document).ready(function(){
 
 
 });
+
+function showFirman(tgl, i) {
+	//var base_url = window.location.origin;
+	//var available_firman = $.get(base_url+'/admin/getFirman/'+tgl);
+	//console.log(available_firman);
+}
