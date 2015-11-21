@@ -202,10 +202,11 @@
 
 			$post['judul'] = mysql_real_escape_string($post['judul']);
 
-			$post['konten'] = preg_replace('/[\xA0]/', ' ', $post['konten']);
-			$post['konten'] = preg_replace('/[\x80-\xFF]/', '', $post['konten']);
-			$post['konten'] = htmlspecialchars($post['konten']);
-			$post['konten'] = mysql_real_escape_string($post['konten']);
+//			$post['konten'] = preg_replace('/[\xA0]/', ' ', $post['konten']);
+//			$post['konten'] = preg_replace('/[\x80-\xFF]/', '', $post['konten']);
+//			$post['konten'] = htmlspecialchars($post['konten']);
+//			$post['konten'] = mysql_real_escape_string($post['konten']);
+			$psot['konten'] = strip_tags($post['konten'], '<p><strong><em><sub><a>');
 			//$konten = nl2br($konten);
 
 			if ( function_exists( 'date_default_timezone_set' ) )
@@ -564,6 +565,7 @@
 
 		public function addAgenda($post)
 		{
+			$psot['konten'] = strip_tags($post['konten'], '<p><strong><em><sub><a>');
 			$sqlstr = "INSERT INTO agenda VALUES('','".$post['judul']."','".$post['tanggal']."','".$post['konten']."','".$post['instansi']."')";
 			$result = $this->db->query($sqlstr);
 
