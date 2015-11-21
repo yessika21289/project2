@@ -512,8 +512,11 @@ class Admin extends MY_Controller {
 
 				$id = $_POST['id'];
 				$this->db->where('id', $id);
-				$this->db->update('firman', $update);
-				redirect(base_url()."admin/firman");
+				$update = $this->db->update('firman', $update);
+				if($update) {
+					$data['update_confirm'] = 1;
+				}
+				redirect(base_url().'admin/firman');
 			}
 			$id = $this->uri->segment(4);
 			$firman = $this->ypki->getFirman($id);

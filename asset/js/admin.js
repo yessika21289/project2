@@ -33,19 +33,6 @@ $(document).ready(function(){
 		$(".modal-footer .link_hapus").attr("href",link);
 	});
 
-	/*$(".last-berita span.hapus").click(function(){
-		var id = $(this).attr("id").substr(1);
-
-		var judul = $("span#j"+id).html();
-		$(".modal-body .judul").html(judul);
-
-		var link = $(".href").html();
-		if(berita) link += "admin/berita/hapus/"+id;
-		else if(agenda) link += "admin/agenda/hapus/"+id;
-
-		$(".modal-footer .link_hapus").attr("href",link);
-	});*/
-
 	$(".berita-select").change(function(){
 		var tahun = $(this).val();
 		$(".list-berita .list-group").hide();

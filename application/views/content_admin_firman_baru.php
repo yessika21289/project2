@@ -50,7 +50,7 @@
             <!-- /.row -->
             <?php
         }
-        else if($submit_confirm == 0)
+        else if($submit_confirm == 0 && !isset($firman_edit))
         {
         ?>
         <div class="col-xs-10">
@@ -63,36 +63,6 @@
     <!-- /.row -->
     <?php
     }
-    }
-    else if (isset($update_confirm))
-    {
-    if ($update_confirm == 1)
-    {
-        ?>
-        <div class="row">
-            <div class="col-xs-10">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <strong>Sukses!</strong> Firman berhasil diubah. <a href="<?php echo $read_link; ?>">Lihat Firman</a>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
-    }
-    else if($update_confirm == 0)
-    {
-    ?>
-    <div class="col-xs-10">
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <strong>Gagal!</strong> Terjadi kesalahan. Firman tidak dapat diubah
-        </div>
-    </div>
-</div>
-<!-- /.row -->
-<?php
-}
 }
 ?>
 
