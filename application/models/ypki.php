@@ -464,7 +464,8 @@
 			$sqlstr = "SELECT id FROM ".$table." ORDER BY id DESC LIMIT 1";
 			$result = $this->db->query($sqlstr);
 			$row = $result->result();
-			return $row[0]->id;	
+			if(!empty($row)) return $row[0]->id;
+			else return 0;
 		}
 
 		public function getLabel($id)
@@ -785,6 +786,139 @@
 			$result = $this->db->query($sqlstr);
 			return $result->result();
 		}		
+
+		public function addJudulAlbum($post, $directory){
+			$created = date("Y/m/d H:i:s");
+			$sqlstr = "INSERT INTO album VALUES('','".$post['judul']."','".$directory."','".$created."','".$post['instansi']."')";
+			$result = $this->db->query($sqlstr);
+
+			return true;
+		}
+
+		public function getAllAlbum($instansi = "ypki"){
+			if ($instansi = "ypki")
+				$sqlstr = "SELECT * FROM album ORDER BY created DESC";
+			else
+				$sqlstr = "SELECT * FROM album WHERE instansi = '".$instansi."' ORDER BY created DESC";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function getAlbum($directory){
+			$sqlstr = "SELECT * FROM album WHERE directory='".$directory."'";
+			
+			$result = $this->db->query($sqlstr);
+
+			return $result->row_array();
+		}
+
+		public function getAlbumById($id){
+			$sqlstr = "SELECT * FROM album WHERE id='".$id."'";
+			
+			$result = $this->db->query($sqlstr);
+
+			return $result->row_array();
+		}
+
+		public function getAlbumByTahun($tahun, $instansi = "ypki"){
+			if ($instansi == "ypki")
+				$sqlstr = "SELECT * FROM album WHERE MID(created,1,4) = '".$tahun."' ORDER BY created DESC";
+			else
+				$sqlstr = "SELECT * FROM album WHERE instansi = '".$instansi."' AND MID(created,1,4) = '".$tahun."' ORDER BY created DESC";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function getJumlahAlbumByBulan($bulan, $instansi = "ypki"){
+			if ($instansi == "ypki")
+				$sqlstr = "SELECT * FROM album WHERE MID(created,6,2) = '".$bulan."'";
+			else
+				$sqlstr = "SELECT * FROM album WHERE instansi = '".$instansi."' AND MID(created,6,2) = '".$bulan."'";
+			$result = $this->db->query($sqlstr);
+			return $result->num_rows();
+		}
+
+		public function deleteAlbum($id)
+		{
+			$sqlstr = "DELETE FROM album WHERE id=".$id;
+			$result = $this->db->query($sqlstr);
+			if($result)
+				return true;
+			else return false;
+		}
+
+		public function getAllFirman($instansi = "ypki"){
+			if ($instansi = "ypki")
+				$sqlstr = "SELECT * FROM firman ORDER BY created DESC";
+			else
+				$sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."' ORDER BY created DESC";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function addFirman($konten, $tgl, $ins)
+		{
+			if(!empty($konten) && !empty($tgl)) {
+                $id = $this->getLastId('firman')+1;
+                $data = array(
+                    'id' => $id,
+                    'firman' => $konten,
+                    'created' => $tgl,
+                    'instansi' => $ins
+                );
+                $this->db->insert('firman', $data);
+                return true;
+            }
+            else return false;
+		}
+
+		public function getNewFirman()
+		{
+			$sqlstr = "SELECT * FROM firman ORDER BY id DESC LIMIT 1";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function getFirmanByTanggal($tgl) {
+			$query = 'SELECT firman FROM firman WHERE created = '.$tgl;
+			$result = $this->db->query($query);
+			return $result->result();
+		}
+
+        public function getFirmanByTahun($tahun, $instansi = "ypki"){
+            if ($instansi == "ypki")
+                $sqlstr = "SELECT * FROM firman WHERE MID(created,1,4) = '".$tahun."' ORDER BY created DESC";
+            else
+                $sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."' AND MID(created,1,4) = '".$tahun."' ORDER BY created DESC";
+            $result = $this->db->query($sqlstr);
+            return $result->result();
+        }
+
+        public function getJumlahFirmanByBulan($bulan, $instansi = "ypki"){
+            if ($instansi == "ypki")
+                $sqlstr = "SELECT * FROM firman WHERE MID(created,6,2) = '".$bulan."'";
+            else
+                $sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."' AND MID(created,6,2) = '".$bulan."'";
+            $result = $this->db->query($sqlstr);
+            return $result->num_rows();
+        }
+
+        public function getFirman($id){
+            if(!empty($id)) {
+                $query = $this->db->get_where('firman', array('id' => $id));
+                return $query->result();
+            }
+
+        }
+
+		public function deleteFirman($id)
+		{
+			$sqlstr = "DELETE FROM firman WHERE id=".$id;
+			$result = $this->db->query($sqlstr);
+			if($result)
+				return true;
+			else return false;
+		}
 	}
 	
 ?>

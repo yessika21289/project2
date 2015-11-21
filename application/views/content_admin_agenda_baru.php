@@ -133,7 +133,7 @@
 
                     <div class="form-group">
                         <label>Deskripsi</label>
-                        <textarea id="editor" name="konten" class="form-control input-konten" rows="10"><?php echo $konten; ?></textarea>
+                        <textarea class="editor" name="konten" class="form-control input-konten" rows="10"><?php echo $konten; ?></textarea>
                     </div>
 
                     <div class="form-group">
@@ -141,7 +141,7 @@
                     </div>
 
                     <div class="text-right">
-                        <button type="reset" class="btn btn-default">Reset</button>
+                        <button type="cancel" class="btn btn-default" onclick="window.location.href='/admin/agenda';return false;">Cancel</button>
                         <?php
                             if (isset($berita_edit))
                                 echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Agenda</button>";

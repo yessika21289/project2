@@ -10,7 +10,7 @@
                         if (isset($berita_edit))
                             echo "Ubah Berita";
                         else
-                            echo "Berita Baru";
+                            echo "Album";
                     ?>
                 </h1>
                 <ol class="breadcrumb">
@@ -18,14 +18,14 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li>
-                        <i class="fa fa-file-text"></i>  <a href="<?php echo base_url()?>admin/berita">Berita</a>
+                        <i class="fa fa-file-text"></i>  <a href="<?php echo base_url()?>admin/album">Album</a>
                     </li>
                     <li class="active">
                         <?php
                             if (isset($berita_edit))
                                 echo "<i class='fa fa-pencil'></i> Ubah Berita";
                             else
-                                echo "<i class='fa fa-plus'></i> Berita Baru";
+                                echo "<i class='fa fa-plus'></i> Album Baru";
                         ?>
                     </li>
                 </ol>
@@ -95,12 +95,12 @@
                 }
             }
         ?>
-<?php //print_r($submit_confirm);?>
+
         <div class="row">        
             
-            <div class="col-xs-10">
+            <div class="col-xs-12">
                 
-                <form id="form-berita-baru" role="form" method="post" action="" enctype="multipart/form-data">
+                <form id="form-album-baru" role="form" method="post" action="<?php echo base_url().'admin/album/upload_image';?>" enctype="multipart/form-data">
 
                     <?php
                         $judul = "";
@@ -123,74 +123,82 @@
                         }
                     ?>
 
-                    <div class="form-group">
-                        <label>Judul Berita</label>
+                    <!-- <div class="form-group">
+                        <label>Nama Album</label>
                             <input name="judul" class="form-control input-judul" value="<?php echo $judul; ?>">
-                            <p class="text-right help-block error-judul">* judul tidak boleh kosong</p>
+                            <p class="text-right help-block error-judul">* nama album tidak boleh kosong</p>
                     </div>
+ -->
+                    <!-- <input type="hidden" name="instansi" value="<?php echo $instansi; ?>"> -->
+                    
+                    
 
-                    <div class="form-group">
-                        <label>Konten Berita</label>
-                        <textarea class="editor" name="konten" class="form-control input-konten" rows="10"><?php echo $konten; ?></textarea>
-                    </div>
+                    <!-- ================================UPLOAD IMAGES============================== -->
 
-                    <div class="form-group">
-                        <label>Gambar</label>
-
-                        <!-- <div class="form-select-gambar" <?php if ($gambar!="") echo "style='display:none;'"; ?> >
-                            <label class="radio-inline"><input type="radio" name="input-opt" value="1" selected>Upload Gambar</label>
-                            <label class="radio-inline"><input type="radio" name="input-opt" value="2">Link</label>
-                        </div> -->
-                        <br/>
-
+                    <div>
+                        <div class="upload_div">
+                            
+                            <input type="hidden" name="directory" id="directory" value="<?php echo $album['directory'];?>"/>
+                            <input type="hidden" name="image_form_submit" value="1"/>
+                            <h4>Judul Album: <?php echo $album['judul'];?></h4>
+                                <label>Pilih Gambar</label>
+                                <input type="file" name="images[]" id="images" multiple >
+                            <div class="uploading none">
+                                <label>&nbsp;</label>
+                                <img src="<?php echo base_url().'asset/img/uploading.gif';?>"/>
+                            </div>
+                        
+                        </div>
+                        
+                        <div class="gallery" id="images_preview">
                         <?php
-                            if ($gambar!="")
-                            {
-                                echo "<div class='preview-gambar'>";
-                                if ($tipe == "foto")
-                                    echo "<img src='".base_url()."asset/img/".$gambar."' />";
-                                else
-                                    echo "<img src='".$gambar."' />";
-                                echo "<div class='ganti-gambar'>ganti gambar</div>";
-                                echo "</div>";
-                                echo "<input type='hidden' name='nama_gambar' value='".$gambar."'>";
+                            $dir = "asset/album/".$album['directory'];
+
+                            if (is_dir($dir)){
+                              if ($dh = opendir($dir)){
+                                $count=0;
+                                while (($file = readdir($dh)) !== false){
+                                  if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store'){
+                                    $count++;
+                                    $image_src = base_url().'/'.$dir.'/'.$file;
+                                    /*$size = getimagesize($image_src);
+                                    $width = $size[0];
+                                    $height = $size[1];
+
+                                    if($width>=$height){
+                                      $style = "width:250px; height:auto;";
+                                    }
+                                    else{
+                                      $style = "height:300px;";
+                                    }*/
+                                    echo '
+                                    <div class="reorder_ul reorder-photos-list" style="width:285px; height: 335px; float:left">
+                                      <div id="image_li_'.$count.'" class="ui-sortable-handle">
+                                          <a href="javascript:void(0);" style="float:none;" class="image_link"><img src="'.$image_src.'" alt=""></a>
+                                        </div>
+                                    </div>
+                                    ';
+                                    //echo "" . $file . "<br>";
+                                  }
+                                }
+                                closedir($dh);
+                              }
                             }
                         ?>
-
-                        <div class="form-input-gambar">
-                            <input type="file" name="gambar" accept="image/*" class="input-gambar" value="<?php echo $gambar; ?>"/>
-                            <p class="help-block">Ukuran gambar : 600px X 360px.<br/>Sistem akan otomatis melakukan <i>cropping</i> bila ukuran gambar tidak sesuai.</p>
-                            <p class="text-right help-block error-gambar">* anda harus memilih gambar</p>
                         </div>
-
-                        <!-- <div class="form-input-link">
-                            <input name="link" class="form-control input-link" value="<?php echo $link; ?>"/>
-                            <p class="help-block">gambar yang disarankan berukuran 600x360 (atau memiliki resolusi 5:3)</p>
-                            <p class="text-right help-block error-link">* anda harus memasukkan link gambar</p>
-                        </div> -->
-
-
                     </div>
 
-                    <div class="form-group">
+                    <!-- =========================================================================== -->
 
-                        <label>Label Berita</label> <span class="label label-info auto-label"><?php echo $instansi ?></span>
-                        <input name="label" name="label" class="form-control input-label" value="<?php echo $label; ?>">
-                        <p class="help-block">Pisahkan label dengan tanda koma. Disarankan tidak menggunakan spasi. Contoh: ypki,sekolah,pendidikan</p>
-                    </div>
-
-                    <input type="hidden" name="instansi" value="<?php echo $instansi; ?>">
-
-                    <div class="text-right">
-                        <button type="cancel" class="btn btn-default" onclick="window.location.href='/admin/berita';return false;">Cancel</button>
+                    <!-- <div class="text-right">
+                        <button type="button" class="btn btn-default">Cancel</button>
                         <?php
-                            if (isset($berita_edit))
-                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Berita</button>";
+                            /*if (isset($album_edit))
+                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Nama Album Berita</button>";
                             else
-                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='submit'>Buat Berita</button>";
+                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='submit'>Buat Album</button>";*/
                         ?>
-                    </div>
-
+                    </div> -->
                 </form>
 
             </div>
@@ -204,4 +212,4 @@
 </div>
 <!-- /#page-wrapper -->
 
-<input type="hidden" class="page-type" value="berita" />
+<input type="hidden" class="page-type" value="album" />

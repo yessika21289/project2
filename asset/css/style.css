@@ -210,6 +210,12 @@
 	width: 480px;
 }
 
+.list-firman .list-group-item .col-xs-2 .date
+{
+	font-weight: bolder;
+	color: rgb(168,203,25);
+}
+
 #firman .title,
 #berita .title,
 #agenda .title,
