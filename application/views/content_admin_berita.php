@@ -25,39 +25,79 @@
         <!-- /.row -->
 
         <?php
-            if (isset($delete_confirm))
+            $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
+            $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
+            $read_link = !empty($this->session->flashdata('read_link')) ? $this->session->flashdata('read_link') : '';
+
+            if (isset($submit_confirm) && ($submit_confirm === 1 || $submit_confirm === 0)) {
+                if ($submit_confirm === 1) {
+                    echo '<div class="row">
+                        <div class="col-xs-10">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Sukses!</strong> Berita baru berhasil ditambahkan. <a href="'.$read_link.'" target="lihatBerita">Lihat berita</a>
+                            </div>
+                        </div>
+                    </div>';
+                } else if ($submit_confirm === 0) {
+                    echo '<div class="col-xs-10">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong>Gagal!</strong> Terjadi kesalahan. Berita baru gagal ditambahkan
+                        </div>
+                    </div>
+                </div>';
+                }
+            }
+            elseif (isset($update_confirm) && ($update_confirm === 1 || $update_confirm === 0))
+            {
+                if ($update_confirm === 1)
+                {
+                    echo '<div class="row">
+                        <div class="col-xs-10">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Sukses!</strong> Berita berhasil diubah. <a href="'.$read_link.'" target="lihatBerita">Lihat berita</a>
+                            </div>
+                        </div>
+                    </div>';
+                }
+                else if($update_confirm === 0)
+                {
+                    echo '<div class="col-xs-10">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Gagal!</strong> Terjadi kesalahan. Berita tidak dapat diubah
+                            </div>
+                        </div>
+                    </div>';
+                }
+            }
+            elseif (isset($delete_confirm))
             {
                 if ($delete_confirm == 1)
                 {
-        ?>
-        <div class="row">
-            <div class="col-xs-10">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Berita berhasil dihapus
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
+                    echo '<div class="row">
+                    <div class="col-xs-10">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                          <strong>Sukses!</strong> Berita berhasil dihapus
+                        </div>
+                    </div>
+                </div>';
                 }
                 else if($delete_confirm == 0)
                 {
-        ?>
-        <div class="col-xs-10">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Gagal!</strong> Terjadi kesalahan. Berita gagal dihapus
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
+                    echo '<div class="col-xs-10">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                          <strong>Gagal!</strong> Terjadi kesalahan. Berita gagal dihapus
+                        </div>
+                    </div>
+                </div>';
                 }
             }
-        ?>
 
-        <?php
             $tahun_cek = array();
             $tahun = array();
             

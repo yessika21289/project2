@@ -33,69 +33,6 @@
         </div>
         <!-- /.row -->
 
-        <?php
-            if (isset($submit_confirm))
-            {
-                if ($submit_confirm == 1)
-                {
-        ?>
-        <div class="row">
-            <div class="col-xs-10">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Agenda baru berhasil ditambahkan. <a href="<?php echo $read_link; ?>">Lihat agenda</a> 
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
-                }
-                else if($submit_confirm == 0)
-                {
-        ?>
-        <div class="col-xs-10">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Gagal!</strong> Terjadi kesalahan. Agenda baru gagal ditambahkan
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
-                }
-            }
-            else if (isset($update_confirm))
-            {
-                if ($update_confirm == 1)
-                {
-        ?>
-        <div class="row">
-            <div class="col-xs-10">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Agenda berhasil diubah. <a href="<?php echo $read_link; ?>">Lihat agenda</a>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
-                }
-                else if($update_confirm == 0)
-                {
-        ?>
-        <div class="col-xs-10">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Gagal!</strong> Terjadi kesalahan. Agenda tidak dapat diubah
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
-                }
-            }
-        ?>
-
         <div class="row">        
             
             <div class="col-xs-10">

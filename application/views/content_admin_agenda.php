@@ -23,36 +23,81 @@
                 </ol>
             </div>
         <!-- /.row -->
+            <?php
+            $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
+            $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
+            $read_link = !empty($this->session->flashdata('read_link')) ? $this->session->flashdata('read_link') : '';
 
-        <?php
-            if (isset($delete_confirm))
+            if (isset($submit_confirm) && ($submit_confirm === 1 || $submit_confirm === 0))
+            {
+                if ($submit_confirm == 1)
+                {
+                    echo '<div class="row">
+                        <div class="col-xs-10">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Sukses!</strong> Agenda baru berhasil ditambahkan. <a href="'.$read_link.'">Lihat agenda</a>
+                            </div>
+                        </div>
+                    </div>';
+                }
+                else if($submit_confirm == 0)
+                {
+                    echo '<div class="col-xs-10">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Gagal!</strong> Terjadi kesalahan. Agenda baru gagal ditambahkan
+                            </div>
+                        </div>
+                    </div>';
+                }
+            }
+            else if (isset($update_confirm)  && ($update_confirm === 1 || $update_confirm === 0))
+            {
+                if ($update_confirm == 1)
+                {
+                    echo '<div class="row">
+                            <div class="col-xs-10">
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <strong>Sukses!</strong> Agenda berhasil diubah. <a href="'.$read_link.'">Lihat agenda</a>
+                                </div>
+                            </div>
+                        </div>';
+                }
+                else if($update_confirm == 0)
+                {
+                    echo '<div class="col-xs-10">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Gagal!</strong> Terjadi kesalahan. Agenda tidak dapat diubah
+                </div>
+                        </div>
+                    </div>';
+                }
+            }
+            elseif (isset($delete_confirm))
             {
                 if ($delete_confirm == 1)
                 {
-        ?>
-        <div class="row">
-            <div class="col-xs-10">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Agenda berhasil dihapus
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
+                    echo '<div class="row">
+                        <div class="col-xs-10">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                              <strong>Sukses!</strong> Agenda berhasil dihapus
+                            </div>
+                        </div>
+                    </div>';
                 }
                 else if($delete_confirm == 0)
                 {
-        ?>
-        <div class="col-xs-10">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Gagal!</strong> Terjadi kesalahan. Agenda gagal dihapus
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
+                    echo '<div class="col-xs-10">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                              <strong>Gagal!</strong> Terjadi kesalahan. Agenda gagal dihapus
+                            </div>
+                        </div>
+                    </div>';
                 }
             }
         ?>

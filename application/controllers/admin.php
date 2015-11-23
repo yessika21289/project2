@@ -85,52 +85,29 @@ class Admin extends MY_Controller {
 		{
 			if (isset($_POST['submit']))
 			{
-				/*if ($_POST['input-opt'] == 1)
-				{*/
-					$insert = $this->ypki->addBerita($_POST, $_FILES["gambar"]);
-					if($insert)
-					{
-						$id = $insert;
-
-						$data['submit_confirm'] = 1;
-						$this->session->set_flashdata('submit_confirm', 1);
-
-						$new = $this->ypki->getNewBerita();
-						$new = $new[0];
-
-						if($instansi != "ypki")
-							$data['read_link'] = base_url().$instansi."/berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
-						else
-							$data['read_link'] = base_url()."berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
-
-						$this->session->set_flashdata('read_link', $data['read_link']);
-						redirect(base_url()."admin/berita/ubah/".$id);
-					}
-					else
-					{
-						$data['submit_confirm'] = 0;
-					}
-
-				/*}
-				else if ($_POST['input-opt'] == 2)
+				$insert = $this->ypki->addBerita($_POST, $_FILES["gambar"]);
+				if($insert)
 				{
-					if($this->ypki->addBeritaLinked($_POST))
-					{
-						$data['submit_confirm'] = 1;
+					$id = $insert;
 
-						$new = $this->ypki->getNewBerita();
-						$new = $new[0];
+					$this->session->set_flashdata('submit_confirm', 1);
 
-						if($instansi != "ypki")
-							$data['read_link'] = base_url().$instansi."/berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
-						else
-							$data['read_link'] = base_url()."berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
-					}
+					$new = $this->ypki->getNewBerita();
+					$new = $new[0];
+
+					if($instansi != "ypki")
+						$data['read_link'] = base_url().$instansi."/berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
 					else
-					{
-						$data['submit_confirm'] = 0;	
-					}	
-				}*/
+						$data['read_link'] = base_url()."berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
+
+					$this->session->set_flashdata('read_link', $data['read_link']);
+					redirect('admin/berita');
+				}
+				else
+				{
+					$data['submit_confirm'] = 0;
+				}
+
 			}
 			
 			$this->load->view("content_admin_berita_baru", $data);
@@ -145,74 +122,28 @@ class Admin extends MY_Controller {
 
 			if (isset($_POST['update']))
 			{
-				/*iif (isset($_POST['input-opt']))
+				if($this->ypki->updateBerita($_POST, $_FILES["gambar"]) == 1)
 				{
-					f ($_POST['input-opt'] == 1)
-					{*/
-						if($this->ypki->updateBerita($_POST, $_FILES["gambar"]) == 1)
-						{
-							$data['update_confirm'] = 1;
+					//$data['update_confirm'] = 1;
 
-							$tanggal = $this->ypki->getCol("created","berita",$_POST['id']);
-							$tanggal = $tanggal[0]->created;
+					$tanggal = $this->ypki->getCol("created","berita",$_POST['id']);
+					$tanggal = $tanggal[0]->created;
 
-							if($instansi != "ypki")
-								$data['read_link'] = base_url().$instansi."/berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
-							else
-								$data['read_link'] = base_url()."berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
+					if($instansi != "ypki")
+						$data['read_link'] = base_url().$instansi."/berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
+					else
+						$data['read_link'] = base_url()."berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
 
 
-							$this->session->set_flashdata('update_confirm',1);
-							$this->session->set_flashdata('read_link',$data['read_link']);
-						}
-						else
-						{
-							$data['update_confirm'] = 0;
-							$this->session->set_flashdata('update_confirm',0);
-						}
-
-						redirect(base_url()."admin/berita/ubah/".$id);
-					/*}
-					else if ($_POST['input-opt'] == 2)
-					{
-						if($this->ypki->updateBeritaLinked($_POST))
-						{
-							$data['update_confirm'] = 1;
-
-							$tanggal = $this->ypki->getCol("created","berita",$_POST['id']);
-							$tanggal = $tanggal[0]->created;
-
-							if($instansi != "ypki")
-								$data['read_link'] = base_url().$instansi."/berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
-							else
-								$data['read_link'] = base_url()."berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
-						}
-						else
-						{
-							$data['update_confirm'] = 0;	
-						}	
-					}
+					$this->session->set_flashdata('update_confirm',1);
+					$this->session->set_flashdata('read_link',$data['read_link']);
 				}
 				else
 				{
-					if($this->ypki->updateBerita($_POST, $_FILES["gambar"]) == 1)
-					{
-						$data['update_confirm'] = 1;
-
-						$tanggal = $this->ypki->getCol("created","berita",$_POST['id']);
-						$tanggal = $tanggal[0]->created;
-
-						if($instansi != "ypki")
-							$data['read_link'] = base_url().$instansi."/berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
-						else
-							$data['read_link'] = base_url()."berita/baca/".substr($tanggal,0,10)."/".urlencode($_POST['judul']);
-					}
-					else
-					{
-						$data['update_confirm'] = 0;	
-					}	
-				}*/
-				
+					$data['update_confirm'] = 0;
+					$this->session->set_flashdata('update_confirm',0);
+				}
+				redirect('admin/berita');
 			}
 
 			$berita = $this->ypki->getBerita($id);
@@ -275,7 +206,7 @@ class Admin extends MY_Controller {
 			{
 				if($this->ypki->addAgenda($_POST) == 1)
 				{
-					$data['submit_confirm'] = 1;
+					//$data['submit_confirm'] = 1;
 
 					$new = $this->ypki->getNewAgenda();
 					$new = $new[0];
@@ -286,28 +217,11 @@ class Admin extends MY_Controller {
 						$data['read_link'] = base_url().$instansi."/agenda/baca/".$tanggal."/".urlencode($new->nama);
 					else
 						$data['read_link'] = base_url()."agenda/baca/".$tanggal."/".urlencode($new->nama);
-				}
-				else
-				{
-					$data['submit_confirm'] = 0;	
+					$this->session->set_flashdata('submit_confirm', 1);
+					$this->session->set_flashdata('read_link', $data['read_link']);
+					redirect('admin/agenda');
 				}
 			}
-
-			/*$this->load->helper(array('form', 'url'));
-
-			$this->load->library('form_validation');
-
-			$this->form_validation->set_rules('judul', 'Judul', 'required');
-			$this->form_validation->set_rules('tanggal', 'Tanggal', 'required');
-
-			if ($this->form_validation->run() == FALSE)
-			{
-				$this->load->view('content_admin_agenda_baru', $data);
-			}
-			else
-			{
-				$this->load->view('formsuccess');
-			}*/
 			
 			$this->load->view("content_admin_agenda_baru", $data);
 			$this->session->unset_userdata('submit_confirm');
