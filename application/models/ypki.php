@@ -906,8 +906,14 @@
                 $query = $this->db->get_where('firman', array('id' => $id));
                 return $query->result();
             }
-
         }
+
+		public function getFirmanToday($today){
+			if(!empty($today)) {
+				$query = $this->db->get_where('firman', array('created' => $today));
+				return $query->result();
+			}
+		}
 
 		public function deleteFirman($id)
 		{

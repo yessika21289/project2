@@ -489,14 +489,20 @@ class Admin extends MY_Controller {
 
 		else if ($task == "baru") {
 			if (isset($_POST['submit'])) {
+				if($_POST['firman_today'] == 1) $j = 1;
+				else $j = 7;
 				$instansi = $_POST['instansi'];
 				$success = 0;
-				for ($i = 1; $i <= 7; $i++) {
+				for ($i = 1; $i <= $j; $i++) {
 					$konten = $_POST['konten_' . $i];
 					$tanggal = $_POST['tanggal_' . $i];
 					if($this->ypki->addFirman($konten, $tanggal, $instansi)) $success += 1;
 				}
-				if($success >= 1) $data['submit_confirm'] = 1;
+				if($success >= 1) {
+					$data['submit_confirm'] = 1;
+					$this->session->set_flashdata('submit_confirm', 1);
+					redirect('admin/firman');
+				}
 				else $data['submit_confirm'] = 0;
 			}
 			$this->load->view("content_admin_firman_baru", $data);
@@ -516,11 +522,23 @@ class Admin extends MY_Controller {
 				if($update) {
 					$data['update_confirm'] = 1;
 				}
+				$this->session->set_flashdata('update_confirm', 1);
 				redirect(base_url().'admin/firman');
 			}
-			$id = $this->uri->segment(4);
-			$firman = $this->ypki->getFirman($id);
-			$data['firman_edit'] = $firman[0];
+			$today = date('Y-m-d');
+			if($this->uri->segment(4) == $today) {
+				$firman = $this->ypki->getFirmanToday($today);
+				if(empty($firman)) {
+					$this->session->set_flashdata('firman_today', 1);
+					redirect('admin/firman/baru');
+				}
+			}
+			else {
+				$id = $this->uri->segment(4);
+				$firman = $this->ypki->getFirman($id);
+			}
+
+			if(!empty($firman))	$data['firman_edit'] = $firman[0];
 
 			$this->load->view('content_admin_firman_baru', $data);
 		}
