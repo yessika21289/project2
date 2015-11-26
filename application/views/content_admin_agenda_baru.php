@@ -54,6 +54,20 @@
                             $tanggal = $berita_edit->tanggal;
                             echo "<input type='hidden' name='id' value='".$id."'>";
                         }
+                        if($gagal === 0) {
+                            echo '<div class="col-xs-10">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <strong>Gagal!</strong> Terjadi kesalahan. Agenda baru gagal ditambahkan
+                                    </div>
+                                </div>
+                            </div>';
+
+                            $judul = $post['judul'];
+                            $konten = $post['konten'];
+                            $tanggal = $post['tanggal'];
+                            $ins = $post['instansi'];
+                        }
                     ?>
 
                     <div class="form-group">

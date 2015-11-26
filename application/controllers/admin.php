@@ -186,7 +186,7 @@ class Admin extends MY_Controller {
 		$instansi = $this->session->userdata('instansi');
 		$data = $this->session->all_userdata();
 
-		$this->load->model('ypki'); 
+		$this->load->model('ypki');
 		$data['berita'] = $this->ypki->getAllAgenda($instansi);
 		
 		if(!isset($task) || $task == 'hapus')
@@ -204,10 +204,8 @@ class Admin extends MY_Controller {
 		{
 			if (isset($_POST['submit']))
 			{
-				if($this->ypki->addAgenda($_POST) == 1)
+				if($this->ypki->addAgenda($_POST) == 0)
 				{
-					//$data['submit_confirm'] = 1;
-
 					$new = $this->ypki->getNewAgenda();
 					$new = $new[0];
 
@@ -220,9 +218,17 @@ class Admin extends MY_Controller {
 					$this->session->set_flashdata('submit_confirm', 1);
 					$this->session->set_flashdata('read_link', $data['read_link']);
 					redirect('admin/agenda');
+				} else {
+					$this->session->set_flashdata('submit_confirm', 0);
+					$this->session->set_flashdata('post', $_POST);
+					redirect('admin/agenda/baru');
 				}
 			}
-			
+
+			if($this->session->flashdata('submit_confirm') == 0) {
+				$data['post'] = $this->session->flashdata('post');
+				$data['gagal'] = $this->session->flashdata('submit_confirm');
+			}
 			$this->load->view("content_admin_agenda_baru", $data);
 			$this->session->unset_userdata('submit_confirm');
 		}
@@ -236,16 +242,21 @@ class Admin extends MY_Controller {
 
 					$tanggal = str_replace("-", "/", $_POST['tanggal']);
 
-					
 					if($instansi != "ypki")
 						$data['read_link'] = base_url().$instansi."/agenda/baca/".$tanggal."/".urlencode($_POST['judul']);
 					else
 						$data['read_link'] = base_url()."agenda/baca/".$tanggal."/".urlencode($_POST['judul']);
 				}
-				else
-				{
-					$data['update_confirm'] = 0;	
+				else {
+					$this->session->set_flashdata('submit_confirm', 0);
+					$this->session->set_flashdata('post', $_POST);
+					redirect('admin/agenda/ubah/'.$_POST['id']);
 				}
+			}
+
+			if($this->session->flashdata('submit_confirm') == 0) {
+				$data['post'] = $this->session->flashdata('post');
+				$data['gagal'] = $this->session->flashdata('submit_confirm');
 			}
 
 			$id = $this->uri->segment(4);

@@ -41,16 +41,6 @@
                         </div>
                     </div>';
                 }
-                else if($submit_confirm == 0)
-                {
-                    echo '<div class="col-xs-10">
-                            <div class="alert alert-danger alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                <strong>Gagal!</strong> Terjadi kesalahan. Agenda baru gagal ditambahkan
-                            </div>
-                        </div>
-                    </div>';
-                }
             }
             else if (isset($update_confirm)  && ($update_confirm === 1 || $update_confirm === 0))
             {
@@ -71,7 +61,7 @@
                             <div class="alert alert-danger alert-dismissible" role="alert">
                                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                                 <strong>Gagal!</strong> Terjadi kesalahan. Agenda tidak dapat diubah
-                </div>
+                            </div>
                         </div>
                     </div>';
                 }
