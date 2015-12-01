@@ -213,11 +213,14 @@
 
 			$waktu = date("YmdHis");
 
-			$filex = substr($files["name"],strlen($files["name"])-4,4);
+			$filex = explode('.',$files["name"]);
+			$filex = array_reverse($filex);
 
-			$filename = $waktu.$filex;
+			//$filex = substr($files["name"],strlen($files["name"])-4,4);
 
-			$upload = "./asset/img/".$filename;
+			$filename = $waktu.'.'.$filex[0];
+
+			$upload = "./asset/berita/".$filename;
 
 			$created = date("Y/m/d H:i:s");
 
