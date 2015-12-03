@@ -246,7 +246,7 @@
 				$result = $this->db->query($sqlstr);
 
 				$sqlstr = "INSERT INTO berita VALUES('','".$post['judul']."','".$filename."','".$post['konten']."','".$created."','".$post['instansi']."')";
-				$result = $this->db->query($sqlstr);	
+				$result = $this->db->query($sqlstr);
 
 				$id = $this->getLastId("berita");
 
@@ -908,7 +908,6 @@
                 $query = $this->db->get_where('firman', array('id' => $id));
                 return $query->result();
             }
-
         }
 
 		public function deleteFirman($id)

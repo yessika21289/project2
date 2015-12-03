@@ -25,6 +25,8 @@
         <!-- /.row -->
             <?php
             $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
+            print_r($submit_confirm);
+            exit();
             $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
             $read_link = !empty($this->session->flashdata('read_link')) ? $this->session->flashdata('read_link') : '';
 
@@ -96,7 +98,7 @@
             $tahun_cek = array();
             $tahun = array();
             
-            foreach ($berita as $key => $value)
+            foreach ($agenda as $key => $value)
             {
                 $y = substr($value->tanggal,0,4);
                 if(!isset($tahun_cek[$y]))

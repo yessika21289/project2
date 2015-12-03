@@ -82,6 +82,7 @@ $(document).ready(function(){
 	{
 		$("#form-berita-baru .input-submit").removeAttr("disabled");
 	}
+
 	if (agenda && $("#form-berita-baru .input-judul").val()!="" && $("#form-berita-baru .input-tanggal").val() != "")
 	{
 		$("#form-berita-baru .input-submit").removeAttr("disabled");
@@ -215,7 +216,7 @@ $(document).ready(function(){
 		}
 
 	});
-
+kl
 
 
 

@@ -75,18 +75,19 @@ class Admin extends MY_Controller {
 			$data['active_berita'] = 1;
 		else
 			$data['active_berita_baru'] = 1;
-		$this->load->view("content_admin_header", $data);
 
 		if(empty($task))
 		{
+			$this->load->view("content_admin_header", $data);
 			$this->load->view("content_admin_berita");
 		}
 		else if($task=="baru")
 		{
+			$this->load->view("content_admin_header", $data);
 			if (isset($_POST['submit']))
 			{
 				$insert = $this->ypki->addBerita($_POST, $_FILES["gambar"]);
-				if($insert)
+				if($insert == 1)
 				{
 					$id = $insert;
 
@@ -105,11 +106,17 @@ class Admin extends MY_Controller {
 				}
 				else
 				{
-					$data['submit_confirm'] = 0;
+					$this->session->set_flashdata('submit_confirm',0);
+					$this->session->set_flashdata('post', $_POST);
+					redirect('admin/berita/baru');
 				}
-
 			}
-			
+
+			if($this->session->flashdata('submit_confirm') == 0) {
+				$data['post'] = $this->session->flashdata('post');
+				$data['gagal'] = $this->session->flashdata('submit_confirm');
+			}
+
 			$this->load->view("content_admin_berita_baru", $data);
 			$this->session->unset_userdata('submit_confirm');
 		}
@@ -119,6 +126,7 @@ class Admin extends MY_Controller {
 			$data['submit_confirm'] = $this->session->flashdata('submit_confirm');
 			$data['update_confirm'] = $this->session->flashdata('update_confirm');
 			$data['read_link'] = $this->session->flashdata('read_link');
+			$this->load->view("content_admin_header", $data);
 
 			if (isset($_POST['update']))
 			{
@@ -137,15 +145,21 @@ class Admin extends MY_Controller {
 
 					$this->session->set_flashdata('update_confirm',1);
 					$this->session->set_flashdata('read_link',$data['read_link']);
+					redirect('admin/berita');
 				}
-				else
-				{
-					$data['update_confirm'] = 0;
-					$this->session->set_flashdata('update_confirm',0);
+				else {
+					$this->session->set_flashdata('submit_confirm', 0);
+					$this->session->set_flashdata('post', $_POST);
+					redirect('admin/berita/ubah/'.$_POST['id']);
 				}
-				redirect('admin/berita');
 			}
 
+			if($this->session->flashdata('submit_confirm') == 0) {
+				$data['post'] = $this->session->flashdata('post');
+				$data['gagal'] = $this->session->flashdata('submit_confirm');
+			}
+
+			$id = $this->uri->segment(4);
 			$berita = $this->ypki->getBerita($id);
 			$data['berita_edit'] = $berita[0];
 			$data['berita_edit']->tipe_gambar = $this->ypki->getTipeGambar($data['berita_edit']->gambar);
@@ -187,24 +201,24 @@ class Admin extends MY_Controller {
 		$data = $this->session->all_userdata();
 
 		$this->load->model('ypki');
-		$data['berita'] = $this->ypki->getAllAgenda($instansi);
+		$data['agenda'] = $this->ypki->getAllAgenda($instansi);
 		
 		if(!isset($task) || $task == 'hapus')
 			$data['active_agenda'] = 1;
 		else
 			$data['active_agenda_baru'] = 1;
 
-		$this->load->view("content_admin_header", $data);
-
 		if(empty($task))
 		{
+			$this->load->view("content_admin_header", $data);
 			$this->load->view("content_admin_agenda");	
 		}
 		else if($task=="baru")
 		{
+			$this->load->view("content_admin_header", $data);
 			if (isset($_POST['submit']))
 			{
-				if($this->ypki->addAgenda($_POST) == 0)
+				if($this->ypki->addAgenda($_POST) == 1)
 				{
 					$new = $this->ypki->getNewAgenda();
 					$new = $new[0];
@@ -224,7 +238,6 @@ class Admin extends MY_Controller {
 					redirect('admin/agenda/baru');
 				}
 			}
-
 			if($this->session->flashdata('submit_confirm') == 0) {
 				$data['post'] = $this->session->flashdata('post');
 				$data['gagal'] = $this->session->flashdata('submit_confirm');
@@ -234,18 +247,20 @@ class Admin extends MY_Controller {
 		}
 		else if($task=="ubah")
 		{
+			$this->load->view("content_admin_header", $data);
 			if (isset($_POST['update']))
 			{
 				if($this->ypki->updateAgenda($_POST) == 1)
 				{
-					$data['update_confirm'] = 1;
-
 					$tanggal = str_replace("-", "/", $_POST['tanggal']);
 
 					if($instansi != "ypki")
 						$data['read_link'] = base_url().$instansi."/agenda/baca/".$tanggal."/".urlencode($_POST['judul']);
 					else
 						$data['read_link'] = base_url()."agenda/baca/".$tanggal."/".urlencode($_POST['judul']);
+					$this->session->set_flashdata('submit_confirm', 1);
+					$this->session->set_flashdata('read_link', $data['read_link']);
+					redirect('admin/agenda');
 				}
 				else {
 					$this->session->set_flashdata('submit_confirm', 0);
@@ -407,12 +422,13 @@ class Admin extends MY_Controller {
 		else
 			$data['active_firman_baru'] = 1;
 
-		$this->load->view("content_admin_header", $data);
-
-		if (empty($task))
+		if (empty($task)) {
+			$this->load->view("content_admin_header", $data);
 			$this->load->view("content_admin_firman");
+		}
 
 		else if ($task == "baru") {
+			$this->load->view("content_admin_header", $data);
 			if (isset($_POST['submit'])) {
 				$instansi = $_POST['instansi'];
 				$success = 0;
@@ -421,13 +437,28 @@ class Admin extends MY_Controller {
 					$tanggal = $_POST['tanggal_' . $i];
 					if($this->ypki->addFirman($konten, $tanggal, $instansi)) $success += 1;
 				}
-				if($success >= 1) $data['submit_confirm'] = 1;
-				else $data['submit_confirm'] = 0;
+
+				if($success >= 1) {
+					//$data['submit_confirm'] = 1;
+					$this->session->set_flashdata('submit_confirm', 1);
+					redirect('admin/firman');
+				}
+				else {
+					$this->session->set_flashdata('submit_confirm', 0);
+					$this->session->set_flashdata('post', $_POST);
+					redirect('admin/firman/baru');
+				}
 			}
+			if($this->session->flashdata('submit_confirm') == 0) {
+				$data['post'] = $this->session->flashdata('post');
+				$data['gagal'] = $this->session->flashdata('submit_confirm');
+			}
+
 			$this->load->view("content_admin_firman_baru", $data);
 			$this->session->unset_userdata('submit_confirm');
 		}
 		else if ($task == "ubah") {
+			$this->load->view("content_admin_header", $data);
 			$data['submit_confirm'] = $this->session->flashdata('submit_confirm');
 			$data['update_confirm'] = $this->session->flashdata('update_confirm');
 			if(isset($_POST['update'])) {
@@ -438,15 +469,25 @@ class Admin extends MY_Controller {
 				$id = $_POST['id'];
 				$this->db->where('id', $id);
 				$update = $this->db->update('firman', $update);
-				if($update) {
-					$data['update_confirm'] = 1;
+				if($update == 1) {
+					$this->session->set_flashdata('submit_confirm', 1);
+					redirect('admin/firman');
 				}
-				redirect(base_url().'admin/firman');
+				else {
+					$this->session->set_flashdata('submit_confirm', 0);
+					$this->session->set_flashdata('post', $_POST);
+					redirect('admin/firman/ubah/'.$_POST['id']);
+				}
 			}
+
+			if($this->session->flashdata('submit_confirm') == 0) {
+				$data['post'] = $this->session->flashdata('post');
+				$data['gagal'] = $this->session->flashdata('submit_confirm');
+			}
+
 			$id = $this->uri->segment(4);
 			$firman = $this->ypki->getFirman($id);
 			$data['firman_edit'] = $firman[0];
-
 			$this->load->view('content_admin_firman_baru', $data);
 		}
 		else if ($task == 'hapus') {

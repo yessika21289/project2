@@ -25,7 +25,24 @@
             <!-- /.row -->
 
             <?php
-            if (isset($delete_confirm))
+            $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
+            $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
+
+
+            if (isset($submit_confirm) && ($submit_confirm === 1 || $submit_confirm === 0))
+            {
+                if ($submit_confirm == 1) {
+                    echo '<div class="row">
+                        <div class="col-xs-10">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Sukses!</strong> Firman baru berhasil ditambahkan/diubah.
+                            </div>
+                        </div>
+                    </div>';
+                }
+            }
+            elseif (isset($delete_confirm))
             {
                 if ($delete_confirm == 1)
                 {
@@ -34,7 +51,7 @@
                         <div class="col-xs-10">
                             <div class="alert alert-success alert-dismissible" role="alert">
                                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                <strong>Sukses!</strong> Firman berhasil dihapus
+                                <strong>Sukses!</strong> Firman berhasil dihapus.
                             </div>
                         </div>
                     </div>
@@ -55,7 +72,7 @@
             <?php
             }
         }
-        else if (isset($update_confirm))
+        else if (isset($update_confirm)  && ($update_confirm === 1 || $update_confirm === 0))
         {
             if ($update_confirm == 1)
             {

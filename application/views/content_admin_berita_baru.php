@@ -58,6 +58,17 @@
                             $label = $berita_label;
                             echo "<input type='hidden' name='id' value='".$id."'>";
                         }
+                    if($gagal === 0) {
+                        echo '<div class="col-xs-10">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                        <strong>Gagal!</strong> Terjadi kesalahan. Berita baru gagal ditambahkan/diubah.
+                                    </div>
+                                </div>';
+                        $judul = $post['judul'];
+                        $konten = $post['konten'];
+                        $label = $post['label'];
+                    }
                     ?>
 
                     <div class="form-group">
