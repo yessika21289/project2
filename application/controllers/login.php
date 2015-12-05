@@ -2,14 +2,14 @@
 
 class Login extends CI_Controller {
 
-	public function index($msg = NULL)
+	/*public function index($msg = NULL)
 	{
 		$data['msg'] = $msg;
 		$this->load->view("header");
 		$this->load->view("navigator_login");
 		$this->load->view("content_login", $data);
 		$this->load->view("footer");
-	}
+	}*/
 
 	public function process()
 	{
@@ -23,7 +23,7 @@ class Login extends CI_Controller {
 
 			if ($result)
 			{
-				redirect(base_url().'admin');
+				redirect(base_url().'admin/dashboard');
 			}
 			else
 			{
@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 		}
 		else
 		{
-			redirect(base_url().'login');	
+			redirect(base_url().'admin');	
 		}
 		
 	}

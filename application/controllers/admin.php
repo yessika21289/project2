@@ -2,7 +2,21 @@
 
 class Admin extends MY_Controller {
 
-	public function index()
+	public function index($msg = NULL)
+	{
+		$tipe = $this->session->userdata('tipe');
+		if(!empty($tipe))
+			redirect('admin/dashboard');
+		else{
+			$data['msg'] = $msg;
+			$this->load->view("header");
+			$this->load->view("navigator_login");
+			$this->load->view("content_login", $data);
+			$this->load->view("footer");
+		}
+	}
+
+	public function dashboard()
 	{
 		$this->load->model('ypki');
 
