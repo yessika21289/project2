@@ -87,7 +87,7 @@ class Admin extends MY_Controller {
 			if (isset($_POST['submit']))
 			{
 				$insert = $this->ypki->addBerita($_POST, $_FILES["gambar"]);
-				if($insert == 1)
+				if($insert)
 				{
 					$id = $insert;
 
@@ -102,6 +102,7 @@ class Admin extends MY_Controller {
 						$data['read_link'] = base_url()."berita/baca/".substr($new->created,0,10)."/".urlencode($new->judul);
 
 					$this->session->set_flashdata('read_link', $data['read_link']);
+					$this->session->set_flashdata('new_berita', $new->id);
 					redirect('admin/berita');
 				}
 				else
@@ -145,6 +146,7 @@ class Admin extends MY_Controller {
 
 					$this->session->set_flashdata('update_confirm',1);
 					$this->session->set_flashdata('read_link',$data['read_link']);
+					$this->session->set_flashdata('new_berita', $_POST['id']);
 					redirect('admin/berita');
 				}
 				else {
@@ -231,6 +233,7 @@ class Admin extends MY_Controller {
 						$data['read_link'] = base_url()."agenda/baca/".$tanggal."/".urlencode($new->nama);
 					$this->session->set_flashdata('submit_confirm', 1);
 					$this->session->set_flashdata('read_link', $data['read_link']);
+					$this->session->set_flashdata('new_agenda', $new->id);
 					redirect('admin/agenda');
 				} else {
 					$this->session->set_flashdata('submit_confirm', 0);
@@ -260,6 +263,7 @@ class Admin extends MY_Controller {
 						$data['read_link'] = base_url()."agenda/baca/".$tanggal."/".urlencode($_POST['judul']);
 					$this->session->set_flashdata('submit_confirm', 1);
 					$this->session->set_flashdata('read_link', $data['read_link']);
+					$this->session->set_flashdata('new_agenda', $_POST['id']);
 					redirect('admin/agenda');
 				}
 				else {
@@ -399,7 +403,7 @@ class Admin extends MY_Controller {
 
 	public function delTree($dir) 
 	{ 
-	   	$files = array_diff(scandir($dir), array('.','..')); 
+	   	$files = array_diff(scandir($dir), array('.','..'));
 	   	//print_r($files);
 	    foreach ($files as $file) { 
 	    	//print_r($file);
@@ -441,6 +445,7 @@ class Admin extends MY_Controller {
 				if($success >= 1) {
 					//$data['submit_confirm'] = 1;
 					$this->session->set_flashdata('submit_confirm', 1);
+					$this->session->set_flashdata('new_firman', $this->ypki->getNewFirman($success));
 					redirect('admin/firman');
 				}
 				else {
@@ -471,6 +476,7 @@ class Admin extends MY_Controller {
 				$update = $this->db->update('firman', $update);
 				if($update == 1) {
 					$this->session->set_flashdata('submit_confirm', 1);
+					$this->session->set_flashdata('update_firman', $_POST['id']);
 					redirect('admin/firman');
 				}
 				else {

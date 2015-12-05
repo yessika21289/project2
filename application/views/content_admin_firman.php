@@ -25,9 +25,11 @@
             <!-- /.row -->
 
             <?php
+
             $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
             $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
-
+            $new_firman[] = !empty($this->session->flashdata('new_firman')) ? $this->session->flashdata('new_firman') : '';
+            $update_firman = !empty($this->session->flashdata('update_firman')) ? $this->session->flashdata('update_firman') : '';
 
             if (isset($submit_confirm) && ($submit_confirm === 1 || $submit_confirm === 0))
             {
@@ -185,7 +187,14 @@
                                 $found = true;
                             }
 
-                            echo "<li class='list-group-item'>";
+                            echo "<li class='list-group-item' ";
+                            if(!empty($new_firman[0])) {
+                                foreach ($new_firman[0] as $id) {
+                                    if ($v->id == $id->id) echo "style='background-color: #dbf0ff;'";
+                                }
+                            }
+                            if($v->id == $update_firman) echo "style='background-color: #dbf0ff;'";
+                            echo ">";
                             echo "<div class='row'>";
                             echo "<div class='col-xs-2' style='width:105px;'>";
                             echo "<span class='date' id='t".$v->id."' >".substr($v->created,8,2)."/".$bulan."</span>&nbsp;&nbsp;&nbsp;&nbsp;";

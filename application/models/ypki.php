@@ -872,9 +872,9 @@
             else return false;
 		}
 
-		public function getNewFirman()
+		public function getNewFirman($id)
 		{
-			$sqlstr = "SELECT * FROM firman ORDER BY id DESC LIMIT 1";
+			$sqlstr = "SELECT id FROM firman ORDER BY id DESC LIMIT ".$id;
 			$result = $this->db->query($sqlstr);
 			return $result->result();
 		}

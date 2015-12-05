@@ -25,9 +25,8 @@
         <!-- /.row -->
             <?php
             $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
-            print_r($submit_confirm);
-            exit();
             $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
+            $new_agenda = !empty($this->session->flashdata('new_agenda')) ? $this->session->flashdata('new_agenda') : '';
             $read_link = !empty($this->session->flashdata('read_link')) ? $this->session->flashdata('read_link') : '';
 
             if (isset($submit_confirm) && ($submit_confirm === 1 || $submit_confirm === 0))
@@ -173,8 +172,10 @@
                                     echo "<li class='list-group-item active'><span class='badge'>".$jumlah."</span>".$nama_bulan."</li>";
                                     $found = true;
                                 }
-                                    
-                                echo "<li class='list-group-item'>";          
+
+                                if($v->id == $new_agenda) echo "<li class='list-group-item' style='background-color: #dbf0ff;'>";
+                                else echo "<li class='list-group-item'>";
+
                                 echo "<div class='row'>";
                                 echo "<div class='col-xs-9'>";
                                 echo "<span class='date'>".substr($v->tanggal,8,2)."/".$bulan."</span>";

@@ -49,7 +49,6 @@
 
             if (isset($firman_edit))
             {
-                print_r($firman_edit);
                 $id = $firman_edit->id;
                 $post['konten_1'] = $firman_edit->firman;
                 $post['tanggal_1'] = $firman_edit->created;

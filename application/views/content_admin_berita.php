@@ -27,6 +27,7 @@
         <?php
             $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
             $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
+            $new_berita = !empty($this->session->flashdata('new_berita')) ? $this->session->flashdata('new_berita') : '';
             $read_link = !empty($this->session->flashdata('read_link')) ? $this->session->flashdata('read_link') : '';
 
             if (isset($submit_confirm) && ($submit_confirm === 1 || $submit_confirm === 0)) {
@@ -176,8 +177,9 @@
                                     echo "<li class='list-group-item active'><span class='badge'>".$jumlah."</span>".$nama_bulan."</li>";
                                     $found = true;
                                 }
-                                    
-                                echo "<li class='list-group-item'>";          
+
+                                if($v->id == $new_berita) echo "<li class='list-group-item' style='background-color: #dbf0ff;'>";
+                                else echo "<li class='list-group-item'>";
                                 echo "<div class='row'>";
                                 echo "<div class='col-xs-9'>";
                                 echo "<span class='date'>".substr($v->created,8,2)."/".$bulan."</span>";
