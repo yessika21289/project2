@@ -137,7 +137,7 @@
                                     $found = true;
                                 }
                                     
-                                echo "<li class='list-group-item'>";          
+                                echo "<li class='list-group-item'>";
                                 echo "<div class='row'>";
                                 echo "<div class='col-xs-9'>";
                                 echo "<span class='date'>".substr($v->tanggal,8,2)."/".$bulan."</span>";
@@ -158,7 +158,6 @@
                                 echo "<span title='hapus' class='glyphicon glyphicon-remove hapus' id='r".$v->id."' data-toggle='modal' data-target='#myModal'></span>";
                                 echo "</div>";
                                 echo "</div></li>";
-                                
                             }
                             echo "</ul>";
                         }
