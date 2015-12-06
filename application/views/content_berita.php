@@ -95,7 +95,7 @@
 
 					$tipe = $this->ypki->getTipeGambar($value->gambar);
 					if($tipe == "foto")
-						echo "<img src='".base_url()."/asset/img/".$value->gambar."' />";
+						echo "<img src='".base_url()."/asset/berita/".$value->gambar."' />";
 					else if($tipe == "link")
 						echo "<img src='".$value->gambar."' />";
 					echo "</a></div>";

@@ -431,11 +431,11 @@ class Admin extends MY_Controller {
 					
 					############ Remove comments if you want to upload and stored images into the "uploads/" folder #############
 					$filex = explode('.',$image_name);
-					$rev_filex = array_reverse($filex);
+					$filex = array_reverse($filex);
 
 					$waktu = date("YmdHis");
 
-					$filename = $waktu.$key.'.'.$rev_filex[0];
+					$filename = $waktu.$key.'.'.$filex[0];
 					
 					$target_dir = "asset/album/".$_POST['directory']."/";
 					//echo $target_dir;
