@@ -59,7 +59,7 @@
 					echo "<div class='berita row'>";
 					echo "<div class='col-xs-3'>";
 					echo "<a href='".$link."'>";
-					echo "<img src='".base_url()."/asset/img/".$value->gambar."' />";
+					echo "<img src='".base_url()."/asset/berita/".$value->gambar."' />";
 					echo "</a></div>";
 					echo "<div class='col-xs-9'>";
 					echo "<a href='".$link."'>";

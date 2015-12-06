@@ -1,17 +1,17 @@
 <div id="div-login">
 
 	<?php
-		$tipe = $this->session->userdata('tipe');
+		/*$tipe = $this->session->userdata('tipe');
 		if (!empty( $tipe ))
 		{
 			echo "<div class='welcome'>";
 			echo "Selamat datang, <span class='username'>".$this->session->userdata('username')."</span>";
 			echo " di Website Yayasan Perguruan Kristen Indonesia ";
 			echo "<div class='logout'><button>log out</button></div>";
-			echo "</div>";
+			echo "</div>";*/
 	?>
 	<?php
-		}else{
+		//}else{
 	?>
 
 	<div class="title">LOGIN</div>
@@ -29,7 +29,7 @@
 	</form>
 
 	<?php
-		}
+		//}
 	?>
 
 </div>

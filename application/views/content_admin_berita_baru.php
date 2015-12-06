@@ -148,7 +148,7 @@
                             {
                                 echo "<div class='preview-gambar'>";
                                 if ($tipe == "foto")
-                                    echo "<img src='".base_url()."asset/img/".$gambar."' />";
+                                    echo "<img src='".base_url()."asset/berita/".$gambar."' />";
                                 else
                                     echo "<img src='".$gambar."' />";
                                 echo "<div class='ganti-gambar'>ganti gambar</div>";
