@@ -24,7 +24,7 @@
 				if($tipe == "foto")
 				{
 			?>
-				<img src="<?php echo base_url().'asset/img/'.$berita->gambar; ?>" />
+				<img src="<?php echo base_url().'asset/berita/'.$berita->gambar; ?>" />
 			<?php }else{ ?>
 				<img src="<?php echo $berita->gambar; ?>" />
 			<?php } ?>
