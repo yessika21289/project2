@@ -24,6 +24,7 @@ class Admin extends MY_Controller {
 		$instansi = $this->session->userdata('instansi');
 		$data['jumlah_berita'] = $this->ypki->getJumlahBerita($instansi);
 		$data['jumlah_agenda'] = $this->ypki->getJumlahAgenda($instansi);
+		$data['jumlah_firman'] = $this->ypki->getJumlahFirman($instansi);
 
 		$this->load->view("content_admin_header", $data);
 		$this->load->view("content_admin");

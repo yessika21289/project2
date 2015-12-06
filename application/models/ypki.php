@@ -877,6 +877,15 @@
             else return false;
 		}
 
+		public function getJumlahFirman($instansi = "ypki"){
+			if($instansi == "ypki")
+				$sqlstr = "SELECT * FROM firman";
+			else
+				$sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."'";
+			$result = $this->db->query($sqlstr);
+			return $result->num_rows();
+		}
+
 		public function getNewFirman($id)
 		{
 			$sqlstr = "SELECT id FROM firman ORDER BY id DESC LIMIT ".$id;

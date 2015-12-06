@@ -92,8 +92,8 @@
                                 <i class="fa fa-heart fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge">&nbsp;</div>
-                                <div>firman Tuhan hari ini</div>
+                                <div class="huge"><?php echo $jumlah_firman; ?></div>
+                                <div>total firman</div>
                             </div>
                         </div>
                     </div>
