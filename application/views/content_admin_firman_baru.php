@@ -47,14 +47,18 @@
             $j = 7;
             $disable = '';
 
-            if (isset($firman_edit))
-            {
+            if (isset($firman_edit)) {
                 $id = $firman_edit->id;
                 $post['konten_1'] = $firman_edit->firman;
                 $post['tanggal_1'] = $firman_edit->created;
                 $j = 1;
                 $disable = "disabled";
-                echo "<input type='hidden' name='id' value='".$id."'>";
+                echo "<input type='hidden' name='id' value='" . $id . "'>";
+            }
+            elseif($this->session->flashdata('firman_today') == 1) {
+                $tanggal = date('Y-m-d');
+                $j = 1;
+                echo "<input type='hidden' name='firman_today' value='1'>";
             }
             if($gagal === 0) {
                 echo '<div class="col-xs-10" style="float: none;">

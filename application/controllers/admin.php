@@ -2,7 +2,21 @@
 
 class Admin extends MY_Controller {
 
-	public function index()
+	public function index($msg = NULL)
+	{
+		$tipe = $this->session->userdata('tipe');
+		if(!empty($tipe))
+			redirect('admin/dashboard');
+		else{
+			$data['msg'] = $msg;
+			$this->load->view("header");
+			$this->load->view("navigator_login");
+			$this->load->view("content_login", $data);
+			$this->load->view("footer");
+		}
+	}
+
+	public function dashboard()
 	{
 		$this->load->model('ypki');
 
@@ -361,11 +375,11 @@ class Admin extends MY_Controller {
 					
 					############ Remove comments if you want to upload and stored images into the "uploads/" folder #############
 					$filex = explode('.',$image_name);
-					$rev_filex = array_reverse($filex);
+					$filex = array_reverse($filex);
 
 					$waktu = date("YmdHis");
 
-					$filename = $waktu.$key.'.'.$rev_filex[0];
+					$filename = $waktu.$key.'.'.$filex[0];
 					
 					$target_dir = "asset/album/".$_POST['directory']."/";
 					//echo $target_dir;
@@ -434,9 +448,11 @@ class Admin extends MY_Controller {
 		else if ($task == "baru") {
 			$this->load->view("content_admin_header", $data);
 			if (isset($_POST['submit'])) {
+				if($_POST['firman_today'] == 1) $j = 1;
+				else $j = 7;
 				$instansi = $_POST['instansi'];
 				$success = 0;
-				for ($i = 1; $i <= 7; $i++) {
+				for ($i = 1; $i <= $j; $i++) {
 					$konten = $_POST['konten_' . $i];
 					$tanggal = $_POST['tanggal_' . $i];
 					if($this->ypki->addFirman($konten, $tanggal, $instansi)) $success += 1;
@@ -494,6 +510,21 @@ class Admin extends MY_Controller {
 			$id = $this->uri->segment(4);
 			$firman = $this->ypki->getFirman($id);
 			$data['firman_edit'] = $firman[0];
+			$today = date('Y-m-d');
+			if($this->uri->segment(4) == $today) {
+				$firman = $this->ypki->getFirmanToday($today);
+				if(empty($firman)) {
+					$this->session->set_flashdata('firman_today', 1);
+					redirect('admin/firman/baru');
+				}
+			}
+			else {
+				$id = $this->uri->segment(4);
+				$firman = $this->ypki->getFirman($id);
+			}
+
+			if(!empty($firman))	$data['firman_edit'] = $firman[0];
+
 			$this->load->view('content_admin_firman_baru', $data);
 		}
 		else if ($task == 'hapus') {

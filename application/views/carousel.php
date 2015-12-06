@@ -35,7 +35,7 @@
 
         $tipe = $this->ypki->getTipeGambar($value->gambar);
         if($tipe == "foto")
-          echo "<a href='".$link."'><img src='".base_url()."asset/img/".$value->gambar."' class='carousel-img' alt='".$value->judul."'/></a>";
+          echo "<a href='".$link."'><img src='".base_url()."asset/berita/".$value->gambar."' class='carousel-img' alt='".$value->judul."'/></a>";
         else
           echo "<a href='".$link."'><img src='".$value->gambar."' class='carousel-img' alt='".$value->judul."'/></a>";
         echo "<div class='carousel-caption'>";

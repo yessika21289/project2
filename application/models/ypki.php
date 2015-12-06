@@ -3,6 +3,7 @@
 	class Ypki extends CI_Model{
 		function __construct(){
 			parent::__construct();
+			$this->allowed_tags = '<p><div><br><span><strong><em><sub><sup><ul><ol><li><a><blockquote><iframe>';
 		}
 
 		public function validate(){
@@ -202,10 +203,11 @@
 
 			$post['judul'] = mysql_real_escape_string($post['judul']);
 
-			$post['konten'] = preg_replace('/[\xA0]/', ' ', $post['konten']);
-			$post['konten'] = preg_replace('/[\x80-\xFF]/', '', $post['konten']);
-			$post['konten'] = htmlspecialchars($post['konten']);
-			$post['konten'] = mysql_real_escape_string($post['konten']);
+//			$post['konten'] = preg_replace('/[\xA0]/', ' ', $post['konten']);
+//			$post['konten'] = preg_replace('/[\x80-\xFF]/', '', $post['konten']);
+//			$post['konten'] = htmlspecialchars($post['konten']);
+//			$post['konten'] = mysql_real_escape_string($post['konten']);
+			$post['konten'] = trim(strip_tags($post['konten'], $this->allowed_tags));
 			//$konten = nl2br($konten);
 
 			if ( function_exists( 'date_default_timezone_set' ) )
@@ -213,11 +215,14 @@
 
 			$waktu = date("YmdHis");
 
-			$filex = substr($files["name"],strlen($files["name"])-4,4);
+			$filex = explode('.',$files["name"]);
+			$filex = array_reverse($filex);
 
-			$filename = $waktu.$filex;
+			//$filex = substr($files["name"],strlen($files["name"])-4,4);
 
-			$upload = "./asset/img/".$filename;
+			$filename = $waktu.'.'.$filex[0];
+
+			$upload = "./asset/berita/".$filename;
 
 			$created = date("Y/m/d H:i:s");
 
@@ -333,10 +338,11 @@
 			$post['judul'] = mysql_real_escape_string($post['judul']);
 
 			$konten = $post['konten'];
-			$konten = preg_replace('/[\xA0]/', ' ', $konten);
+			/*$konten = preg_replace('/[\xA0]/', ' ', $konten);
 			$konten = preg_replace('/[\x80-\xFF]/', '', $konten);
 			$konten = htmlspecialchars($konten);
-			$konten = mysql_real_escape_string($konten);
+			$konten = mysql_real_escape_string($konten);*/
+			$konten = trim(strip_tags($konten, $this->allowed_tags));
 			//$konten = nl2br($konten);
 
 			$waktu = date("YmdHis");
@@ -564,6 +570,7 @@
 
 		public function addAgenda($post)
 		{
+			$psot['konten'] = strip_tags($post['konten'], $this->allowed_tags);
 			$sqlstr = "INSERT INTO agenda VALUES('','".$post['judul']."','".$post['tanggal']."','".$post['konten']."','".$post['instansi']."')";
 			$result = $this->db->query($sqlstr);
 
@@ -859,9 +866,7 @@
 		public function addFirman($konten, $tgl, $ins)
 		{
 			if(!empty($konten) && !empty($tgl)) {
-                $id = $this->getLastId('firman')+1;
                 $data = array(
-                    'id' => $id,
                     'firman' => $konten,
                     'created' => $tgl,
                     'instansi' => $ins
@@ -909,6 +914,13 @@
                 return $query->result();
             }
         }
+
+		public function getFirmanToday($today){
+			if(!empty($today)) {
+				$query = $this->db->get_where('firman', array('created' => $today));
+				return $query->result();
+			}
+		}
 
 		public function deleteFirman($id)
 		{

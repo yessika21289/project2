@@ -78,8 +78,7 @@
         {
             if ($update_confirm == 1)
             {
-                ?>
-                <div class="row">
+                echo '<div class="row">
                     <div class="col-xs-10">
                         <div class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert"><span
@@ -87,24 +86,41 @@
                             <strong>Sukses!</strong> Firman berhasil diubah.
                         </div>
                     </div>
-                </div>
-                <!-- /.row -->
-                <?php
+                </div>';
+
             }
             else if ($update_confirm == 0)
             {
-            ?>
-            <div class="col-xs-10">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></button>
-                    <strong>Gagal!</strong> Terjadi kesalahan. Firman tidak dapat diubah
-                </div>
-            </div>
-    <!-- /.row -->
-    <?php
+                echo '<div class="col-xs-10">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                                    class="sr-only">Close</span></button>
+                            <strong>Gagal!</strong> Terjadi kesalahan. Firman tidak dapat diubah
+                        </div>
+                    </div>';
+            }
         }
-    }
+        else if (isset($submit_confirm)) {
+            if ($submit_confirm == 1) {
+                echo '<div class="row">
+                        <div class="col-xs-10">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span
+                                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Sukses!</strong> Firman berhasil ditambahkan.
+                            </div>
+                        </div>
+                    </div>';
+            } else if ($submit_confirm == 0) {
+                echo '<div class="col-xs-10">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                                    class="sr-only">Close</span></button>
+                            <strong>Gagal!</strong> Terjadi kesalahan. Firman tidak berhasil ditambahkan.
+                        </div>
+                    </div>';
+            }
+        }
         ?>
 
         <?php
@@ -128,7 +144,7 @@
             <div class="col-lg-12">
                 <div class="form-group">
                     <label>Pilih tahun</label>
-                    <select class="firman-select form-control">
+                    <select class="firman-select form-control" style="width:100px;">
                         <?php
                         foreach ($tahun as $key => $value)
                         {

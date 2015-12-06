@@ -29,7 +29,7 @@
                 "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
             ],
 
-            toolbar1: "bold italic underline strikethrough subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink",
+            toolbar1: "bold italic underline strikethrough subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink | media",
 
             menubar: false,
             toolbar_items_size: 'small',
@@ -106,9 +106,10 @@
                     }
                 ?>
 
-                <span class="href"><?php echo base_url(); ?></span>
+                <!-- <span class="href"><?php echo base_url(); ?></span> -->
 
-                <a class="navbar-brand" href="<?php echo base_url().$prefix; ?>"><?php echo $title;?></a>
+                <!-- <a class="navbar-brand" href="<?php echo base_url().$prefix; ?>"><?php echo $title;?></a> -->
+                <span class="navbar-brand"><?php echo $title;?></span>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
