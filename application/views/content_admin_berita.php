@@ -27,6 +27,7 @@
         <?php
             $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
             $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
+            $delete_confirm = !empty($this->session->flashdata('delete_confirm')) ? $this->session->flashdata('delete_confirm') : '';
             $new_berita = !empty($this->session->flashdata('new_berita')) ? $this->session->flashdata('new_berita') : '';
             $read_link = !empty($this->session->flashdata('read_link')) ? $this->session->flashdata('read_link') : '';
 
@@ -76,7 +77,7 @@
             }
             elseif (isset($delete_confirm))
             {
-                if ($delete_confirm == 1)
+                if ($delete_confirm === 1)
                 {
                     echo '<div class="row">
                     <div class="col-xs-10">
@@ -87,7 +88,7 @@
                     </div>
                 </div>';
                 }
-                else if($delete_confirm == 0)
+                else if($delete_confirm === 0)
                 {
                     echo '<div class="col-xs-10">
                         <div class="alert alert-danger alert-dismissible" role="alert">

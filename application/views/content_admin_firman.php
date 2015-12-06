@@ -28,6 +28,7 @@
 
             $submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
             $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
+            $delete_confirm = !empty($this->session->flashdata('delete_confirm')) ? $this->session->flashdata('delete_confirm') : '';
             $new_firman[] = !empty($this->session->flashdata('new_firman')) ? $this->session->flashdata('new_firman') : '';
             $update_firman = !empty($this->session->flashdata('update_firman')) ? $this->session->flashdata('update_firman') : '';
 
@@ -46,7 +47,7 @@
             }
             elseif (isset($delete_confirm))
             {
-                if ($delete_confirm == 1)
+                if ($delete_confirm === 1)
                 {
                     ?>
                     <div class="row">
@@ -60,7 +61,7 @@
                     <!-- /.row -->
                     <?php
                 }
-                else if($delete_confirm == 0)
+                else if($delete_confirm === 0)
                 {
                 ?>
                 <div class="col-xs-10">

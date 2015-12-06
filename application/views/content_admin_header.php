@@ -106,7 +106,7 @@
                     }
                 ?>
 
-                <!-- <span class="href"><?php echo base_url(); ?></span> -->
+                 <span class="href"><?php echo base_url(); ?></span>
 
                 <!-- <a class="navbar-brand" href="<?php echo base_url().$prefix; ?>"><?php echo $title;?></a> -->
                 <span class="navbar-brand"><?php echo $title;?></span>

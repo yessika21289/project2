@@ -191,14 +191,18 @@ class Admin extends MY_Controller {
 			$id = $this->uri->segment(4);
 			if( $this->ypki->deleteBerita($id) )
 			{
-				$data['delete_confirm'] = 1;
+				$this->session->set_flashdata('delete_confirm', 1);
+				//$data['delete_confirm'] = 1;
+				redirect('admin/berita');
 			}
 			else
 			{
-				$data['delete_confirm'] = 0;
+				$this->session->set_flashdata('delete_confirm', 0);
+				//$data['delete_confirm'] = 0;
+				redirect('admin/berita');
 			}
 
-			$this->load->view("content_admin_berita", $data);
+			//$this->load->view("content_admin_berita", $data);
 
 			$this->session->unset_userdata('delete_confirm');
 		}
@@ -304,14 +308,16 @@ class Admin extends MY_Controller {
 			$id = $this->uri->segment(4);
 			if( $this->ypki->deleteAgenda($id) )
 			{
-				$data['delete_confirm'] = 1;
+				$this->session->set_flashdata('delete_confirm', 1);
+				redirect('admin/agenda');
+				//$data['delete_confirm'] = 1;
 			}
 			else
 			{
-				$data['delete_confirm'] = 0;
+				$this->session->set_flashdata('delete_confirm', 0);
+				redirect('admin/agenda');
+//				$data['delete_confirm'] = 0;
 			}
-
-			$this->load->view("content_admin_agenda", $data);
 			
 			$this->session->unset_userdata('delete_confirm');
 		}
@@ -530,13 +536,16 @@ class Admin extends MY_Controller {
 		else if ($task == 'hapus') {
 			$id = $this->uri->segment(4);
 			if($this->ypki->deleteFirman($id)) {
-				$data['delete_confirm'] = 1;
+				$this->session->set_flashdata('delete_confirm', 1);
+				redirect('admin/firman');
+				//$data['delete_confirm'] = 1;
 			}
 			else {
-				$data['delete_confirm'] = 0;
+				$this->session->set_flashdata('delete_confirm', 0);
+				redirect('admin/firman');
+				//$data['delete_confirm'] = 0;
 			}
-
-			$this->load->view("content_admin_firman", $data);
+			//$this->load->view("content_admin_firman", $data);
 
 			$this->session->unset_userdata('delete_confirm');
 		}
