@@ -174,7 +174,7 @@
                                     $found = true;
                                 }
 
-                                if($v->id == $new_agenda) echo "<li class='list-group-item' style='background-color: #dbf0ff;'>";
+                                if($v->id == $new_agenda) echo "<li class='list-group-item' style='background-color: #dff0d8;'>";
                                 else echo "<li class='list-group-item'>";
 
                                 echo "<div class='row'>";

@@ -515,19 +515,7 @@ class Admin extends MY_Controller {
 
 			$id = $this->uri->segment(4);
 			$firman = $this->ypki->getFirman($id);
-			$data['firman_edit'] = $firman[0];
-			$today = date('Y-m-d');
-			if($this->uri->segment(4) == $today) {
-				$firman = $this->ypki->getFirmanToday($today);
-				if(empty($firman)) {
-					$this->session->set_flashdata('firman_today', 1);
-					redirect('admin/firman/baru');
-				}
-			}
-			else {
-				$id = $this->uri->segment(4);
-				$firman = $this->ypki->getFirman($id);
-			}
+			//$data['firman_edit'] = $firman[0];
 
 			if(!empty($firman))	$data['firman_edit'] = $firman[0];
 

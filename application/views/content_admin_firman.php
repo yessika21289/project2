@@ -207,10 +207,10 @@
                             echo "<li class='list-group-item' ";
                             if(!empty($new_firman[0])) {
                                 foreach ($new_firman[0] as $id) {
-                                    if ($v->id == $id->id) echo "style='background-color: #dbf0ff;'";
+                                    if ($v->id == $id->id) echo "style='background-color: #c8e5bc;'";
                                 }
                             }
-                            if($v->id == $update_firman) echo "style='background-color: #dbf0ff;'";
+                            if($v->id == $update_firman) echo "style='background-color: #c8e5bc;'";
                             echo ">";
                             echo "<div class='row'>";
                             echo "<div class='col-xs-2' style='width:105px;'>";

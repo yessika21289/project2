@@ -179,7 +179,7 @@
                                     $found = true;
                                 }
 
-                                if($v->id == $new_berita) echo "<li class='list-group-item' style='background-color: #dbf0ff;'>";
+                                if($v->id == $new_berita) echo "<li class='list-group-item' style='background-color: #c8e5bc;'>";
                                 else echo "<li class='list-group-item'>";
                                 echo "<div class='row'>";
                                 echo "<div class='col-xs-9'>";

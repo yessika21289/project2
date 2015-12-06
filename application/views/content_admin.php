@@ -97,9 +97,9 @@
                             </div>
                         </div>
                     </div>
-                    <a href="<?php echo base_url()?>admin/firman/ubah/<?php echo date('Y-m-d'); ?>">
+                    <a href="<?php echo base_url()?>admin/firman">
                         <div class="panel-footer">
-                            <span class="pull-left">ubah konten firman Tuhan</span>
+                            <span class="pull-left">lihat semua firman Tuhan</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
