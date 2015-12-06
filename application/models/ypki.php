@@ -763,14 +763,14 @@
 
 		public function getVisi($instansi = "ypki"){
 			
-			$sqlstr = "SELECT visi, misi FROM visi WHERE instansi = '". $instansi. "'";
+			$sqlstr = "SELECT visi, misi, tujuan_sekolah FROM visi WHERE instansi = '". $instansi. "'";
 			$result = $this->db->query($sqlstr);
 			return $result->result();
 		}		
 
 		public function updateVisi($instansi = "ypki", $post){
 			
-			$sqlstr = "UPDATE visi SET visi = '".$post['visi']."', misi = '".$post['misi']."' WHERE instansi = '". $instansi. "'";
+			$sqlstr = "UPDATE visi SET visi = '".$post['visi']."', misi = '".$post['misi']."', tujuan_sekolah = '".$post['tujuan_sekolah']."' WHERE instansi = '". $instansi. "'";
 			$result = $this->db->query($sqlstr);
 			return true;
 		}	
