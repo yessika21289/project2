@@ -216,7 +216,11 @@ $(document).ready(function(){
 
 	});
 
-
+	var disabled = new Array('12/12/2015');
+	$(".tanggal-firman").datetimepicker({
+		format: 'YYYY/MM/DD',
+		disabledDates: disabled,
+	});
 
 
 });

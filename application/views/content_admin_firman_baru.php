@@ -102,7 +102,7 @@
                     </div>
                     <div class="form-group"">
                         <label>Tanggal</label>
-                        <input type="date" name="<?php echo "tanggal_".$i ?>" class="form-control input-tanggal" value="<?php echo $tanggal; ?>" style="width:19%;" onfocusout="showFirman(this.value, <?php echo $i; ?>)" <?php echo $disable; ?> />
+                        <input type="text" name="<?php echo "tanggal_".$i ?>" class="form-control input-tanggal date tanggal-firman" value="<?php echo $tanggal; ?>" style="width:19%;" onfocusout="showFirman(this.value, <?php echo $i; ?>)" <?php echo $disable; ?> />
                         <p class="text-right help-block error-tanggal" >* tanggal tidak boleh kosong</p>
                     </div>
 

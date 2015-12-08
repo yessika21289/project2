@@ -11,14 +11,17 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/style.css'; ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/sb-admin.css'; ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/font-awesome.min.css'; ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/bootstrap-datetimepicker.min.css'; ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/album.css'; ?>">
 
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.min.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'asset/js/moment.min.js'; ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/admin.js'; ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/bootstrap.min.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.timeago.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/tinymce/tinymce.min.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.form.js';?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'asset/js/bootstrap-datetimepicker.min.js';?>"></script>
 
     <script type="text/javascript">
         tinymce.init({
