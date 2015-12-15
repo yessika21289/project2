@@ -14,7 +14,9 @@
 				<span class="title">FIRMAN TUHAN HARI INI</span>
 				<br/>
 				<span class="content">
-					Karena Bapamu mengetahui apa yang kamu perlukan, sebelum kamu minta kepada-Nya. (Matius 6:8)
+					<?php
+						echo $firman;
+					?>
 				</span>
 			</div>
 		</div>
