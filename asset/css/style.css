@@ -132,6 +132,8 @@
 {
 	margin-top: 20px;
 	min-height: 500px;
+	display: inline-block;
+	width: 100%;
 }
 
 #content #content-left
@@ -240,7 +242,7 @@
 	height: 100px;
 }
 
-#content #content-left #judul-daftar
+#content #content-left #judul-daftar, #judul-daftar
 {
 	-webkit-box-shadow: 0px 5px 5px -3px #555;
 	margin-left: 0px;
@@ -248,7 +250,7 @@
 	margin-bottom: 25px;
 }
 
-#content #content-left #judul-daftar span
+#content #content-left #judul-daftar span, #judul-daftar span
 {
 	font-family: "OpenSansCondBold";
 	font-size: 50px;
@@ -781,4 +783,24 @@ footer
 .href
 {
 	display: none;
+}
+
+.dokumentasi-outer-border{
+	border:3px black solid;
+	padding:5px;
+	float: left;
+	margin: 10px;
+	text-align: center;
+}
+
+.dokumentasi-inner-border{
+	border:1px black solid;
+	padding:3px;
+}
+
+.dokumentasi-list-image-wrapper{
+	width:275px;
+	height:215px;
+	overflow:hidden;
+	text-align:center;
 }

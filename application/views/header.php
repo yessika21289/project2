@@ -18,6 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/bootstrap.css'; ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/bootstrap-theme.min.css'; ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/style.css'; ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/album.css'; ?>">
 
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.min.js'; ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/script.js'; ?>"></script>

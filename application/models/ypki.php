@@ -836,6 +836,13 @@
 			return $result->result();
 		}
 
+		public function getJudulAlbumByDirectory($directory, $instansi = "ypki"){
+			$sqlstr = "SELECT * FROM album WHERE instansi = '".$instansi."' AND directory = '".$directory."'";
+			$result = $this->db->query($sqlstr);
+			$row 	= $result->result();
+			return $row[0]->judul;
+		}
+
 		public function getJumlahAlbumByBulan($bulan, $instansi = "ypki"){
 			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM album WHERE MID(created,6,2) = '".$bulan."'";
