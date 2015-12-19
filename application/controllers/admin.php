@@ -55,11 +55,11 @@ class Admin extends MY_Controller {
 		$this->load->model('ypki');
 
 		$data = $this->session->all_userdata();
-		$instansi = $this->session->userdata('instansi');
+		$data['instansi'] = $this->session->userdata('instansi');
 
 		if( isset($_POST['submit']) )
 		{
-			if($this->ypki->updateVisi($instansi, $_POST))
+			if($this->ypki->updateVisi($data['instansi'], $_POST))
 			{
 				$data['update_confirm'] = 1;
 			}
@@ -69,7 +69,7 @@ class Admin extends MY_Controller {
 			}
 		}
 
-		$data['visi'] = $this->ypki->getVisi($instansi);
+		$data['visi'] = $this->ypki->getVisi($data['instansi']);
 
 		$this->load->view("content_admin_header", $data);
 		$this->load->view("content_admin_visi");

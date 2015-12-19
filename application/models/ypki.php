@@ -767,14 +767,29 @@
 
 		public function getVisi($instansi = "ypki"){
 			
-			$sqlstr = "SELECT visi, misi, tujuan_sekolah FROM visi WHERE instansi = '". $instansi. "'";
+			$sqlstr = "SELECT * FROM visi WHERE instansi = '". $instansi. "'";
 			$result = $this->db->query($sqlstr);
 			return $result->result();
 		}		
 
 		public function updateVisi($instansi = "ypki", $post){
-			
-			$sqlstr = "UPDATE visi SET visi = '".$post['visi']."', misi = '".$post['misi']."', tujuan_sekolah = '".$post['tujuan_sekolah']."' WHERE instansi = '". $instansi. "'";
+			if($instansi == 'ypki') {
+				$sqlstr = "UPDATE visi SET
+							visi = '".$post['visi']."',
+							misi = '".$post['misi']."',
+							tujuan_sekolah = '".$post['tujuan_sekolah']."',
+							nilai_kristiani = '".$post['nilai_kristiani']."',
+							motto = '".$post['motto']."',
+							arti_logo = '".$post['arti_logo']."'
+						WHERE instansi = '". $instansi. "'";
+			} else {
+				$sqlstr = "UPDATE visi SET
+							visi = '".$post['visi']."',
+							misi = '".$post['misi']."',
+							tujuan_sekolah = '".$post['tujuan_sekolah']."'
+						WHERE instansi = '". $instansi. "'";
+			}
+
 			$result = $this->db->query($sqlstr);
 			return true;
 		}	
