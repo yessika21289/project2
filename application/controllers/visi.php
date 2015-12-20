@@ -63,8 +63,72 @@ class Visi extends CI_Controller {
 		$visi = $visi[0];
 		$visi->visi = parse($visi->visi);
 		$visi->misi = parse($visi->misi);
+		$visi->tujuan_sekolah = parse($visi->tujuan_sekolah);
 
 		$data['visi'] = $visi;
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_visi");
+		$this->load->view("footer");
+	}
+
+	public function nilai_kristiani()
+	{
+		$this->load->model("ypki");
+		$this->load->library("calendar");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Nilai Kristiani - Yayasan Perguruan Kristen Indonesia";
+		$data['instansi'] = "ypki";
+
+		$visi = $this->ypki->getVisi($data['instansi']);
+		$nilai_kristiani = parse($visi[0]->nilai_kristiani);
+
+		$data['nilai_kristiani'] = $nilai_kristiani;
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_visi");
+		$this->load->view("footer");
+	}
+
+	public function motto()
+	{
+		$this->load->model("ypki");
+		$this->load->library("calendar");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Nilai Kristiani - Yayasan Perguruan Kristen Indonesia";
+		$data['instansi'] = "ypki";
+
+		$visi = $this->ypki->getVisi($data['instansi']);
+		$motto = parse($visi[0]->motto);
+
+		$data['motto'] = $motto;
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_visi");
+		$this->load->view("footer");
+	}
+
+	public function arti_logo()
+	{
+		$this->load->model("ypki");
+		$this->load->library("calendar");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Nilai Kristiani - Yayasan Perguruan Kristen Indonesia";
+		$data['instansi'] = "ypki";
+
+		$visi = $this->ypki->getVisi($data['instansi']);
+		$arti_logo = parse($visi[0]->arti_logo);
+
+		$data['arti_logo'] = $arti_logo;
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");

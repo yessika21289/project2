@@ -137,6 +137,7 @@ class Smpki extends CI_Controller {
 		$visi = $visi[0];
 		$visi->visi = parse($visi->visi);
 		$visi->misi = parse($visi->misi);
+		$visi->tujuan_sekolah = parse($visi->tujuan_sekolah);
 
 		$data['visi'] = $visi;
 

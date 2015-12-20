@@ -163,24 +163,32 @@
 #content-visi #nav-visi
 {
 	height: 50px;
-	font-size: 30px;
-
+	font-size: 25px;
+	text-decoration: none;
 }
 
-#content-visi #nav-visi span
+#content-visi #nav-visi a
+{
+	text-decoration: none;
+}
+
+#content-visi #nav-visi a.span
 {
 	cursor: pointer;
 	color: rgb(64,179,223);
+	text-decoration: none;
 }
 
-#content-visi #nav-visi span:hover
+#content-visi #nav-visi a.span:hover
 {
 	color: rgb(21,101,154);
+	text-decoration: none;
 }
 
 #content-visi .title
 {
-	font-size: 50px;
+	font-size: 30px;
+	font-family: fantasy;
 }
 
 #content-visi .desc

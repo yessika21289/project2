@@ -47,7 +47,7 @@ class Admin extends MY_Controller {
 
 		$this->load->view("content_admin_header", $data);
 		$this->load->view("content_admin_log");
-		$this->load->view("content_admin_footer");	
+		$this->load->view("content_admin_footer");
 	}
 
 	public function visi()
