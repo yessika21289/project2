@@ -377,11 +377,19 @@ class Sdki extends CI_Controller {
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Kontak - SD Kristen Indonesia";
+		$data['html_title'] = "Kontak - Yayasan Perguruan Kristen Indonesia";
+		$data['instansi'] = "sdki";
+
+		$kontak = $this->ypki->getKontak($data['instansi']);
+		if(!empty($kontak)) {
+			$kontak = $kontak[0];
+			$kontak->alamat = parse($kontak->alamat);
+			$data['kontak'] = $kontak;
+		}
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("under_construction");
+		$this->load->view("content_kontak");
 		$this->load->view("footer");
 	}
 

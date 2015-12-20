@@ -939,6 +939,37 @@
 				return true;
 			else return false;
 		}
+
+		public function getKontak($instansi = "ypki"){
+
+			$sqlstr = "SELECT * FROM kontak WHERE instansi = '". $instansi. "'";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function updateKontak($instansi = "ypki", $post){
+			$sqlstr = "SELECT * FROM kontak WHERE instansi = '".$instansi."'";
+			$is_exist = $this->db->query($sqlstr);
+			$is_exist = $is_exist->result();
+
+			if($is_exist) {
+				$sqlstr = "UPDATE kontak SET
+							alamat = '" . $post['alamat'] . "',
+							telepon1 = '" . $post['telp1'] . "',
+							telepon2 = '" . $post['telp2'] . "',
+							fax = '" . $post['fax'] . "',
+							email = '" . $post['email'] . "',
+							website = '" . $post['web'] . "'
+						  WHERE instansi = '" . $instansi . "'";
+				$result = $this->db->query($sqlstr);
+			} else {
+				$sqlstr = "INSERT INTO kontak
+								VALUES('', '".$post['alamat']."', '".$post['telp1']."' ,'".$post['telp2']."',
+								'".$post['fax']."', '".$post['email']."', '".$post['web']."', '".$instansi."')";
+				$result = $this->db->query($sqlstr);
+			}
+			return true;
+		}
 	}
 	
 ?>
