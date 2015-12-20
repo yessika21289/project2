@@ -378,6 +378,7 @@ class Smaki extends CI_Controller {
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Kontak - SMA Kristen Indonesia";
+		$data['instansi'] = "smaki";
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");

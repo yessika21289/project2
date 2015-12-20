@@ -378,6 +378,7 @@ class Kbtk extends CI_Controller {
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Kontak - TK Tunas Kasih";
+		$data['instansi'] = "kbtk";
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");

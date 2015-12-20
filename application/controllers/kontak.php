@@ -18,6 +18,7 @@ class Kontak extends CI_Controller {
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Kontak - Yayasan Perguruan Kristen Indonesia";
+		$data['instansi'] = "ypki";
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");

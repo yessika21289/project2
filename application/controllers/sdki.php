@@ -378,6 +378,7 @@ class Sdki extends CI_Controller {
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Kontak - SD Kristen Indonesia";
+		$data['instansi'] = "sdki";
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
