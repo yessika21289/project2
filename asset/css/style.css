@@ -785,17 +785,14 @@ footer
 	display: none;
 }
 
-.dokumentasi-outer-border{
-	border:3px black solid;
-	padding:5px;
+.dokumentasi-inner-border{
+	border:1px #CCC solid;
 	float: left;
 	margin: 10px;
-	text-align: center;
 }
 
-.dokumentasi-inner-border{
-	border:1px black solid;
-	padding:3px;
+.dokumentasi-inner-border a{
+	text-decoration: none;
 }
 
 .dokumentasi-list-image-wrapper{
@@ -803,4 +800,22 @@ footer
 	height:215px;
 	overflow:hidden;
 	text-align:center;
+	border-top: 1px #CCC solid;
+}
+
+.dokumentasi-list-title{
+	padding: 10px;
+}
+.dokumentasi-list-title strong{
+	font-size: 20px;
+}
+
+.grid-item {
+	width: 300px;
+
+}
+.grid-item img{
+	margin: 10px;
+	border: 1px #CCC solid;
+	width: 300px;
 }

@@ -7,41 +7,54 @@
 	</div>
 	<?php
 	if(isset($list_dokumentasi)){
-		foreach($list_dokumentasi as $dokumentasi){
-			$dir = 'asset/album/'.$dokumentasi->directory;
-			if (is_dir($dir)){
-				if ($dh = opendir($dir)){
-					while (($file = readdir($dh)) !== false){
-						if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store'){
-							$image_src = base_url().'/'.$dir.'/'.$file;
-							break;
-						}
-			    	}
-			    	closedir($dh);
-			  	}
+		if(count($list_dokumentasi) > 0){
+			foreach($list_dokumentasi as $dokumentasi){
+				$dir = 'asset/album/'.$dokumentasi->directory;
+				if (is_dir($dir)){
+					if ($dh = opendir($dir)){
+						$image_src = "";
+						$count_file = 0;
+						while (($file = readdir($dh)) !== false){
+							if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store'){
+								if($image_src == ""){
+									$image_src = base_url().'/'.$dir.'/'.$file;
+								}
+								$count_file++;
+							}
+				    	}
+				    	closedir($dh);
+				  	}
+				}
+				//print_r(getimagesize($image_src));
+				$image_size = getimagesize($image_src);
+				if($image_size[0] <= $image_size[1])
+					$size = 'width="275"';
+				else
+					$size = 'height="215"';
+				if($instansi == "ypki")
+					echo '<a href="/dokumentasi/'.$dokumentasi->directory.'">';
+				else
+					echo '<a href="/'.$instansi.'/dokumentasi/'.$dokumentasi->directory.'">';
+				echo '<div class="dokumentasi-inner-border">';
+				echo '<div class="dokumentasi-list-title">';
+				echo '<strong>'.$dokumentasi->judul.'</strong><br/>';
+				echo '('.$count_file . ' foto)	';
+				echo '</div>';
+				echo '<div class="dokumentasi-list-image-wrapper">';
+				echo '<img src="'.$image_src.'" '.$size.'/><br/>';
+				echo '</div>';
+				echo '</a>';
+				echo '</div>';
 			}
-			//print_r(getimagesize($image_src));
-			$image_size = getimagesize($image_src);
-			if($image_size[0] <= $image_size[1])
-				$size = 'width="275"';
-			else
-				$size = 'height="215"';
-			echo '<div class="dokumentasi-outer-border">';
-			echo '<a href="/'.$instansi.'/dokumentasi/'.$dokumentasi->directory.'">';
-			echo '<div class="dokumentasi-inner-border">';
-			echo '<div class="dokumentasi-list-image-wrapper">';
-			echo '<img src="'.$image_src.'" '.$size.'/><br/>';
-			echo '</div>';
-			echo '</div>';
-			echo '<h3><strong>'.$dokumentasi->judul.'</strong></h3>';
-			echo '</a>';
-			echo '</div>';
+		}
+		else{
+			echo "Tidak ada dokumentasi.";
 		}
 	}
 	else{
 		echo '<a href="/'.$instansi.'/dokumentasi"><< Kembali ke Daftar Dokumentasi</a>';
 		echo '<h2>'.$judul.'</h2>';
-		echo '<div class="gallery" id="images_preview">';
+		echo '<div class="grid">';
 		$dir = 'asset/album/'.$directory;
 		if (is_dir($dir)){
 			if ($dh = opendir($dir)){
@@ -51,10 +64,8 @@
 						$count++;
 						$image_src = base_url().$dir.'/'.$file;
 						echo '
-                            <div class="reorder_ul reorder-photos-list" style="width:285px; height: 335px; float:left">
-                              <div id="image_li_'.$count.'" class="ui-sortable-handle">
-                                  <a href="javascript:void(0);" style="float:none;" class="image_link"><img src="'.$image_src.'" alt=""></a>
-                                </div>
+                            <div class="grid-item">
+                            	<img src="'.$image_src.'" alt="">
                             </div>
                             ';
 					}
@@ -63,7 +74,7 @@
 		  	}
 		}
 		echo '</div>';
-		echo '<a href="/'.$instansi.'/dokumentasi"><< Kembali ke Daftar Dokumentasi</a>';
+		echo '<br/><a href="/'.$instansi.'/dokumentasi"><< Kembali ke Daftar Dokumentasi</a>';
 		echo '<br/><br/>';
 	}
 	?>
