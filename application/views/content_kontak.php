@@ -4,7 +4,7 @@
         <div class='row' id='judul-daftar'>
             <div class='col-xs-12'>
 				<span>
-					Info Kontak
+					Info Kontak - <?php echo strtoupper($instansi);?>
 				</span>
             </div>
         </div>
