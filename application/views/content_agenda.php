@@ -16,7 +16,7 @@
 		<div class='row' id='judul-daftar'>
 			<div class='col-xs-12'>
 				<span>
-					Agenda YPKI
+					Agenda <?php echo strtoupper($instansi);?>
 				</span>
 			</div>
 		</div>
