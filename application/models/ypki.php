@@ -36,7 +36,7 @@
 		}
 
 		public function getAllBerita($instansi = "ypki"){
-			if ($instansi = "ypki")
+			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM berita ORDER BY created DESC";
 			else
 				$sqlstr = "SELECT * FROM berita WHERE instansi = '".$instansi."' ORDER BY created DESC";
@@ -818,7 +818,7 @@
 		}
 
 		public function getAllAlbum($instansi = "ypki"){
-			if ($instansi = "ypki")
+			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM album ORDER BY created DESC";
 			else
 				$sqlstr = "SELECT * FROM album WHERE instansi = '".$instansi."' ORDER BY created DESC";
@@ -851,6 +851,16 @@
 			return $result->result();
 		}
 
+		public function getJudulAlbumByDirectory($directory, $instansi = "ypki"){
+			if ($instansi == "ypki")
+				$sqlstr = "SELECT * FROM album WHERE directory = '".$directory."' ORDER BY created DESC";
+			else
+				$sqlstr = "SELECT * FROM album WHERE instansi = '".$instansi."' AND directory = '".$directory."' ORDER BY created DESC";
+			$result = $this->db->query($sqlstr);
+			$row 	= $result->result();
+			return $row[0]->judul;
+		}
+
 		public function getJumlahAlbumByBulan($bulan, $instansi = "ypki"){
 			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM album WHERE MID(created,6,2) = '".$bulan."'";
@@ -870,7 +880,7 @@
 		}
 
 		public function getAllFirman($instansi = "ypki"){
-			if ($instansi = "ypki")
+			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM firman ORDER BY created DESC";
 			else
 				$sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."' ORDER BY created DESC";
@@ -953,6 +963,37 @@
 			if($result)
 				return true;
 			else return false;
+		}
+
+		public function getKontak($instansi = "ypki"){
+
+			$sqlstr = "SELECT * FROM kontak WHERE instansi = '". $instansi. "'";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function updateKontak($instansi = "ypki", $post){
+			$sqlstr = "SELECT * FROM kontak WHERE instansi = '".$instansi."'";
+			$is_exist = $this->db->query($sqlstr);
+			$is_exist = $is_exist->result();
+
+			if($is_exist) {
+				$sqlstr = "UPDATE kontak SET
+							alamat = '" . $post['alamat'] . "',
+							telepon1 = '" . $post['telp1'] . "',
+							telepon2 = '" . $post['telp2'] . "',
+							fax = '" . $post['fax'] . "',
+							email = '" . $post['email'] . "',
+							website = '" . $post['web'] . "'
+						  WHERE instansi = '" . $instansi . "'";
+				$result = $this->db->query($sqlstr);
+			} else {
+				$sqlstr = "INSERT INTO kontak
+								VALUES('', '".$post['alamat']."', '".$post['telp1']."' ,'".$post['telp2']."',
+								'".$post['fax']."', '".$post['email']."', '".$post['web']."', '".$instansi."')";
+				$result = $this->db->query($sqlstr);
+			}
+			return true;
 		}
 	}
 	

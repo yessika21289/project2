@@ -357,32 +357,48 @@ class Smpki extends CI_Controller {
     	}
 	}	
 
-	public function dokumentasi()
+	public function dokumentasi($directory = "")
 	{
 		$this->load->model("ypki");
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Halaman ini masih dalam tahap penyelesaian - ypki.or.id";
+		if($directory == "")
+			$data['list_dokumentasi'] = $this->ypki->getAllAlbum("smpki");
+		else{
+			$data['directory'] = $directory;
+			$data['judul'] = $this->ypki->getJudulAlbumByDirectory($directory,"smpki");
+		}
+
+		$data['html_title'] = "Dokumentasi - SMP Kristen Indonesia";
 		$data['instansi'] = "smpki";
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("under_construction");
+		$this->load->view("content_dokumentasi");
 		$this->load->view("footer");
 		
 	}
+
 	public function kontak()
 	{
 		$this->load->model("ypki");
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Kontak - SMP Kristen Indonesia";
+		$data['html_title'] = "Kontak - Yayasan Perguruan Kristen Indonesia";
+		$data['instansi'] = "smpki";
+
+		$kontak = $this->ypki->getKontak($data['instansi']);
+		if(!empty($kontak)) {
+			$kontak = $kontak[0];
+			$kontak->alamat = parse($kontak->alamat);
+			$data['kontak'] = $kontak;
+		}
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("under_construction");
+		$this->load->view("content_kontak");
 		$this->load->view("footer");
 	}
 

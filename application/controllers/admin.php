@@ -540,10 +540,32 @@ class Admin extends MY_Controller {
 		}
 		$this->load->view("content_admin_footer");
 	}
-//
-//	public function getFirman($tgl = NULL) {
-//		$firman = '';
-//		$firman = $this->ypki->getFirmanByTanggal($tgl);
-//
-//	}
+
+	public function kontak()
+	{
+		$this->load->model('ypki');
+
+		$data = $this->session->all_userdata();
+		$instansi = $this->session->userdata('instansi');
+
+		if( isset($_POST['submit']) )
+		{
+			if($this->ypki->updateKontak($instansi, $_POST))
+			{
+				$data['update_confirm'] = 1;
+			}
+			else
+			{
+				$data['update_confirm'] = 0;
+			}
+		}
+
+		$data['kontak'] = $this->ypki->getKontak($instansi);
+
+		$this->load->view("content_admin_header", $data);
+		$this->load->view("content_admin_kontak");
+		$this->load->view("content_admin_footer");
+
+		$this->session->unset_userdata('update_confirm');
+	}
 }
