@@ -20,11 +20,12 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'asset/css/style.css'; ?>">
 
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.min.js'; ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url().'asset/js/script.js'; ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url().'asset/js/bootstrap.min.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.timeago.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/jquery.wysibb.min.js'; ?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'asset/js/bootstrap-hover-dropdown.js'; ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'asset/js/masonry.pkgd.min.js'; ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url().'asset/js/script.js'; ?>"></script>
 	
 </head>
 <body>
