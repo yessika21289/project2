@@ -14,12 +14,13 @@ class Test extends CI_Controller {
 	public function index()
 	{
 		$this->load->model("ypki");
-		
+		$today = date('Y-m-d');
+		$firman = $this->ypki->getFirmanToday($today);
 		$data['instansi'] = "ypki";
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("content_home");
+		$this->load->view("content_home", $firman[0]);
 		$this->load->view("footer");
 	}
 }

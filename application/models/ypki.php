@@ -951,8 +951,9 @@
 
 		public function getFirmanToday($today){
 			if(!empty($today)) {
-				$query = $this->db->get_where('firman', array('created' => $today));
-				return $query->result();
+				$query = 'SELECT firman FROM firman WHERE created = "'.$today.'" ORDER BY "created" DESC LIMIT 1';
+				$result = $this->db->query($query);
+				return $result->result();
 			}
 		}
 
