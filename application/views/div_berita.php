@@ -1,5 +1,5 @@
 <div id="berita">
-	<div class="title">BERITA YPKI</div>
+	<div class="title">BERITA <?php echo strtoupper($instansi);?></div>
 
 	<?php
 		$berita = $this->ypki->getLastBerita(5, NULL, $instansi);

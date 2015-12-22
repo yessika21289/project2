@@ -51,6 +51,9 @@
             <li>
                 <a href="<?php echo base_url()?>admin/visi"><i class="fa fa-fw fa-bookmark"></i> Visi & Misi</a>
             </li>
+            <li>
+                <a href="<?php echo base_url()?>admin/kontak"><i class="fa fa-phone-square"></i> Info Kontak</a>
+            </li>
         </ul>
     </div>
     <!-- /.navbar-collapse -->

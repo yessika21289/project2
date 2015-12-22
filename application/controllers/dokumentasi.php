@@ -11,18 +11,30 @@ class Dokumentasi extends CI_Controller {
         }
    	}
 
-	public function index()
+	public function index($directory = "")
 	{
 		$this->load->model("ypki");
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Halaman ini masih dalam tahap penyelesaian - ypki.or.id";
+		if($directory == "")
+			$data['list_dokumentasi'] = $this->ypki->getAllAlbum("ypki");
+		else{
+			$data['directory'] = $directory;
+			$data['judul'] = $this->ypki->getJudulAlbumByDirectory($directory,"ypki");
+		}
+
+		$data['html_title'] = "Dokumentasi - YPKI";
 		$data['instansi'] = "ypki";
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("under_construction");
+		$this->load->view("content_dokumentasi");
 		$this->load->view("footer");
+	}
+
+	public function _remap($directory = "")
+	{
+		$this->index($directory);
 	}
 }

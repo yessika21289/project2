@@ -1,4 +1,4 @@
-<div id="div-login">
+<!-- <div id="div-login">
 
 	<?php
 		/*$tipe = $this->session->userdata('tipe');
@@ -32,4 +32,4 @@
 		//}
 	?>
 
-</div>
+</div> -->
