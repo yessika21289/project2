@@ -62,6 +62,11 @@
                         $cvisi = $visi[0]->visi;
                         $cmisi = $visi[0]->misi;
                         $ctujuan = $visi[0]->tujuan_sekolah;
+                        if($instansi == "ypki") {
+                            $cnilai_kristiani = $visi[0]->nilai_kristiani;
+                            $cmotto = $visi[0]->motto;
+                            $carti_logo = $visi[0]->arti_logo;
+                        }
                     ?>
 
                     <div class="form-group">
@@ -78,6 +83,21 @@
                         <label>Tujuan Sekolah</label>
                         <textarea name="tujuan_sekolah" class="form-control input-konten" rows="10"><?php echo $ctujuan; ?></textarea>
                     </div>
+
+                    <?php if($instansi == "ypki"): ?>
+                        <div class="form-group">
+                            <label>Nilai Kristiani</label>
+                            <textarea name="nilai_kristiani" class="form-control input-konten" rows="10"><?php echo $cnilai_kristiani; ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Motto</label>
+                            <textarea name="motto" class="form-control input-konten" rows="10"><?php echo $cmotto; ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Arti Logo</label>
+                            <textarea name="arti_logo" class="form-control input-konten" rows="10"><?php echo $carti_logo; ?></textarea>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="text-right">
                         <button type="reset" class="btn btn-default">Reset</button>

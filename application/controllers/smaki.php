@@ -137,6 +137,7 @@ class Smaki extends CI_Controller {
 		$visi = $visi[0];
 		$visi->visi = parse($visi->visi);
 		$visi->misi = parse($visi->misi);
+		$visi->tujuan_sekolah = parse($visi->tujuan_sekolah);
 
 		$data['visi'] = $visi;
 
@@ -356,21 +357,29 @@ class Smaki extends CI_Controller {
     	}
 	}	
 
-	public function dokumentasi()
+	public function dokumentasi($directory = "")
 	{
 		$this->load->model("ypki");
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Halaman ini masih dalam tahap penyelesaian - ypki.or.id";
+		if($directory == "")
+			$data['list_dokumentasi'] = $this->ypki->getAllAlbum("smaki");
+		else{
+			$data['directory'] = $directory;
+			$data['judul'] = $this->ypki->getJudulAlbumByDirectory($directory,"smaki");
+		}
+
+		$data['html_title'] = "Dokumentasi - SMA Kristen Indonesia";
 		$data['instansi'] = "smaki";
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("under_construction");
+		$this->load->view("content_dokumentasi");
 		$this->load->view("footer");
 		
 	}
+	
 	public function kontak()
 	{
 		$this->load->model("ypki");
@@ -378,10 +387,18 @@ class Smaki extends CI_Controller {
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Kontak - SMA Kristen Indonesia";
+		$data['instansi'] = "smaki";
+
+		$kontak = $this->ypki->getKontak($data['instansi']);
+		if(!empty($kontak)) {
+			$kontak = $kontak[0];
+			$kontak->alamat = parse($kontak->alamat);
+			$data['kontak'] = $kontak;
+		}
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("under_construction");
+		$this->load->view("content_kontak");
 		$this->load->view("footer");
 	}
 

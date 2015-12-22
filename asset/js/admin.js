@@ -216,7 +216,6 @@ $(document).ready(function(){
 		}
 
 	});
-kl
 
 
 
