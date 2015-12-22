@@ -36,7 +36,7 @@
 		}
 
 		public function getAllBerita($instansi = "ypki"){
-			if ($instansi = "ypki")
+			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM berita ORDER BY created DESC";
 			else
 				$sqlstr = "SELECT * FROM berita WHERE instansi = '".$instansi."' ORDER BY created DESC";
@@ -803,7 +803,7 @@
 		}
 
 		public function getAllAlbum($instansi = "ypki"){
-			if ($instansi = "ypki")
+			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM album ORDER BY created DESC";
 			else
 				$sqlstr = "SELECT * FROM album WHERE instansi = '".$instansi."' ORDER BY created DESC";
@@ -836,6 +836,16 @@
 			return $result->result();
 		}
 
+		public function getJudulAlbumByDirectory($directory, $instansi = "ypki"){
+			if ($instansi == "ypki")
+				$sqlstr = "SELECT * FROM album WHERE directory = '".$directory."' ORDER BY created DESC";
+			else
+				$sqlstr = "SELECT * FROM album WHERE instansi = '".$instansi."' AND directory = '".$directory."' ORDER BY created DESC";
+			$result = $this->db->query($sqlstr);
+			$row 	= $result->result();
+			return $row[0]->judul;
+		}
+
 		public function getJumlahAlbumByBulan($bulan, $instansi = "ypki"){
 			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM album WHERE MID(created,6,2) = '".$bulan."'";
@@ -855,7 +865,7 @@
 		}
 
 		public function getAllFirman($instansi = "ypki"){
-			if ($instansi = "ypki")
+			if ($instansi == "ypki")
 				$sqlstr = "SELECT * FROM firman ORDER BY created DESC";
 			else
 				$sqlstr = "SELECT * FROM firman WHERE instansi = '".$instansi."' ORDER BY created DESC";
