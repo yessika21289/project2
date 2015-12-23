@@ -953,7 +953,9 @@
 			if(!empty($today)) {
 				$query = 'SELECT firman FROM firman WHERE created = "'.$today.'" ORDER BY "created" DESC LIMIT 1';
 				$result = $this->db->query($query);
-				return $result->result();
+				$firman = $result->result();
+				if($firman) return $firman[0]->firman;
+				else return 'Belum input firman hari ini';
 			}
 		}
 
