@@ -951,8 +951,20 @@
 
 		public function getFirmanToday($today){
 			if(!empty($today)) {
-				$query = 'SELECT firman FROM firman WHERE created = "'.$today.'" ORDER BY "created" DESC LIMIT 1';
-				$result = $this->db->query($query);
+				$found = false;
+				while(!$found){
+					$query = 'SELECT firman, created FROM firman WHERE created = "'.$today.'" ORDER BY created DESC LIMIT 1';
+					$result = $this->db->query($query);
+					if(count($result->result()) == 0){
+						$timestamp = strtotime($today . " - 1 day");
+						$today = date("Y-m-d",$timestamp);
+						//print_r($today);exit();
+					}
+					else{
+						$found = true;
+					}
+
+				}
 				return $result->result();
 			}
 		}

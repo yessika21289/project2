@@ -15,7 +15,8 @@
 				<br/>
 				<span class="content">
 					<?php
-						echo $firman;
+						echo $firman[0]->created.'<br/>';
+						echo $firman[0]->firman;
 					?>
 				</span>
 			</div>

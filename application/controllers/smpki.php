@@ -114,6 +114,8 @@ class Smpki extends CI_Controller {
 	{
 		$this->load->model("ypki");
 		
+		$today = date('Y-m-d');
+		$data['firman'] = $this->ypki->getFirmanToday($today);
 		$data['html_title'] = "SMP Kristen Indonesia";
 		$data['instansi'] = "smpki";
 

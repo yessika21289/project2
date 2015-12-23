@@ -114,6 +114,8 @@ class Kbtk extends CI_Controller {
 	{
 		$this->load->model("ypki");
 		
+		$today = date('Y-m-d');
+		$data['firman'] = $this->ypki->getFirmanToday($today);
 		$data['html_title'] = "TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
 

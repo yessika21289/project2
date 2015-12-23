@@ -17,7 +17,7 @@ class Dokumentasi extends CI_Controller {
 
 		$data = $this->session->all_userdata();
 
-		if($directory == "")
+		if($directory == "" || $directory == "index")
 			$data['list_dokumentasi'] = $this->ypki->getAllAlbum("ypki");
 		else{
 			$data['directory'] = $directory;
