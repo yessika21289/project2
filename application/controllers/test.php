@@ -16,7 +16,6 @@ class Test extends CI_Controller {
 		$this->load->model("ypki");
 		$today = date('Y-m-d');
 		$data['firman'] = $this->ypki->getFirmanToday($today);
-		print_r($data['firman']);
 		$data['instansi'] = "ypki";
 
 		$this->load->view("header", $data);

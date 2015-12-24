@@ -958,7 +958,6 @@
 					if(count($result->result()) == 0){
 						$timestamp = strtotime($today . " - 1 day");
 						$today = date("Y-m-d",$timestamp);
-						//print_r($today);exit();
 					}
 					else{
 						$found = true;
