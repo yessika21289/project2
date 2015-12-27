@@ -63,15 +63,15 @@
                             foreach ($fasilitas as $key => $deskripsi) {
                                 $fas[$fasilitas[$key]->jenis] = $fasilitas[$key]->deskripsi;
                             }
-                            $sekolah = (!empty(trim($fas['sekolah']))) ? trim($fas['sekolah']) : '';
-                            $ruang_belajar = (!empty(trim($fas['ruang_belajar']))) ? trim($fas['ruang_belajar']) : '';
-                            $laboratorium = (!empty(trim($fas['laboratorium']))) ? trim($fas['laboratorium']) : '';
-                            $perpustakaan = (!empty(trim($fas['perpustakaan']))) ? trim($fas['perpustakaan']) : '';
-                            $olahraga = (!empty(trim($fas['olahraga']))) ? trim($fas['olahraga']) : '';
-                            $komputer = (!empty(trim($fas['komputer']))) ? trim($fas['komputer']) : '';
-                            $fasilitas_lain = (!empty(trim($fas['fasilitas_lain']))) ? trim($fas['fasilitas_lain']) : '';
-                            $multimedia = (!empty(trim($fas['multimedia']))) ? trim($fas['multimedia']) : '';
-                            $aula = (!empty(trim($fas['aula']))) ? trim($fas['aula']) : '';
+                            $sekolah = (isset($fas['sekolah'])) ? trim($fas['sekolah']) : '';
+                            $ruang_belajar = (isset($fas['ruang_belajar'])) ? trim($fas['ruang_belajar']) : '';
+                            $laboratorium = (isset($fas['laboratorium'])) ? trim($fas['laboratorium']) : '';
+                            $perpustakaan = (isset($fas['perpustakaan'])) ? trim($fas['perpustakaan']) : '';
+                            $olahraga = (isset($fas['olahraga'])) ? trim($fas['olahraga']) : '';
+                            $komputer = (isset($fas['komputer'])) ? trim($fas['komputer']) : '';
+                            $fasilitas_lain = (isset($fas['fasilitas_lain'])) ? trim($fas['fasilitas_lain']) : '';
+                            $multimedia = (isset($fas['multimedia'])) ? trim($fas['multimedia']) : '';
+                            $aula = (isset($fas['aula'])) ? trim($fas['aula']) : '';
                         }
                         else{
                             $sekolah = '';
@@ -94,30 +94,38 @@
                         <label>Ruang Belajar</label>
                         <textarea name="ruang_belajar" class="form-control input-konten editor" rows="10"><?php echo $ruang_belajar; ?></textarea>
                     </div>
+                    <?php if($instansi == "smpki" || $instansi == "smaki"){?>
                     <div class="form-group">
                         <label>Laboratorium</label>
                         <textarea name="laboratorium" class="form-control input-konten editor" rows="10"><?php echo $laboratorium; ?></textarea>
                     </div>
+                    <?php }?>
                     <div class="form-group">
                         <label>Perpustakaan</label>
                         <textarea name="perpustakaan" class="form-control input-konten editor" rows="10"><?php echo $perpustakaan; ?></textarea>
                     </div>
+                    <?php if($instansi == "sdki" || $instansi == "smpki" || $instansi == "smaki"){?>
                     <div class="form-group">
                         <label>Fasilitas Olahraga</label>
                         <textarea name="olahraga" class="form-control input-konten editor" rows="10"><?php echo $olahraga; ?></textarea>
                     </div>
+                    <?php }?>
+                    <?php if($instansi == "sdki" || $instansi == "smpki" || $instansi == "smaki"){?>
                     <div class="form-group">
                         <label>Lab Komputer</label>
                         <textarea name="komputer" class="form-control input-konten editor" rows="10"><?php echo $komputer; ?></textarea>
                     </div>
+                    <?php }?>
                     <div class="form-group">
                         <label>Fasilitas Lain</label>
                         <textarea name="fasilitas_lain" class="form-control input-konten editor" rows="10"><?php echo $fasilitas_lain; ?></textarea>
                     </div>
+                    <?php if($instansi == "sdki" || $instansi == "smpki" || $instansi == "smaki"){?>
                     <div class="form-group">
                         <label>Ruang Multimedia</label>
                         <textarea name="multimedia" class="form-control input-konten editor" rows="10"><?php echo $multimedia; ?></textarea>
                     </div>
+                    <?php }?>
                     <div class="form-group">
                         <label>Ruang Aula / Pertemuan</label>
                         <textarea name="aula" class="form-control input-konten editor" rows="10"><?php echo $aula; ?></textarea>

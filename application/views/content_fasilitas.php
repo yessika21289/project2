@@ -10,13 +10,32 @@
         </div>
         <?php if(!empty($fasilitas)): ?>
         <br/><br/>
+        <dl>
         <?php
         foreach ($fasilitas as $jenis => $deskripsi) {
-            echo "<dt class='type'>".strtoupper(str_replace("_", " ", $jenis))."</dt><br/>";
+            switch ($jenis) {
+                case 'olahraga':
+                    $dt = 'FASILITAS OLAHRAGA';
+                    break;
+                case 'komputer':
+                    $dt = 'LAB KOMPUTER';
+                    break;
+                case 'multimedia':
+                    $dt = 'RUANG MULTIMEDIA';
+                    break;
+                case 'aula':
+                    $dt = 'RUANG AULA / PERTEMUAN';
+                    break;
+                default:
+                    $dt = strtoupper(str_replace("_", " ", $jenis));
+                    break;
+            }
+            echo "<dt class='type'>".$dt."</dt><br/>";
             echo "<dd>".$deskripsi."</dd>";
             echo "<br/>";
         }
         ?>
+        </dl>
         <?php endif; ?>
     </div>
 
