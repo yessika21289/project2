@@ -108,6 +108,8 @@ class Berita extends CI_Controller {
 	{
 		$data = $this->session->all_userdata();
 		$this->load->model('ypki');
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 		
 		$data['instansi'] = "ypki";
 		$data['limit'] = 8;
@@ -139,6 +141,8 @@ class Berita extends CI_Controller {
 	{
 		$data = $this->session->all_userdata();
 		$this->load->model('ypki');
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 		
 		$data['instansi'] = "ypki";
 		

@@ -16,6 +16,8 @@ class Dokumentasi extends CI_Controller {
 		$this->load->model("ypki");
 
 		$data = $this->session->all_userdata();
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		if($directory == "" || $directory == "index")
 			$data['list_dokumentasi'] = $this->ypki->getAllAlbum("ypki");

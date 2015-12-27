@@ -113,6 +113,8 @@ class Smpki extends CI_Controller {
 	public function index()
 	{
 		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 		
 		$today = date('Y-m-d');
 		$data['firman'] = $this->ypki->getFirmanToday($today);
@@ -127,10 +129,11 @@ class Smpki extends CI_Controller {
 
 	public function visi()
 	{
+		$data = $this->session->all_userdata();
 		$this->load->model("ypki");
 		$this->load->library("calendar");
-
-		$data = $this->session->all_userdata();
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$data['html_title'] = "Visi Misi - SMP Kristen Indonesia";
 		$data['instansi'] = "smpki";
@@ -155,6 +158,8 @@ class Smpki extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "smpki";
 			$data['limit'] = 8;
@@ -184,6 +189,8 @@ class Smpki extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "smpki";
 			
@@ -224,6 +231,8 @@ class Smpki extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "smpki";
 
@@ -258,6 +267,8 @@ class Smpki extends CI_Controller {
 			{
 				$data = $this->session->all_userdata();
 				$this->load->model('ypki');
+				$this->load->model('program');
+				$data['instansi_program'] = $this->program->getAllProgram();
 				
 				$data['instansi'] = "smpki";
 
@@ -293,6 +304,8 @@ class Smpki extends CI_Controller {
 			{
 				$data = $this->session->all_userdata();
 				$this->load->model('ypki');
+				$this->load->model('program');
+				$data['instansi_program'] = $this->program->getAllProgram();
 				
 				$data['instansi'] = "smpki";
 
@@ -327,6 +340,8 @@ class Smpki extends CI_Controller {
 			$data = $this->session->all_userdata();
 			$this->load->model('ypki');
 			$data['instansi'] = "smpki";
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$date=$prefix."+".$page."+".$tanggal;
 			$judul=utf8_urldecode($judul);
@@ -361,9 +376,10 @@ class Smpki extends CI_Controller {
 
 	public function dokumentasi($directory = "")
 	{
-		$this->load->model("ypki");
-
 		$data = $this->session->all_userdata();
+		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		if($directory == "")
 			$data['list_dokumentasi'] = $this->ypki->getAllAlbum("smpki");
@@ -384,9 +400,10 @@ class Smpki extends CI_Controller {
 
 	public function kontak()
 	{
-		$this->load->model("ypki");
-
 		$data = $this->session->all_userdata();
+		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$data['html_title'] = "Kontak - SMP Kristen Indonesia";
 		$data['instansi'] = "smpki";
@@ -415,8 +432,10 @@ class Smpki extends CI_Controller {
 
 			$key = utf8_urldecode($key);
 
-			$this->load->model('ypki');
 			$data = $this->session->all_userdata();
+			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 
 			$data['instansi'] = "smpki";
 			
@@ -448,9 +467,11 @@ class Smpki extends CI_Controller {
 				redirect(base_url()."/SMPki");
 
 			$key = utf8_urldecode($key);
-
-			$this->load->model('ypki');
 			$data = $this->session->all_userdata();
+			$this->load->model('ypki');
+
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 
 			$data['instansi'] = "smpki";
 
@@ -480,5 +501,29 @@ class Smpki extends CI_Controller {
 		else {
 			show_404();
 		}
+	}
+
+	public function program()
+	{
+		$this->load->model("program");
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Program Penerimaan Peserta Didik Baru - SMA Kristen Indonesia";
+		$data['instansi'] = "smpki";
+
+		$program = $this->program->getProgram($data['instansi']);
+		$data['instansi_program'] = $this->program->getAllProgram();
+		if(!empty($program)) {
+			$program = $program[0];
+			$program->program = parse($program->program);
+			$data['program'] = $program;
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_program");
+		$this->load->view("footer");
 	}
 }

@@ -51,9 +51,10 @@ class Kontak extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->model("ypki");
-
 		$data = $this->session->all_userdata();
+		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$data['html_title'] = "Kontak - Yayasan Perguruan Kristen Indonesia";
 		$data['instansi'] = "ypki";

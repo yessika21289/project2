@@ -118,6 +118,8 @@ class Kbtk extends CI_Controller {
 		$data['firman'] = $this->ypki->getFirmanToday($today);
 		$data['html_title'] = "TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
@@ -134,6 +136,8 @@ class Kbtk extends CI_Controller {
 
 		$data['html_title'] = "Visi Misi - TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$visi = $this->ypki->getVisi($data['instansi']);
 		$visi = $visi[0];
@@ -154,6 +158,8 @@ class Kbtk extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "kbtk";
 			$data['limit'] = 8;
@@ -183,6 +189,8 @@ class Kbtk extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "kbtk";
 			
@@ -223,6 +231,8 @@ class Kbtk extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "kbtk";
 
@@ -257,6 +267,8 @@ class Kbtk extends CI_Controller {
 			{
 				$data = $this->session->all_userdata();
 				$this->load->model('ypki');
+				$this->load->model('program');
+				$data['instansi_program'] = $this->program->getAllProgram();
 				
 				$data['instansi'] = "kbtk";
 
@@ -292,6 +304,8 @@ class Kbtk extends CI_Controller {
 			{
 				$data = $this->session->all_userdata();
 				$this->load->model('ypki');
+				$this->load->model('program');
+				$data['instansi_program'] = $this->program->getAllProgram();
 				
 				$data['instansi'] = "kbtk";
 
@@ -326,6 +340,8 @@ class Kbtk extends CI_Controller {
 			$data = $this->session->all_userdata();
 			$this->load->model('ypki');
 			$data['instansi'] = "kbtk";
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$date=$prefix."+".$page."+".$tanggal;
 			$judul=utf8_urldecode($judul);
@@ -360,9 +376,10 @@ class Kbtk extends CI_Controller {
 
 	public function dokumentasi($directory = "")
 	{
-		$this->load->model("ypki");
-
 		$data = $this->session->all_userdata();
+		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		if($directory == "")
 			$data['list_dokumentasi'] = $this->ypki->getAllAlbum("kbtk");
@@ -383,9 +400,10 @@ class Kbtk extends CI_Controller {
 
 	public function kontak()
 	{
-		$this->load->model("ypki");
-
 		$data = $this->session->all_userdata();
+		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$data['html_title'] = "Kontak - TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
@@ -417,6 +435,8 @@ class Kbtk extends CI_Controller {
 
 			$this->load->model('ypki');
 			$data = $this->session->all_userdata();
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 
 			$data['instansi'] = "kbtk";
 			
@@ -449,8 +469,10 @@ class Kbtk extends CI_Controller {
 
 			$key = utf8_urldecode($key);
 
-			$this->load->model('ypki');
 			$data = $this->session->all_userdata();
+			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 
 			$data['instansi'] = "kbtk";
 
@@ -480,5 +502,29 @@ class Kbtk extends CI_Controller {
 		else {
 			show_404();
 		}
+	}
+
+	public function program()
+	{
+		$this->load->model("program");
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Program Penerimaan Peserta Didik Baru - SMA Kristen Indonesia";
+		$data['instansi'] = "kbtk";
+
+		$program = $this->program->getProgram($data['instansi']);
+		$data['instansi_program'] = $this->program->getAllProgram();
+		if(!empty($program)) {
+			$program = $program[0];
+			$program->program = parse($program->program);
+			$data['program'] = $program;
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_program");
+		$this->load->view("footer");
 	}
 }

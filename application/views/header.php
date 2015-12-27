@@ -30,4 +30,5 @@
 	
 </head>
 <body>
+<?php print_r($instansi_program); ?>
 	<div id="container">

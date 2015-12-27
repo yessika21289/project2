@@ -113,6 +113,8 @@ class Sdki extends CI_Controller {
 	public function index()
 	{
 		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 		
 		$today = date('Y-m-d');
 		$data['firman'] = $this->ypki->getFirmanToday($today);
@@ -127,10 +129,12 @@ class Sdki extends CI_Controller {
 
 	public function visi()
 	{
+		$data = $this->session->all_userdata();
 		$this->load->model("ypki");
 		$this->load->library("calendar");
 
-		$data = $this->session->all_userdata();
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$data['html_title'] = "Visi Misi - SD Kristen Indonesia";
 		$data['instansi'] = "sdki";
@@ -155,6 +159,8 @@ class Sdki extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "sdki";
 			$data['limit'] = 8;
@@ -184,6 +190,8 @@ class Sdki extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "sdki";
 			
@@ -224,6 +232,8 @@ class Sdki extends CI_Controller {
     	{
     		$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "sdki";
 
@@ -258,6 +268,8 @@ class Sdki extends CI_Controller {
 			{
 				$data = $this->session->all_userdata();
 				$this->load->model('ypki');
+				$this->load->model('program');
+				$data['instansi_program'] = $this->program->getAllProgram();
 				
 				$data['instansi'] = "sdki";
 
@@ -293,6 +305,8 @@ class Sdki extends CI_Controller {
 			{
 				$data = $this->session->all_userdata();
 				$this->load->model('ypki');
+				$this->load->model('program');
+				$data['instansi_program'] = $this->program->getAllProgram();
 				
 				$data['instansi'] = "sdki";
 
@@ -327,6 +341,8 @@ class Sdki extends CI_Controller {
 			$data = $this->session->all_userdata();
 			$this->load->model('ypki');
 			$data['instansi'] = "sdki";
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$date=$prefix."+".$page."+".$tanggal;
 			$judul=utf8_urldecode($judul);
@@ -344,6 +360,8 @@ class Sdki extends CI_Controller {
 				$data['berita']->konten = parse($data['berita']->deskripsi);
 				//$data['berita']->konten = nl2br($data['berita']->konten);
 				$data['berita']->created = getTanggal($data['berita']->tanggal, "agenda");
+				$this->load->model('program');
+				$data['instansi_program'] = $this->program->getAllProgram();
 				
 				$data['html_title'] = $data['berita']->nama." - SD Kristen Indonesia";
 				
@@ -361,9 +379,10 @@ class Sdki extends CI_Controller {
 
 	public function dokumentasi($directory = "")
 	{
-		$this->load->model("ypki");
-
 		$data = $this->session->all_userdata();
+		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		if($directory == "")
 			$data['list_dokumentasi'] = $this->ypki->getAllAlbum("sdki");
@@ -384,9 +403,10 @@ class Sdki extends CI_Controller {
 
 	public function kontak()
 	{
-		$this->load->model("ypki");
-
 		$data = $this->session->all_userdata();
+		$this->load->model("ypki");
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$data['html_title'] = "Kontak - SD Kristen Indonesia";
 		$data['instansi'] = "sdki";
@@ -415,8 +435,11 @@ class Sdki extends CI_Controller {
 
 			$key = utf8_urldecode($key);
 
-			$this->load->model('ypki');
 			$data = $this->session->all_userdata();
+			$this->load->model('ypki');
+
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 
 			$data['instansi'] = "sdki";
 			
@@ -449,8 +472,11 @@ class Sdki extends CI_Controller {
 
 			$key = utf8_urldecode($key);
 
-			$this->load->model('ypki');
 			$data = $this->session->all_userdata();
+			$this->load->model('ypki');
+
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 
 			$data['instansi'] = "sdki";
 
@@ -480,5 +506,28 @@ class Sdki extends CI_Controller {
 		else {
 			show_404();
 		}
+	}
+
+	public function program()
+	{
+		$data = $this->session->all_userdata();
+		$this->load->model("program");
+		$this->load->model("ypki");
+
+		$data['html_title'] = "Program Penerimaan Peserta Didik Baru - SMA Kristen Indonesia";
+		$data['instansi'] = "sdki";
+
+		$program = $this->program->getProgram($data['instansi']);
+		$data['instansi_program'] = $this->program->getAllProgram();
+		if(!empty($program)) {
+			$program = $program[0];
+			$program->program = parse($program->program);
+			$data['program'] = $program;
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_program");
+		$this->load->view("footer");
 	}
 }

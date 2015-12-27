@@ -52,12 +52,14 @@ class Visi extends CI_Controller {
 	public function index()
 	{
 		$this->load->model("ypki");
+		$this->load->model('program');
 		$this->load->library("calendar");
 
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Visi Misi - Yayasan Perguruan Kristen Indonesia";
 		$data['instansi'] = "ypki";
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$visi = $this->ypki->getVisi($data['instansi']);
 		$visi = $visi[0];
@@ -77,11 +79,13 @@ class Visi extends CI_Controller {
 	{
 		$this->load->model("ypki");
 		$this->load->library("calendar");
+		$this->load->model('program');
 
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Nilai Kristiani - Yayasan Perguruan Kristen Indonesia";
 		$data['instansi'] = "ypki";
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$visi = $this->ypki->getVisi($data['instansi']);
 		$nilai_kristiani = parse($visi[0]->nilai_kristiani);
@@ -98,11 +102,13 @@ class Visi extends CI_Controller {
 	{
 		$this->load->model("ypki");
 		$this->load->library("calendar");
+		$this->load->model('program');
 
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Nilai Kristiani - Yayasan Perguruan Kristen Indonesia";
 		$data['instansi'] = "ypki";
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$visi = $this->ypki->getVisi($data['instansi']);
 		$motto = parse($visi[0]->motto);
@@ -119,11 +125,13 @@ class Visi extends CI_Controller {
 	{
 		$this->load->model("ypki");
 		$this->load->library("calendar");
+		$this->load->model('program');
 
 		$data = $this->session->all_userdata();
 
 		$data['html_title'] = "Nilai Kristiani - Yayasan Perguruan Kristen Indonesia";
 		$data['instansi'] = "ypki";
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$visi = $this->ypki->getVisi($data['instansi']);
 		$arti_logo = parse($visi[0]->arti_logo);

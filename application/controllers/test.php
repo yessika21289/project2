@@ -14,9 +14,11 @@ class Test extends CI_Controller {
 	public function index()
 	{
 		$this->load->model("ypki");
+		$this->load->model("program");
 		$today = date('Y-m-d');
 		$data['firman'] = $this->ypki->getFirmanToday($today);
 		$data['instansi'] = "ypki";
+		$data['instansi_program'] = $this->program->getAllProgram();
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");

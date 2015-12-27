@@ -104,6 +104,8 @@ class Agenda extends CI_Controller {
 	{
 		$data = $this->session->all_userdata();
 		$this->load->model('ypki');
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 		
 		$data['instansi'] = "ypki";
 
@@ -135,6 +137,8 @@ class Agenda extends CI_Controller {
 		{
 			$data = $this->session->all_userdata();
 			$this->load->model('ypki');
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 			
 			$data['instansi'] = "ypki";
 
@@ -172,6 +176,8 @@ class Agenda extends CI_Controller {
 			$data = $this->session->all_userdata();
 			$this->load->model('ypki');
 			$data['instansi'] = "ypki";
+			$this->load->model('program');
+			$data['instansi_program'] = $this->program->getAllProgram();
 
 			$data['html_title'] = "Agenda - Yayasan Perguruan Kristen Indonesia";
 			$data['condition'] = "next";
@@ -210,6 +216,8 @@ class Agenda extends CI_Controller {
 		$data = $this->session->all_userdata();
 		$this->load->model('ypki');
 		$data['instansi'] = "ypki";
+		$this->load->model('program');
+		$data['instansi_program'] = $this->program->getAllProgram();
 		
 		$date=$tahun."+".$bulan."+".$tanggal;
 		$judul=utf8_urldecode($judul);
