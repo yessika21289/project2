@@ -59,18 +59,31 @@
                 <form id="form-berita-baru" role="form" method="post" action="" enctype="multip art/form-data">
 
                     <?php
-                        foreach ($fasilitas as $key => $deskripsi) {
-                            $fas[$fasilitas[$key]->jenis] = $fasilitas[$key]->deskripsi;
+                        if(!empty($fasilitas)) {
+                            foreach ($fasilitas as $key => $deskripsi) {
+                                $fas[$fasilitas[$key]->jenis] = $fasilitas[$key]->deskripsi;
+                            }
+                            $sekolah = (!empty(trim($fas['sekolah']))) ? trim($fas['sekolah']) : '';
+                            $ruang_belajar = (!empty(trim($fas['ruang_belajar']))) ? trim($fas['ruang_belajar']) : '';
+                            $laboratorium = (!empty(trim($fas['laboratorium']))) ? trim($fas['laboratorium']) : '';
+                            $perpustakaan = (!empty(trim($fas['perpustakaan']))) ? trim($fas['perpustakaan']) : '';
+                            $olahraga = (!empty(trim($fas['olahraga']))) ? trim($fas['olahraga']) : '';
+                            $komputer = (!empty(trim($fas['komputer']))) ? trim($fas['komputer']) : '';
+                            $fasilitas_lain = (!empty(trim($fas['fasilitas_lain']))) ? trim($fas['fasilitas_lain']) : '';
+                            $multimedia = (!empty(trim($fas['multimedia']))) ? trim($fas['multimedia']) : '';
+                            $aula = (!empty(trim($fas['aula']))) ? trim($fas['aula']) : '';
                         }
-                        $sekolah = (!empty(trim($fas['sekolah']))) ? trim($fas['sekolah']) : '';
-                        $ruang_belajar = (!empty(trim($fas['ruang_belajar']))) ? trim($fas['ruang_belajar']) : '';
-                        $laboratorium = (!empty(trim($fas['laboratorium']))) ? trim($fas['laboratorium']) : '';
-                        $perpustakaan = (!empty(trim($fas['perpustakaan']))) ? trim($fas['perpustakaan']) : '';
-                        $olahraga = (!empty(trim($fas['olahraga']))) ? trim($fas['olahraga']) : '';
-                        $komputer = (!empty(trim($fas['komputer']))) ? trim($fas['komputer']) : '';
-                        $fasilitas_lain = (!empty(trim($fas['fasilitas_lain']))) ? trim($fas['fasilitas_lain']) : '';
-                        $multimedia = (!empty(trim($fas['multimedia']))) ? trim($fas['multimedia']) : '';
-                        $aula = (!empty(trim($fas['aula']))) ? trim($fas['aula']) : '';
+                        else{
+                            $sekolah = '';
+                            $ruang_belajar = '';
+                            $laboratorium = '';
+                            $perpustakaan = '';
+                            $olahraga = '';
+                            $komputer = '';
+                            $fasilitas_lain = '';
+                            $multimedia = '';
+                            $aula = '';
+                        }
                     ?>
 
                     <div class="form-group">
