@@ -64,50 +64,9 @@
                     $corganisasi = $tentang[0]->struktur_organisasi;
                     ?>
 
-<!--                    <div class="form-group">-->
-<!--                        <label>Struktur Organisasi</label>-->
-<!--                        <textarea name="struktur_organisasi" class="form-control input-konten" rows="10">--><?php //echo $corganisasi; ?><!--</textarea>-->
-<!--                    </div>-->
-
-                    <div>
-                        <div class="upload_div">
-<!--                            <input type="hidden" name="directory" id="directory" value="struktur_organisasi"/>-->
-                            <input type="hidden" name="image_form_submit" value="1"/>
-                            <h4>Struktur Organisasi: <?php echo $instansi;?></h4>
-                            <label>Pilih Gambar</label>
-                            <input type="file" name="images[]" id="images" multiple >
-                            <div class="uploading none">
-                                <label>&nbsp;</label>
-                                <img src="<?php echo base_url().'asset/img/uploading.gif';?>"/>
-                            </div>
-
-                        </div>
-
-                        <div class="gallery" id="images_preview">
-                            <?php
-                            $dir = "asset/struktur_organisasi";
-
-                            if (is_dir($dir)){
-                                if ($dh = opendir($dir)){
-                                    while (($file = readdir($dh)) !== false){
-                                        if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store'){
-                                            $image_src = base_url().'/'.$dir.'/'.$file;
-                                            echo '
-                                    <div class="reorder_ul reorder-photos-list" style="width:285px; height: 335px; float:left">
-                                      <div id="image_li" class="ui-sortable-handle">
-                                          <a href="javascript:void(0);" style="float:none;" class="image_link">
-                                          <img src="'.$image_src.'" alt=""></a>
-                                        </div>
-                                    </div>
-                                    ';
-                                            //echo "" . $file . "<br>";
-                                        }
-                                    }
-                                    closedir($dh);
-                                }
-                            }
-                            ?>
-                        </div>
+                    <div class="form-group">
+                        <label>Struktur Organisasi</label>
+                        <textarea class="editor" name="struktur_organisasi" class="form-control input-konten" rows="10"><?php echo $corganisasi; ?></textarea>
                     </div>
 
                     <div class="text-right">

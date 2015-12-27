@@ -42,7 +42,7 @@
 					<span>YPKI<br/>MAGELANG</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-ypki">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'profil'; ?> ">Profil</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'dokumentasi'; ?> ">Dokumentasi</a></li>
@@ -55,7 +55,7 @@
 				<span>KB & TK<br/>TUNAS KASIH</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-kbtk">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/profil'; ?> ">Profil</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/dokumentasi'; ?> ">Dokumentasi</a></li>
@@ -68,7 +68,7 @@
 				<span>SDKI<br/>&nbsp</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-sdki">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/profil'; ?> ">Profil</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/dokumentasi'; ?> ">Dokumentasi</a></li>
@@ -81,7 +81,7 @@
 				<span>SMPKI<br/>&nbsp</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-smpki">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/profil'; ?> ">Profil</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/dokumentasi'; ?> ">Dokumentasi</a></li>
@@ -94,7 +94,7 @@
 				<span>SMAKI<br/>BERASRAMA</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-smaki">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/profil'; ?> ">Profil</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/dokumentasi'; ?> ">Dokumentasi</a></li>

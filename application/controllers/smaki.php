@@ -125,7 +125,7 @@ class Smaki extends CI_Controller {
 		$this->load->view("footer");
 	}
 
-	public function visi()
+	public function profil()
 	{
 		$this->load->model("ypki");
 		$this->load->library("calendar");
@@ -135,13 +135,16 @@ class Smaki extends CI_Controller {
 		$data['html_title'] = "Visi Misi - SMA Kristen Indonesia";
 		$data['instansi'] = "smaki";
 
-		$visi = $this->ypki->getVisi($data['instansi']);
+		$visi = $this->ypki->getTentangKami('visi_misi', $data['instansi']);
+		$tujuan_sekolah = $this->ypki->getTentangKami('tujuan_sekolah', $data['instansi']);
 		$visi = $visi[0];
+		$tujuan_sekolah = $tujuan_sekolah[0];
 		$visi->visi = parse($visi->visi);
 		$visi->misi = parse($visi->misi);
-		$visi->tujuan_sekolah = parse($visi->tujuan_sekolah);
+		$tujuan_sekolah->tujuan_sekolah = parse($tujuan_sekolah->tujuan_sekolah);
 
 		$data['visi'] = $visi;
+		$data['tujuan_sekolah'] = $tujuan_sekolah;
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");

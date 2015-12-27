@@ -25,7 +25,7 @@
 				<hr>
 			<h1 class="title">TUJUAN SEKOLAH</h1>
 			<p class="desc">
-				<?php echo $visi->tujuan_sekolah; ?>
+				<?php echo $tujuan_sekolah->tujuan_sekolah; ?>
 			</p>
 			<?php endif; ?>
 
