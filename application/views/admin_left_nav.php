@@ -54,6 +54,11 @@
             <li>
                 <a href="<?php echo base_url()?>admin/kontak"><i class="fa fa-phone-square"></i> Info Kontak</a>
             </li>
+            <?php if($instansi != "ypki"){?>
+            <li>
+                <a href="<?php echo base_url()?>admin/fasilitas"><i class="fa fa-keyboard-o"></i> Fasilitas</a>
+            </li>
+            <?php }?>
         </ul>
     </div>
     <!-- /.navbar-collapse -->

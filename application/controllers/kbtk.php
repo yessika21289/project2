@@ -132,7 +132,7 @@ class Kbtk extends CI_Controller {
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Visi Misi - TK Tunas Kasih";
+		$data['html_title'] = "Visi Misi - KB & TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
 
 		$visi = $this->ypki->getVisi($data['instansi']);
@@ -168,7 +168,7 @@ class Kbtk extends CI_Controller {
 				$value->konten = parse($value->konten);
 			}
 
-			$data['html_title'] = "Berita - TK Tunas Kasih";
+			$data['html_title'] = "Berita - KB & TK Tunas Kasih";
 
 			$this->load->view("header", $data);
 			$this->load->view("navigator");
@@ -226,7 +226,7 @@ class Kbtk extends CI_Controller {
 			
 			$data['instansi'] = "kbtk";
 
-			$data['html_title'] = "Agenda - TK Tunas Kasih";
+			$data['html_title'] = "Agenda - KB & TK Tunas Kasih";
 			$data['condition'] = "now";
 			$data['limit'] = 8;
 
@@ -260,7 +260,7 @@ class Kbtk extends CI_Controller {
 				
 				$data['instansi'] = "kbtk";
 
-				$data['html_title'] = "Agenda - TK Tunas Kasih";
+				$data['html_title'] = "Agenda - KB & TK Tunas Kasih";
 				$data['condition'] = "prev";
 				$data['limit'] = 8;
 
@@ -295,7 +295,7 @@ class Kbtk extends CI_Controller {
 				
 				$data['instansi'] = "kbtk";
 
-				$data['html_title'] = "Agenda - TK Tunas Kasih";
+				$data['html_title'] = "Agenda - KB & TK Tunas Kasih";
 				$data['condition'] = "next";
 				$data['limit'] = 8;
 
@@ -344,7 +344,7 @@ class Kbtk extends CI_Controller {
 				//$data['berita']->konten = nl2br($data['berita']->konten);
 				$data['berita']->created = getTanggal($data['berita']->tanggal, "agenda");
 				
-				$data['html_title'] = $data['berita']->nama." - TK Tunas Kasih";
+				$data['html_title'] = $data['berita']->nama." - KB & TK Tunas Kasih";
 				
 				$this->load->view("header", $data);
 				$this->load->view("navigator");
@@ -371,7 +371,7 @@ class Kbtk extends CI_Controller {
 			$data['judul'] = $this->ypki->getJudulAlbumByDirectory($directory,"kbtk");
 		}
 
-		$data['html_title'] = "Dokumentasi - KB TK";
+		$data['html_title'] = "Dokumentasi - KB & TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
 
 		$this->load->view("header", $data);
@@ -387,7 +387,7 @@ class Kbtk extends CI_Controller {
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Kontak - TK Tunas Kasih";
+		$data['html_title'] = "Kontak - KB & TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
 
 		$kontak = $this->ypki->getKontak($data['instansi']);
@@ -401,6 +401,37 @@ class Kbtk extends CI_Controller {
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
 		$this->load->view("content_kontak");
+		$this->load->view("footer");
+	}
+
+	public function fasilitas()
+	{
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Fasilitas - KB & TK Tunas Kasih";
+		$data['instansi'] = "KBTK";
+
+		$fasilitas = $this->ypki->getFasilitas($data['instansi']);
+		if(!empty($fasilitas)) {
+            foreach ($fasilitas as $key => $deskripsi) {
+                $fas[$fasilitas[$key]->jenis] = $fasilitas[$key]->deskripsi;
+            }
+            $data['fasilitas']['sekolah'] = (!empty(trim($fas['sekolah']))) ? trim($fas['sekolah']) : '';
+            $data['fasilitas']['ruang_belajar'] = (!empty(trim($fas['ruang_belajar']))) ? trim($fas['ruang_belajar']) : '';
+            $data['fasilitas']['laboratorium'] = (!empty(trim($fas['laboratorium']))) ? trim($fas['laboratorium']) : '';
+            $data['fasilitas']['perpustakaan'] = (!empty(trim($fas['perpustakaan']))) ? trim($fas['perpustakaan']) : '';
+            $data['fasilitas']['olahraga'] = (!empty(trim($fas['olahraga']))) ? trim($fas['olahraga']) : '';
+            $data['fasilitas']['komputer'] = (!empty(trim($fas['komputer']))) ? trim($fas['komputer']) : '';
+            $data['fasilitas']['fasilitas_lain'] = (!empty(trim($fas['fasilitas_lain']))) ? trim($fas['fasilitas_lain']) : '';
+            $data['fasilitas']['multimedia'] = (!empty(trim($fas['multimedia']))) ? trim($fas['multimedia']) : '';
+            $data['fasilitas']['aula'] = (!empty(trim($fas['aula']))) ? trim($fas['aula']) : '';
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_fasilitas");
 		$this->load->view("footer");
 	}
 
@@ -470,7 +501,7 @@ class Kbtk extends CI_Controller {
 
 			$data['berita'] = $berita;
 			$data['show_type'] = "keyword";
-			$data['html_title'] = "Berita dengan kata kunci \"".$key."\" - TK Tunas Kasih";
+			$data['html_title'] = "Berita dengan kata kunci \"".$key."\" - KB & TK Tunas Kasih";
 
 			$this->load->view("header", $data);
 			$this->load->view("navigator");

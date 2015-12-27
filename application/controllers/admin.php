@@ -568,4 +568,33 @@ class Admin extends MY_Controller {
 
 		$this->session->unset_userdata('update_confirm');
 	}
+
+
+	public function fasilitas()
+	{
+		$this->load->model('ypki');
+
+		$data = $this->session->all_userdata();
+		$instansi = $this->session->userdata('instansi');
+
+		if( isset($_POST['submit']) )
+		{
+			if($this->ypki->updateFasilitas($instansi, $_POST))
+			{
+				$data['update_confirm'] = 1;
+			}
+			else
+			{
+				$data['update_confirm'] = 0;
+			}
+		}
+
+		$data['fasilitas'] = $this->ypki->getFasilitas($instansi);
+
+		$this->load->view("content_admin_header", $data);
+		$this->load->view("content_admin_fasilitas");
+		$this->load->view("content_admin_footer");
+
+		$this->session->unset_userdata('update_confirm');
+	}
 }

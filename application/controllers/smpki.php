@@ -404,6 +404,37 @@ class Smpki extends CI_Controller {
 		$this->load->view("footer");
 	}
 
+	public function fasilitas()
+	{
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Fasilitas - SMP Kristen Indonesia";
+		$data['instansi'] = "smpki";
+
+		$fasilitas = $this->ypki->getFasilitas($data['instansi']);
+		if(!empty($fasilitas)) {
+            foreach ($fasilitas as $key => $deskripsi) {
+                $fas[$fasilitas[$key]->jenis] = $fasilitas[$key]->deskripsi;
+            }
+            $data['fasilitas']['sekolah'] = (!empty(trim($fas['sekolah']))) ? trim($fas['sekolah']) : '';
+            $data['fasilitas']['ruang_belajar'] = (!empty(trim($fas['ruang_belajar']))) ? trim($fas['ruang_belajar']) : '';
+            $data['fasilitas']['laboratorium'] = (!empty(trim($fas['laboratorium']))) ? trim($fas['laboratorium']) : '';
+            $data['fasilitas']['perpustakaan'] = (!empty(trim($fas['perpustakaan']))) ? trim($fas['perpustakaan']) : '';
+            $data['fasilitas']['olahraga'] = (!empty(trim($fas['olahraga']))) ? trim($fas['olahraga']) : '';
+            $data['fasilitas']['komputer'] = (!empty(trim($fas['komputer']))) ? trim($fas['komputer']) : '';
+            $data['fasilitas']['fasilitas_lain'] = (!empty(trim($fas['fasilitas_lain']))) ? trim($fas['fasilitas_lain']) : '';
+            $data['fasilitas']['multimedia'] = (!empty(trim($fas['multimedia']))) ? trim($fas['multimedia']) : '';
+            $data['fasilitas']['aula'] = (!empty(trim($fas['aula']))) ? trim($fas['aula']) : '';
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_fasilitas");
+		$this->load->view("footer");
+	}
+
 	public function search($cmd, $key, $page = NULL)
 	{
 		if ($cmd == NULL) {

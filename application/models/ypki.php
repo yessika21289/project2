@@ -3,7 +3,7 @@
 	class Ypki extends CI_Model{
 		function __construct(){
 			parent::__construct();
-			$this->allowed_tags = '<p><div><br><span><strong><em><sub><sup><ul><ol><li><a><blockquote><iframe>';
+			$this->allowed_tags = '<p><div><br><span><strong><em><sub><sup><ul><ol><li><a><blockquote><iframe><img>';
 		}
 
 		public function validate(){
@@ -1004,6 +1004,39 @@
 								VALUES('', '".$post['alamat']."', '".$post['telp1']."' ,'".$post['telp2']."',
 								'".$post['fax']."', '".$post['email']."', '".$post['web']."', '".$instansi."')";
 				$result = $this->db->query($sqlstr);
+			}
+			return true;
+		}
+
+		public function getFasilitas($instansi = "ypki"){
+
+			$sqlstr = "SELECT * FROM fasilitas WHERE instansi = '". $instansi. "'";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function updateFasilitas($instansi = "ypki", $post){
+			$sqlstr = "SELECT * FROM fasilitas WHERE instansi = '".$instansi."'";
+			$is_exist = $this->db->query($sqlstr);
+			$is_exist = $is_exist->result();
+
+			if($is_exist) {
+				foreach ($post as $jenis => $deskripsi) {
+					$sqlstr = "UPDATE fasilitas SET
+								deskripsi = '" . trim(strip_tags($deskripsi, $this->allowed_tags)) . "'
+								WHERE instansi = '" . $instansi . "' and jenis = '" . $jenis ."'";
+					$result = $this->db->query($sqlstr);
+				}
+			} else {
+				$id = 1;
+				foreach ($post as $jenis => $deskripsi) {
+					if($jenis == "submit") break;
+
+					$sqlstr = "INSERT INTO fasilitas
+								VALUES($id, '".$jenis."', '".trim(strip_tags($deskripsi, $this->allowed_tags))."' ,'".$instansi."')";
+					$result = $this->db->query($sqlstr);
+					$id++;
+				}
 			}
 			return true;
 		}

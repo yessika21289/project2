@@ -16,6 +16,11 @@
 	src: url(../fonts/OpenSans-CondBold.ttf);
 }
 
+dt.jenis_fasilitas
+{
+	font-size: 16px;
+}
+
 #container
 {
 	width: 960px;
