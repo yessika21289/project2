@@ -56,7 +56,7 @@
             </li>
             <?php if($instansi != "ypki"){?>
             <li>
-                <a href="<?php echo base_url()?>admin/fasilitas"><i class="fa fa-keyboard-o"></i> Fasilitas</a>
+                <a href="<?php echo base_url()?>admin/kurikulum"><i class="fa fa-bars"></i> Kurikulum</a>
             </li>
             <?php }?>
         </ul>

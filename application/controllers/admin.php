@@ -570,7 +570,7 @@ class Admin extends MY_Controller {
 	}
 
 
-	public function fasilitas()
+	public function kurikulum()
 	{
 		$this->load->model('ypki');
 
@@ -579,7 +579,7 @@ class Admin extends MY_Controller {
 
 		if( isset($_POST['submit']) )
 		{
-			if($this->ypki->updateFasilitas($instansi, $_POST))
+			if($this->ypki->updateKurikulum($instansi, $_POST))
 			{
 				$data['update_confirm'] = 1;
 			}
@@ -589,10 +589,10 @@ class Admin extends MY_Controller {
 			}
 		}
 
-		$data['fasilitas'] = $this->ypki->getFasilitas($instansi);
+		$data['kurikulum'] = $this->ypki->getKurikulum($instansi);
 
 		$this->load->view("content_admin_header", $data);
-		$this->load->view("content_admin_fasilitas");
+		$this->load->view("content_admin_kurikulum");
 		$this->load->view("content_admin_footer");
 
 		$this->session->unset_userdata('update_confirm');

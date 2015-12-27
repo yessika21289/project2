@@ -12,7 +12,7 @@
         <br/><br/>
         <?php
         foreach ($fasilitas as $jenis => $deskripsi) {
-            echo "<dt class='jenis_fasilitas'>".strtoupper(str_replace("_", " ", $jenis))."</dt><br/>";
+            echo "<dt class='type'>".strtoupper(str_replace("_", " ", $jenis))."</dt><br/>";
             echo "<dd>".$deskripsi."</dd>";
             echo "<br/>";
         }
