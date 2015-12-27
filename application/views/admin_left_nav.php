@@ -48,8 +48,38 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="<?php echo base_url()?>admin/visi"><i class="fa fa-fw fa-bookmark"></i> Visi & Misi</a>
+            <li class="<?php echo (isset($active_tentang)) ? 'active' : ''?>">
+                <a href="javascript:;" data-toggle="collapse" data-target="#drop-tentang">
+                    <i class="fa fa-fw fa-bookmark"></i>
+                        Tentang Kami
+                    <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+                <ul id="drop-tentang"
+                    class="<?php echo (isset($active_tentang)) ? 'collapse in' : 'collapse'?>">
+                    <li>
+                        <a href="<?php echo base_url()?>admin/tentang_kami/visi_misi">Visi & Misi</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url()?>admin/tentang_kami/tujuan_sekolah">Tujuan Sekolah</a>
+                    </li>
+                    <?php if($instansi == 'ypki'): ?>
+                        <li>
+                            <a href="<?php echo base_url()?>admin/tentang_kami/nilai_kristiani">Nilai Kristiani</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url()?>admin/tentang_kami/motto">Motto</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url()?>admin/tentang_kami/arti_logo">Arti Logo</a>
+                        </li>
+                    <?php endif; ?>
+                    <li>
+                        <a href="<?php echo base_url()?>admin/tentang_kami/sejarah_singkat">Sejarah Singkat</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url()?>admin/tentang_kami/struktur_organisasi">Struktur Organisasi</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="<?php echo base_url()?>admin/kontak"><i class="fa fa-phone-square"></i> Info Kontak</a>

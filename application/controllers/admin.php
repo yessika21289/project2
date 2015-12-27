@@ -50,34 +50,6 @@ class Admin extends MY_Controller {
 		$this->load->view("content_admin_footer");
 	}
 
-	public function visi()
-	{
-		$this->load->model('ypki');
-
-		$data = $this->session->all_userdata();
-		$data['instansi'] = $this->session->userdata('instansi');
-
-		if( isset($_POST['submit']) )
-		{
-			if($this->ypki->updateVisi($data['instansi'], $_POST))
-			{
-				$data['update_confirm'] = 1;
-			}
-			else
-			{
-				$data['update_confirm'] = 0;				
-			}
-		}
-
-		$data['visi'] = $this->ypki->getVisi($data['instansi']);
-
-		$this->load->view("content_admin_header", $data);
-		$this->load->view("content_admin_visi");
-		$this->load->view("content_admin_footer");	
-
-		$this->session->unset_userdata('update_confirm');
-	}
-
 	public function berita($task = NULL)
 	{
 		$data = $this->session->all_userdata();
@@ -564,6 +536,65 @@ class Admin extends MY_Controller {
 
 		$this->load->view("content_admin_header", $data);
 		$this->load->view("content_admin_kontak");
+		$this->load->view("content_admin_footer");
+
+		$this->session->unset_userdata('update_confirm');
+	}
+
+	public function tentang_kami($task = null)
+	{
+		$this->load->model('ypki');
+
+		$data = $this->session->all_userdata();
+		$data['instansi'] = $this->session->userdata('instansi');
+
+		if( isset($_POST['submit']) )
+		{
+			if($this->ypki->updateTentangKami($task, $data['instansi'], $_POST))
+			{
+				$data['update_confirm'] = 1;
+			}
+			else
+			{
+				$data['update_confirm'] = 0;
+			}
+		}
+
+		if(isset($_POST['image_form_submit']) && $_POST['image_form_submit'] == 1)
+		{
+			$images_arr = array();
+			foreach($_FILES['images']['name'] as $key=>$val){
+				$image_name = $_FILES['images']['name'][$key];
+				$tmp_name 	= $_FILES['images']['tmp_name'][$key];
+				$size 		= $_FILES['images']['size'][$key];
+				$type 		= $_FILES['images']['type'][$key];
+				$error 		= $_FILES['images']['error'][$key];
+
+				############ Remove comments if you want to upload and stored images into the "uploads/" folder #############
+				$filex = explode('.',$image_name);
+				$filex = array_reverse($filex);
+
+				$waktu = date("YmdHis");
+
+				$filename = $data['instansi'].'.'.$filex[0];
+
+				$target_dir = "asset/struktur_organisasi/";
+				//echo $target_dir;
+				$target_file = $target_dir.$filename;
+				if(move_uploaded_file($_FILES['images']['tmp_name'][$key],$target_file)){
+					//$images_arr[] = base_url().'/'.$target_file;
+				}
+
+				//display images without stored
+				/*$extra_info = getimagesize($_FILES['images']['tmp_name'][$key]);
+                $images_arr[] = "data:" . $extra_info["mime"] . ";base64," . base64_encode(file_get_contents($_FILES['images']['tmp_name'][$key]));*/
+			}
+		}
+		$data['active_tentang'] = 1;
+		$data['tentang'] = $this->ypki->getTentangKami($task, $data['instansi']);
+
+		$this->load->view("content_admin_header", $data);
+		$this->load->view("content_admin_".$task);
 		$this->load->view("content_admin_footer");
 
 		$this->session->unset_userdata('update_confirm');
