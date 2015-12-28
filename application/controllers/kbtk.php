@@ -125,30 +125,47 @@ class Kbtk extends CI_Controller {
 		$this->load->view("footer");
 	}
 
-	public function profil()
+	public function profil($task)
 	{
 		$this->load->model("ypki");
 		$this->load->library("calendar");
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Visi Misi - TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
 
-		$visi = $this->ypki->getTentangKami('visi_misi', $data['instansi']);
-		$tujuan_sekolah = $this->ypki->getTentangKami('tujuan_sekolah', $data['instansi']);
-		$visi = $visi[0];
-		$tujuan_sekolah = $tujuan_sekolah[0];
-		$visi->visi = parse($visi->visi);
-		$visi->misi = parse($visi->misi);
-		$tujuan_sekolah->tujuan_sekolah = parse($tujuan_sekolah->tujuan_sekolah);
+		$profil = $this->ypki->getProfil($task, $data['instansi']);
 
-		$data['visi'] = $visi;
-		$data['tujuan_sekolah'] = $tujuan_sekolah;
+		if($task == 'visi_misi') {
+			$data['html_title'] = "Visi Misi - TK Tunas Kasih";
+			$data['profil'] = 'visi_misi';
+			$visi = $profil[0];
+			$visi->visi = parse($visi->visi);
+			$visi->misi = parse($visi->misi);
+			$data['visi'] = $visi;
+		}
+		if($task == 'tujuan_sekolah') {
+			$data['html_title'] = "Tujuan Sekolah - TK Tunas Kasih";
+			$data['judul_profil'] = 'Tujuan Sekolah';
+		}
+		if($task == 'sejarah_singkat') {
+			$data['html_title'] = "Sejarah Singkat - TK Tunas Kasih";
+			$data['judul_profil'] = 'Sejarah Singkat';
+		}
+		if($task == 'struktur_organisasi') {
+			$data['html_title'] = "Struktur Organisasi - TK Tunas Kasih";
+			$data['judul_profil'] = 'Struktur Organisasi';
+		}
+
+		if($task != 'visi_misi') {
+			$profil = parse($profil[0]->$task);
+			$data['profil'] = $task;
+			$data[$task] = $profil;
+		}
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("content_visi");
+		$this->load->view("content_profil");
 		$this->load->view("footer");
 	}
 

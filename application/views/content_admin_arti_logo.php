@@ -13,8 +13,9 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-bookmark"></i> Arti Logo
+                        <i class="fa fa-bookmark"></i> Profil
                     </li>
+                    <li class="active">Arti Logo</li>
                 </ol>
             </div>
             <!-- /.row -->
@@ -61,7 +62,7 @@
                 <form id="form-berita-baru" role="form" method="post" action="" enctype="multipart/form-data">
 
                     <?php
-                    $clogo = $tentang[0]->arti_logo;
+                    $clogo = $profil[0]->arti_logo;
                     ?>
 
                     <div class="form-group">

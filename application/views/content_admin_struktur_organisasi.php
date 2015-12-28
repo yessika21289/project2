@@ -13,8 +13,9 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-bookmark"></i> Struktur Organisasi
+                        <i class="fa fa-bookmark"></i> Profil
                     </li>
+                    <li class="active">Struktur Organisasi</li>
                 </ol>
             </div>
             <!-- /.row -->
@@ -61,7 +62,7 @@
                 <form id="form-berita-baru" role="form" method="post" action="" enctype="multipart/form-data">
 
                     <?php
-                    $corganisasi = $tentang[0]->struktur_organisasi;
+                    $corganisasi = $profil[0]->struktur_organisasi;
                     ?>
 
                     <div class="form-group">

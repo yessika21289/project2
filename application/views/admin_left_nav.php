@@ -48,36 +48,36 @@
                     </li>
                 </ul>
             </li>
-            <li class="<?php echo (isset($active_tentang)) ? 'active' : ''?>">
+            <li class="<?php echo (isset($active_profil)) ? 'active' : ''?>">
                 <a href="javascript:;" data-toggle="collapse" data-target="#drop-tentang">
                     <i class="fa fa-fw fa-bookmark"></i>
-                        Tentang Kami
+                        Profil
                     <i class="fa fa-fw fa-caret-down"></i>
                 </a>
                 <ul id="drop-tentang"
-                    class="<?php echo (isset($active_tentang)) ? 'collapse in' : 'collapse'?>">
+                    class="<?php echo (isset($active_profil)) ? 'collapse in' : 'collapse'?>">
                     <li>
-                        <a href="<?php echo base_url()?>admin/tentang_kami/visi_misi">Visi & Misi</a>
+                        <a href="<?php echo base_url()?>admin/profil/visi_misi">Visi & Misi</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>admin/tentang_kami/tujuan_sekolah">Tujuan Sekolah</a>
+                        <a href="<?php echo base_url()?>admin/profil/tujuan_sekolah">Tujuan Sekolah</a>
                     </li>
                     <?php if($instansi == 'ypki'): ?>
                         <li>
-                            <a href="<?php echo base_url()?>admin/tentang_kami/nilai_kristiani">Nilai Kristiani</a>
+                            <a href="<?php echo base_url()?>admin/profil/nilai_kristiani">Nilai Kristiani</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url()?>admin/tentang_kami/motto">Motto</a>
+                            <a href="<?php echo base_url()?>admin/profil/motto">Motto</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url()?>admin/tentang_kami/arti_logo">Arti Logo</a>
+                            <a href="<?php echo base_url()?>admin/profil/arti_logo">Arti Logo</a>
                         </li>
                     <?php endif; ?>
                     <li>
-                        <a href="<?php echo base_url()?>admin/tentang_kami/sejarah_singkat">Sejarah Singkat</a>
+                        <a href="<?php echo base_url()?>admin/profil/sejarah_singkat">Sejarah Singkat</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>admin/tentang_kami/struktur_organisasi">Struktur Organisasi</a>
+                        <a href="<?php echo base_url()?>admin/profil/struktur_organisasi">Struktur Organisasi</a>
                     </li>
                 </ul>
             </li>

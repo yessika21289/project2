@@ -765,15 +765,15 @@
 			return $result->result();
 		}
 
-		public function getTentangKami($task, $instansi = "ypki"){
+		public function getProfil($task, $instansi = "ypki"){
 			$this->db->where('instansi', $instansi);
 			if($task == 'visi_misi') $this->db->select('visi, misi');
 			else $this->db->select($task);
-			$query = $this->db->get('tentang_kami');
+			$query = $this->db->get('profil');
 			return $query->result();
 		}		
 
-		public function updateTentangKami($task, $instansi = "ypki", $post){
+		public function updateProfil($task, $instansi = "ypki", $post){
 			if($task == 'visi_misi') {
 				$data = array(
 					'visi' => $post['visi'],
@@ -785,7 +785,7 @@
 				);
 			}
 			$this->db->where('instansi', $instansi);
-			$this->db->update('tentang_kami', $data);
+			$this->db->update('profil', $data);
 			return true;
 		}	
 

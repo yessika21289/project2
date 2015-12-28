@@ -13,8 +13,9 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-bookmark"></i> Visi & Misi
+                        <i class="fa fa-bookmark"></i> Profil
                     </li>
+                    <li class="active">Visi & Misi</li>
                 </ol>
             </div>
         <!-- /.row -->
@@ -59,8 +60,8 @@
                 <form id="form-berita-baru" role="form" method="post" action="" enctype="multipart/form-data">
 
                     <?php
-                        $cvisi = $tentang[0]->visi;
-                        $cmisi = $tentang[0]->misi;
+                        $cvisi = $profil[0]->visi;
+                        $cmisi = $profil[0]->misi;
                     ?>
 
                     <div class="form-group">

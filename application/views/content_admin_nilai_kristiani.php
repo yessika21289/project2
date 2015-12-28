@@ -13,8 +13,9 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-bookmark"></i> Nilai Kristiani
+                        <i class="fa fa-bookmark"></i> Profil
                     </li>
+                    <li class="active">Nilai Kristiani</li>
                 </ol>
             </div>
             <!-- /.row -->
@@ -61,7 +62,7 @@
                 <form id="form-berita-baru" role="form" method="post" action="" enctype="multipart/form-data">
 
                     <?php
-                    $cnilai = $tentang[0]->nilai_kristiani;
+                    $cnilai = $profil[0]->nilai_kristiani;
                     ?>
 
                     <div class="form-group">
