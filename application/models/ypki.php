@@ -1007,6 +1007,39 @@
 			}
 			return true;
 		}
+
+		public function getKurikulum($instansi = "ypki"){
+
+			$sqlstr = "SELECT * FROM kurikulum WHERE instansi = '". $instansi. "'";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function updateKurikulum($instansi = "ypki", $post){
+			$sqlstr = "SELECT * FROM kurikulum WHERE instansi = '".$instansi."'";
+			$is_exist = $this->db->query($sqlstr);
+			$is_exist = $is_exist->result();
+
+			if($is_exist) {
+				foreach ($post as $jenis => $deskripsi) {
+					$sqlstr = "UPDATE kurikulum SET
+								deskripsi = '" . trim(strip_tags($deskripsi, $this->allowed_tags)) . "'
+								WHERE instansi = '" . $instansi . "' and jenis = '" . $jenis ."'";
+					$result = $this->db->query($sqlstr);
+				}
+			} else {
+				$id = 1;
+				foreach ($post as $jenis => $deskripsi) {
+					if($jenis == "submit") break;
+
+					$sqlstr = "INSERT INTO kurikulum
+								VALUES($id, '".$jenis."', '".trim(strip_tags($deskripsi, $this->allowed_tags))."' ,'".$instansi."')";
+					$result = $this->db->query($sqlstr);
+					$id++;
+				}
+			}
+			return true;
+		}
 	}
 	
 ?>

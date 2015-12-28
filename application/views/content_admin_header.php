@@ -29,7 +29,7 @@
                 "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
             ],
 
-            toolbar1: "bold italic underline strikethrough subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink | media",
+            toolbar1: "bold italic underline strikethrough subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink | media image",
 
             menubar: false,
             toolbar_items_size: 'small',
