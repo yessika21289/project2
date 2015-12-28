@@ -568,7 +568,7 @@ class Admin extends MY_Controller {
 
 		$this->session->unset_userdata('update_confirm');
 	}
-	
+
 	public function fasilitas()
 	{
 		$this->load->model('ypki');
@@ -620,6 +620,62 @@ class Admin extends MY_Controller {
 
 		$this->load->view("content_admin_header", $data);
 		$this->load->view("content_admin_kurikulum");
+		$this->load->view("content_admin_footer");
+
+		$this->session->unset_userdata('update_confirm');
+	}
+
+	public function personalia()
+	{
+		$this->load->model('ypki');
+
+		$data = $this->session->all_userdata();
+		$instansi = $this->session->userdata('instansi');
+
+		if( isset($_POST['submit']) )
+		{
+			if($this->ypki->updatePersonalia($instansi, $_POST))
+			{
+				$data['update_confirm'] = 1;
+			}
+			else
+			{
+				$data['update_confirm'] = 0;
+			}
+		}
+
+		$data['personalia'] = $this->ypki->getPersonalia($instansi);
+
+		$this->load->view("content_admin_header", $data);
+		$this->load->view("content_admin_personalia");
+		$this->load->view("content_admin_footer");
+
+		$this->session->unset_userdata('update_confirm');
+	}
+
+	public function kesiswaan()
+	{
+		$this->load->model('ypki');
+
+		$data = $this->session->all_userdata();
+		$instansi = $this->session->userdata('instansi');
+
+		if( isset($_POST['submit']) )
+		{
+			if($this->ypki->updateKesiswaan($instansi, $_POST))
+			{
+				$data['update_confirm'] = 1;
+			}
+			else
+			{
+				$data['update_confirm'] = 0;
+			}
+		}
+
+		$data['kesiswaan'] = $this->ypki->getKesiswaan($instansi);
+
+		$this->load->view("content_admin_header", $data);
+		$this->load->view("content_admin_kesiswaan");
 		$this->load->view("content_admin_footer");
 
 		$this->session->unset_userdata('update_confirm');

@@ -45,6 +45,7 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'visi'; ?> ">Visi - Misi - Nilai</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'agenda'; ?> ">Agenda Kegiatan</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'personalia'; ?> ">Personalia</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kontak'; ?> ">Hubungi Kami</a></li>
 			</ul>
@@ -60,6 +61,8 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/fasilitas'; ?> ">Fasilitas</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/kurikulum'; ?> ">Kurikulum</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/personalia'; ?> ">Personalia</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/kontak'; ?> ">Hubungi Kami</a></li>
 			</ul>
@@ -75,6 +78,8 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/fasilitas'; ?> ">Fasilitas</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/kurikulum'; ?> ">Kurikulum</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/personalia'; ?> ">Personalia</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/kontak'; ?> ">Hubungi Kami</a></li>
 			</ul>
@@ -90,6 +95,8 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/fasilitas'; ?> ">Fasilitas</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/kurikulum'; ?> ">Kurikulum</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/personalia'; ?> ">Personalia</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/kontak'; ?> ">Hubungi Kami</a></li>
 			</ul>
@@ -105,6 +112,8 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/fasilitas'; ?> ">Fasilitas</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/kurikulum'; ?> ">Kurikulum</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/personalia'; ?> ">Personalia</a></li>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/kontak'; ?> ">Hubungi Kami</a></li>
 			</ul>

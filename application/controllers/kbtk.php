@@ -435,6 +435,33 @@ class Kbtk extends CI_Controller {
 		$this->load->view("footer");
 	}
 
+	public function personalia()
+	{
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Personalia - KB & TK Tunas Kasih";
+		$data['instansi'] = "kbtk";
+
+		$kurikulum = $this->ypki->getPersonalia($data['instansi']);
+		
+		if(!empty($personalia)) {
+            foreach ($personalia as $key => $deskripsi) {
+                $person[$personalia[$key]->jenis] = $personalia[$key]->deskripsi;
+            }
+            $pimpinan = (isset($person['pimpinan'])) ? trim($person['pimpinan']) : '';
+            $pengajar = (isset($person['pengajar'])) ? trim($person['pengajar']) : '';
+            $tenaga_pendidik = (isset($person['tenaga_pendidik'])) ? trim($person['tenaga_pendidik']) : '';
+            $siswa = (isset($person['siswa'])) ? trim($person['siswa']) : '';
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_personalia");
+		$this->load->view("footer");
+	}
+
 	public function kurikulum()
 	{
 		$this->load->model("ypki");
@@ -457,6 +484,32 @@ class Kbtk extends CI_Controller {
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
 		$this->load->view("content_kurikulum");
+		$this->load->view("footer");
+	}
+
+	public function kesiswaan()
+	{
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Kesiswaan - KB & TK Tunas Kasih";
+		$data['instansi'] = "kbtk";
+
+		$kesiswaan = $this->ypki->getKesiswaan($data['instansi']);
+		
+		if(!empty($kesiswaan)) {
+            foreach ($kesiswaan as $key => $deskripsi) {
+                $siswa[$kesiswaan[$key]->jenis] = $kesiswaan[$key]->deskripsi;
+            }
+            $data['kesiswaan']['pelajaran'] = (isset($siswa['pelajaran'])) ? trim($siswa['pelajaran']) : '';
+            $data['kesiswaan']['administrasi'] = (isset($siswa['administrasi'])) ? trim($siswa['administrasi']) : '';
+            $data['kesiswaan']['osis'] = (isset($siswa['osis'])) ? trim($siswa['osis']) : '';
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_kesiswaan");
 		$this->load->view("footer");
 	}
 

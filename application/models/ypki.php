@@ -1073,6 +1073,72 @@
 			}
 			return true;
 		}
+
+		public function getPersonalia($instansi = "ypki"){
+
+			$sqlstr = "SELECT * FROM personalia WHERE instansi = '". $instansi. "'";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function updatePersonalia($instansi = "ypki", $post){
+			$sqlstr = "SELECT * FROM personalia WHERE instansi = '".$instansi."'";
+			$is_exist = $this->db->query($sqlstr);
+			$is_exist = $is_exist->result();
+
+			if($is_exist) {
+				foreach ($post as $jenis => $deskripsi) {
+					$sqlstr = "UPDATE personalia SET
+								deskripsi = '" . trim(strip_tags($deskripsi, $this->allowed_tags)) . "'
+								WHERE instansi = '" . $instansi . "' and jenis = '" . $jenis ."'";
+					$result = $this->db->query($sqlstr);
+				}
+			} else {
+				$id = 1;
+				foreach ($post as $jenis => $deskripsi) {
+					if($jenis == "submit") break;
+
+					$sqlstr = "INSERT INTO personalia
+								VALUES($id, '".$jenis."', '".trim(strip_tags($deskripsi, $this->allowed_tags))."' ,'".$instansi."')";
+					$result = $this->db->query($sqlstr);
+					$id++;
+				}
+			}
+			return true;
+		}
+
+		public function getKesiswaan($instansi = "ypki"){
+
+			$sqlstr = "SELECT * FROM kesiswaan WHERE instansi = '". $instansi. "'";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function updateKesiswaan($instansi = "ypki", $post){
+			$sqlstr = "SELECT * FROM kesiswaan WHERE instansi = '".$instansi."'";
+			$is_exist = $this->db->query($sqlstr);
+			$is_exist = $is_exist->result();
+
+			if($is_exist) {
+				foreach ($post as $jenis => $deskripsi) {
+					$sqlstr = "UPDATE kesiswaan SET
+								deskripsi = '" . trim(strip_tags($deskripsi, $this->allowed_tags)) . "'
+								WHERE instansi = '" . $instansi . "' and jenis = '" . $jenis ."'";
+					$result = $this->db->query($sqlstr);
+				}
+			} else {
+				$id = 1;
+				foreach ($post as $jenis => $deskripsi) {
+					if($jenis == "submit") break;
+
+					$sqlstr = "INSERT INTO kesiswaan
+								VALUES($id, '".$jenis."', '".trim(strip_tags($deskripsi, $this->allowed_tags))."' ,'".$instansi."')";
+					$result = $this->db->query($sqlstr);
+					$id++;
+				}
+			}
+			return true;
+		}
 	}
 	
 ?>

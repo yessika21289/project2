@@ -61,7 +61,13 @@
             <li>
                 <a href="<?php echo base_url()?>admin/kurikulum"><i class="fa fa-bars"></i> Kurikulum</a>
             </li>
+            <li>
+                <a href="<?php echo base_url()?>admin/kesiswaan"><i class="fa fa-user"></i> Kesiswaan</a>
+            </li>
             <?php }?>
+            <li>
+                <a href="<?php echo base_url()?>admin/personalia"><i class="fa fa-users"></i> Personalia</a>
+            </li>
         </ul>
     </div>
     <!-- /.navbar-collapse -->
