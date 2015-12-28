@@ -568,4 +568,32 @@ class Admin extends MY_Controller {
 
 		$this->session->unset_userdata('update_confirm');
 	}
+
+	public function kurikulum()
+	{
+		$this->load->model('ypki');
+
+		$data = $this->session->all_userdata();
+		$instansi = $this->session->userdata('instansi');
+
+		if( isset($_POST['submit']) )
+		{
+			if($this->ypki->updateKurikulum($instansi, $_POST))
+			{
+				$data['update_confirm'] = 1;
+			}
+			else
+			{
+				$data['update_confirm'] = 0;
+			}
+		}
+
+		$data['kurikulum'] = $this->ypki->getKurikulum($instansi);
+
+		$this->load->view("content_admin_header", $data);
+		$this->load->view("content_admin_kurikulum");
+		$this->load->view("content_admin_footer");
+
+		$this->session->unset_userdata('update_confirm');
+	}
 }
