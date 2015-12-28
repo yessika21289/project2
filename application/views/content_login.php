@@ -1,6 +1,6 @@
 <div id="login">
 
-  <form role="form" action=" <?php echo base_url()."login/process" ?> " method="post">
+  <form role="form" action=" <?php echo base_url()."admin/login_process" ?> " method="post">
     <div class="form-group">
       <label for="inputUsername">Username</label>
       <input type="text" class="form-control" id="inputUsersname" name="username" placeholder="Username">

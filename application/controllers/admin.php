@@ -16,6 +16,39 @@ class Admin extends MY_Controller {
 		}
 	}
 
+	public function login_process()
+	{
+		$username = $this->security->xss_clean($this->input->post('username'));
+
+		if (!empty($username))
+		{
+			$data = $this->session->all_userdata();
+			$this->load->model('ypki');
+			$result = $this->ypki->validate();
+
+			if ($result)
+			{
+				redirect(base_url().'admin/dashboard');
+			}
+			else
+			{
+				$msg =
+				"
+					<div class='alert alert-danger' role='alert'>
+						<strong>Login gagal!</strong>
+				        <br/>Username/Password tidak cocok.
+				    </div>  
+				";
+				$this->index($msg);
+			}
+		}
+		else
+		{
+			redirect(base_url().'admin');	
+		}
+		
+	}
+
 	public function dashboard()
 	{
 		$this->load->model('ypki');
