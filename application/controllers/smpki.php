@@ -404,6 +404,37 @@ class Smpki extends CI_Controller {
 		$this->load->view("footer");
 	}
 
+	public function fasilitas()
+	{
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Fasilitas - SMP Kristen Indonesia";
+		$data['instansi'] = "smpki";
+
+		$fasilitas = $this->ypki->getFasilitas($data['instansi']);
+		if(!empty($fasilitas)) {
+            foreach ($fasilitas as $key => $deskripsi) {
+                $fas[$fasilitas[$key]->jenis] = $fasilitas[$key]->deskripsi;
+            }
+            $data['fasilitas']['sekolah'] = (isset($fas['sekolah'])) ? trim($fas['sekolah']) : '';
+            $data['fasilitas']['ruang_belajar'] = (isset($fas['ruang_belajar'])) ? trim($fas['ruang_belajar']) : '';
+            $data['fasilitas']['laboratorium'] = (isset($fas['laboratorium'])) ? trim($fas['laboratorium']) : '';
+            $data['fasilitas']['perpustakaan'] = (isset($fas['perpustakaan'])) ? trim($fas['perpustakaan']) : '';
+            $data['fasilitas']['olahraga'] = (isset($fas['olahraga'])) ? trim($fas['olahraga']) : '';
+            $data['fasilitas']['komputer'] = (isset($fas['komputer'])) ? trim($fas['komputer']) : '';
+            $data['fasilitas']['fasilitas_lain'] = (isset($fas['fasilitas_lain'])) ? trim($fas['fasilitas_lain']) : '';
+            $data['fasilitas']['multimedia'] = (isset($fas['multimedia'])) ? trim($fas['multimedia']) : '';
+            $data['fasilitas']['aula'] = (isset($fas['aula'])) ? trim($fas['aula']) : '';
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_fasilitas");
+		$this->load->view("footer");
+	}
+
 	public function search($cmd, $key, $page = NULL)
 	{
 		if ($cmd == NULL) {
