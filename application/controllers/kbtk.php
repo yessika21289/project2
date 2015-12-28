@@ -425,7 +425,7 @@ class Kbtk extends CI_Controller {
             $data['fasilitas']['olahraga'] = (isset($fas['olahraga'])) ? trim($fas['olahraga']) : '';
             $data['fasilitas']['komputer'] = (isset($fas['komputer'])) ? trim($fas['komputer']) : '';
             $data['fasilitas']['fasilitas_lain'] = (isset($fas['fasilitas_lain'])) ? trim($fas['fasilitas_lain']) : '';
-            $data['fasilitas']['multimedia'] = (isset($fas['multimedia']))) ? trim($fas['multimedia']) : '';
+            $data['fasilitas']['multimedia'] = (isset($fas['multimedia'])) ? trim($fas['multimedia']) : '';
             $data['fasilitas']['aula'] = (isset($fas['aula'])) ? trim($fas['aula']) : '';
 		}
 
