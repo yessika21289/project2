@@ -435,6 +435,32 @@ class Smaki extends CI_Controller {
 		$this->load->view("footer");
 	}
 
+	public function kurikulum()
+	{
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Kurikulum - SMA Kristen Indonesia";
+		$data['instansi'] = "smaki";
+
+		$kurikulum = $this->ypki->getKurikulum($data['instansi']);
+		
+		if(!empty($kurikulum)) {
+            foreach ($kurikulum as $key => $deskripsi) {
+                $kur[$kurikulum[$key]->jenis] = $kurikulum[$key]->deskripsi;
+            }
+            $data['kurikulum']['intrakurikuler'] = (isset($kur['intrakurikuler'])) ? trim($kur['intrakurikuler']) : '';
+            $data['kurikulum']['ekstrakurikuler'] = (isset($kur['ekstrakurikuler'])) ? trim($kur['ekstrakurikuler']) : '';
+            $data['kurikulum']['asrama'] = (isset($kur['asrama'])) ? trim($kur['asrama']) : '';
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_kurikulum");
+		$this->load->view("footer");
+	}
+
 	public function search($cmd, $key, $page = NULL)
 	{
 		if ($cmd == NULL) {

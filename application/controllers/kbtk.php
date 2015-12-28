@@ -435,6 +435,31 @@ class Kbtk extends CI_Controller {
 		$this->load->view("footer");
 	}
 
+	public function kurikulum()
+	{
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Kurikulum - KB & TK Tunas Kasih";
+		$data['instansi'] = "kbtk";
+
+		$kurikulum = $this->ypki->getKurikulum($data['instansi']);
+		
+		if(!empty($kurikulum)) {
+            foreach ($kurikulum as $key => $deskripsi) {
+                $kur[$kurikulum[$key]->jenis] = $kurikulum[$key]->deskripsi;
+            }
+            $data['kurikulum']['intrakurikuler'] = (isset($kur['intrakurikuler'])) ? trim($kur['intrakurikuler']) : '';
+            $data['kurikulum']['ekstrakurikuler'] = (isset($kur['ekstrakurikuler'])) ? trim($kur['ekstrakurikuler']) : '';
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_kurikulum");
+		$this->load->view("footer");
+	}
+
 	public function search($cmd, $key, $page = NULL)
 	{
 		if ($cmd == NULL) {
