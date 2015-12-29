@@ -46,7 +46,28 @@
 					<span>YPKI<br/>MAGELANG</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-ypki">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li class="dropdown-header" role="presentation">Profil</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'profil/visi_misi'; ?> ">Visi & Misi</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'profil/tujuan_sekolah'; ?> ">Tujuan Sekolah</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'profil/nilai_kristiani'; ?> ">Nilai Kristiani</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'profil/motto'; ?> ">Motto</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'profil/arti_logo'; ?> ">Arti Logo</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'profil/sejarah_singkat'; ?> ">Sejarah Singkat</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'profil/struktur_organisasi'; ?> ">Struktur Organisasi</a>
+					</li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'personalia'; ?> ">Personalia</a></li>
@@ -60,7 +81,19 @@
 				<span>KB & TK<br/>TUNAS KASIH</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-kbtk">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li class="dropdown-header" role="presentation">Profil</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/profil/visi_misi'; ?> ">Visi & Misi</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/profil/tujuan_sekolah'; ?> ">Tujuan Sekolah</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/profil/sejarah_singkat'; ?> ">Sejarah Singkat</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/profil/struktur_organisasi'; ?> ">Struktur Organisasi</a>
+					</li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/fasilitas'; ?> ">Fasilitas</a></li>
@@ -82,7 +115,19 @@
 				<span>SDKI<br/>&nbsp</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-sdki">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li class="dropdown-header" role="presentation">Profil</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/profil/visi_misi'; ?> ">Visi & Misi</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/profil/tujuan_sekolah'; ?> ">Tujuan Sekolah</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/profil/sejarah_singkat'; ?> ">Sejarah Singkat</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/profil/struktur_organisasi'; ?> ">Struktur Organisasi</a>
+					</li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/fasilitas'; ?> ">Fasilitas</a></li>
@@ -104,7 +149,19 @@
 				<span>SMPKI<br/>&nbsp</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-smpki">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li class="dropdown-header" role="presentation">Profil</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/profil/visi_misi'; ?> ">Visi & Misi</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/profil/tujuan_sekolah'; ?> ">Tujuan Sekolah</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/profil/sejarah_singkat'; ?> ">Sejarah Singkat</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/profil/struktur_organisasi'; ?> ">Struktur Organisasi</a>
+					</li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/fasilitas'; ?> ">Fasilitas</a></li>
@@ -126,7 +183,19 @@
 				<span>SMAKI<br/>BERASRAMA</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-smaki">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/visi'; ?> ">Visi - Misi - Nilai</a></li>
+				<li class="dropdown-header" role="presentation">Profil</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/profil/visi_misi'; ?> ">Visi & Misi</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/profil/tujuan_sekolah'; ?> ">Tujuan Sekolah</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/profil/sejarah_singkat'; ?> ">Sejarah Singkat</a>
+					</li>
+					<li class="dropdown-profil" role="presentation">
+						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/profil/struktur_organisasi'; ?> ">Struktur Organisasi</a>
+					</li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/berita'; ?> ">Berita</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/agenda'; ?> ">Agenda Kegiatan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/fasilitas'; ?> ">Fasilitas</a></li>

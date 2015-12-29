@@ -48,8 +48,38 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="<?php echo base_url()?>admin/visi"><i class="fa fa-fw fa-bookmark"></i> Visi & Misi</a>
+            <li class="<?php echo (isset($active_profil)) ? 'active' : ''?>">
+                <a href="javascript:;" data-toggle="collapse" data-target="#drop-tentang">
+                    <i class="fa fa-fw fa-bookmark"></i>
+                        Profil
+                    <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+                <ul id="drop-tentang"
+                    class="<?php echo (isset($active_profil)) ? 'collapse in' : 'collapse'?>">
+                    <li>
+                        <a href="<?php echo base_url()?>admin/profil/visi_misi">Visi & Misi</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url()?>admin/profil/tujuan_sekolah">Tujuan Sekolah</a>
+                    </li>
+                    <?php if($instansi == 'ypki'): ?>
+                        <li>
+                            <a href="<?php echo base_url()?>admin/profil/nilai_kristiani">Nilai Kristiani</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url()?>admin/profil/motto">Motto</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url()?>admin/profil/arti_logo">Arti Logo</a>
+                        </li>
+                    <?php endif; ?>
+                    <li>
+                        <a href="<?php echo base_url()?>admin/profil/sejarah_singkat">Sejarah Singkat</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url()?>admin/profil/struktur_organisasi">Struktur Organisasi</a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="<?php echo base_url()?>admin/kontak"><i class="fa fa-phone-square"></i> Info Kontak</a>

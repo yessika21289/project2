@@ -765,32 +765,27 @@
 			return $result->result();
 		}
 
-		public function getVisi($instansi = "ypki"){
-			
-			$sqlstr = "SELECT * FROM visi WHERE instansi = '". $instansi. "'";
-			$result = $this->db->query($sqlstr);
-			return $result->result();
+		public function getProfil($task, $instansi = "ypki"){
+			$this->db->where('instansi', $instansi);
+			if($task == 'visi_misi') $this->db->select('visi, misi');
+			else $this->db->select($task);
+			$query = $this->db->get('profil');
+			return $query->result();
 		}		
 
-		public function updateVisi($instansi = "ypki", $post){
-			if($instansi == 'ypki') {
-				$sqlstr = "UPDATE visi SET
-							visi = '".$post['visi']."',
-							misi = '".$post['misi']."',
-							tujuan_sekolah = '".$post['tujuan_sekolah']."',
-							nilai_kristiani = '".$post['nilai_kristiani']."',
-							motto = '".$post['motto']."',
-							arti_logo = '".$post['arti_logo']."'
-						WHERE instansi = '". $instansi. "'";
+		public function updateProfil($task, $instansi = "ypki", $post){
+			if($task == 'visi_misi') {
+				$data = array(
+					'visi' => $post['visi'],
+					'misi' => $post['misi']
+				);
 			} else {
-				$sqlstr = "UPDATE visi SET
-							visi = '".$post['visi']."',
-							misi = '".$post['misi']."',
-							tujuan_sekolah = '".$post['tujuan_sekolah']."'
-						WHERE instansi = '". $instansi. "'";
+				$data = array(
+					$task => $post[$task]
+				);
 			}
-
-			$result = $this->db->query($sqlstr);
+			$this->db->where('instansi', $instansi);
+			$this->db->update('profil', $data);
 			return true;
 		}	
 

@@ -125,26 +125,47 @@ class Kbtk extends CI_Controller {
 		$this->load->view("footer");
 	}
 
-	public function visi()
+	public function profil($task)
 	{
 		$this->load->model("ypki");
 		$this->load->library("calendar");
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Visi Misi - TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
 
-		$visi = $this->ypki->getVisi($data['instansi']);
-		$visi = $visi[0];
-		$visi->visi = parse($visi->visi);
-		$visi->misi = parse($visi->misi);
+		$profil = $this->ypki->getProfil($task, $data['instansi']);
 
-		$data['visi'] = $visi;
+		if($task == 'visi_misi') {
+			$data['html_title'] = "Visi Misi - KB & TK Tunas Kasih";
+			$data['profil'] = 'visi_misi';
+			$visi = $profil[0];
+			$visi->visi = parse($visi->visi);
+			$visi->misi = parse($visi->misi);
+			$data['visi'] = $visi;
+		}
+		if($task == 'tujuan_sekolah') {
+			$data['html_title'] = "Tujuan Sekolah - KB & TK Tunas Kasih";
+			$data['judul_profil'] = 'Tujuan Sekolah';
+		}
+		if($task == 'sejarah_singkat') {
+			$data['html_title'] = "Sejarah Singkat - KB & TK Tunas Kasih";
+			$data['judul_profil'] = 'Sejarah Singkat';
+		}
+		if($task == 'struktur_organisasi') {
+			$data['html_title'] = "Struktur Organisasi - KB & TK Tunas Kasih";
+			$data['judul_profil'] = 'Struktur Organisasi';
+		}
+
+		if($task != 'visi_misi') {
+			$profil = parse($profil[0]->$task);
+			$data['profil'] = $task;
+			$data[$task] = $profil;
+		}
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("content_visi");
+		$this->load->view("content_profil");
 		$this->load->view("footer");
 	}
 
@@ -168,7 +189,7 @@ class Kbtk extends CI_Controller {
 				$value->konten = parse($value->konten);
 			}
 
-			$data['html_title'] = "Berita - TK Tunas Kasih";
+			$data['html_title'] = "Berita - KB & TK Tunas Kasih";
 
 			$this->load->view("header", $data);
 			$this->load->view("navigator");
@@ -203,7 +224,7 @@ class Kbtk extends CI_Controller {
 				$data['berita']->created = getTanggal($data['berita']->created);
 				$data['label'] = $this->ypki->getLabel($berita[0]->id);
 
-				$data['html_title'] = $data['berita']->judul." - TK Tunas Kasih";
+				$data['html_title'] = $data['berita']->judul." - KB & TK Tunas Kasih";
 				
 				$this->load->view("header", $data);
 				$this->load->view("navigator");
@@ -260,7 +281,7 @@ class Kbtk extends CI_Controller {
 				
 				$data['instansi'] = "kbtk";
 
-				$data['html_title'] = "Agenda - TK Tunas Kasih";
+				$data['html_title'] = "Agenda - KB & TK Tunas Kasih";
 				$data['condition'] = "prev";
 				$data['limit'] = 8;
 
@@ -295,7 +316,7 @@ class Kbtk extends CI_Controller {
 				
 				$data['instansi'] = "kbtk";
 
-				$data['html_title'] = "Agenda - TK Tunas Kasih";
+				$data['html_title'] = "Agenda - KB & TK Tunas Kasih";
 				$data['condition'] = "next";
 				$data['limit'] = 8;
 
@@ -344,7 +365,7 @@ class Kbtk extends CI_Controller {
 				//$data['berita']->konten = nl2br($data['berita']->konten);
 				$data['berita']->created = getTanggal($data['berita']->tanggal, "agenda");
 				
-				$data['html_title'] = $data['berita']->nama." - TK Tunas Kasih";
+				$data['html_title'] = $data['berita']->nama." - KB & TK Tunas Kasih";
 				
 				$this->load->view("header", $data);
 				$this->load->view("navigator");
@@ -371,7 +392,7 @@ class Kbtk extends CI_Controller {
 			$data['judul'] = $this->ypki->getJudulAlbumByDirectory($directory,"kbtk");
 		}
 
-		$data['html_title'] = "Dokumentasi - KB TK";
+		$data['html_title'] = "Dokumentasi - KB & TK Tunas Kasih";
 		$data['instansi'] = "kbtk";
 
 		$this->load->view("header", $data);
@@ -568,7 +589,7 @@ class Kbtk extends CI_Controller {
 
 			$data['berita'] = $berita;
 			$data['show_type'] = "label";
-			$data['html_title'] = "Berita dengan label \"".$key."\" - TK Tunas Kasih";
+			$data['html_title'] = "Berita dengan label \"".$key."\" - KB & TK Tunas Kasih";
 
 			$this->load->view("header", $data);
 			$this->load->view("navigator");
@@ -603,7 +624,7 @@ class Kbtk extends CI_Controller {
 
 			$data['berita'] = $berita;
 			$data['show_type'] = "keyword";
-			$data['html_title'] = "Berita dengan kata kunci \"".$key."\" - TK Tunas Kasih";
+			$data['html_title'] = "Berita dengan kata kunci \"".$key."\" - KB & TK Tunas Kasih";
 
 			$this->load->view("header", $data);
 			$this->load->view("navigator");

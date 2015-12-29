@@ -125,27 +125,47 @@ class Smpki extends CI_Controller {
 		$this->load->view("footer");
 	}
 
-	public function visi()
+	public function profil($task)
 	{
 		$this->load->model("ypki");
 		$this->load->library("calendar");
 
 		$data = $this->session->all_userdata();
 
-		$data['html_title'] = "Visi Misi - SMP Kristen Indonesia";
 		$data['instansi'] = "smpki";
 
-		$visi = $this->ypki->getVisi($data['instansi']);
-		$visi = $visi[0];
-		$visi->visi = parse($visi->visi);
-		$visi->misi = parse($visi->misi);
-		$visi->tujuan_sekolah = parse($visi->tujuan_sekolah);
+		$profil = $this->ypki->getProfil($task, $data['instansi']);
 
-		$data['visi'] = $visi;
+		if($task == 'visi_misi') {
+			$data['html_title'] = "Visi Misi - SD Kristen Indonesia";
+			$data['profil'] = 'visi_misi';
+			$visi = $profil[0];
+			$visi->visi = parse($visi->visi);
+			$visi->misi = parse($visi->misi);
+			$data['visi'] = $visi;
+		}
+		if($task == 'tujuan_sekolah') {
+			$data['html_title'] = "Tujuan Sekolah - SMP Kristen Indonesia";
+			$data['judul_profil'] = 'Tujuan Sekolah';
+		}
+		if($task == 'sejarah_singkat') {
+			$data['html_title'] = "Sejarah Singkat - SMP Kristen Indonesia";
+			$data['judul_profil'] = 'Sejarah Singkat';
+		}
+		if($task == 'struktur_organisasi') {
+			$data['html_title'] = "Struktur Organisasi - SMP Kristen Indonesia";
+			$data['judul_profil'] = 'Struktur Organisasi';
+		}
+
+		if($task != 'visi_misi') {
+			$profil = parse($profil[0]->$task);
+			$data['profil'] = $task;
+			$data[$task] = $profil;
+		}
 
 		$this->load->view("header", $data);
 		$this->load->view("navigator");
-		$this->load->view("content_visi");
+		$this->load->view("content_profil");
 		$this->load->view("footer");
 	}
 

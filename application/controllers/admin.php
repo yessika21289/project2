@@ -740,4 +740,33 @@ class Admin extends MY_Controller {
 		$this->load->view("content_admin_program");
 		$this->load->view("content_admin_footer");
 	}
+	
+	public function profil($task = null)
+	{
+		$this->load->model('ypki');
+
+		$data = $this->session->all_userdata();
+		$data['instansi'] = $this->session->userdata('instansi');
+
+		if( isset($_POST['submit']) )
+		{
+			if($this->ypki->updateProfil($task, $data['instansi'], $_POST))
+			{
+				$data['update_confirm'] = 1;
+			}
+			else
+			{
+				$data['update_confirm'] = 0;
+			}
+		}
+
+		$data['active_profil'] = 1;
+		$data['profil'] = $this->ypki->getProfil($task, $data['instansi']);
+
+		$this->load->view("content_admin_header", $data);
+		$this->load->view("content_admin_".$task);
+		$this->load->view("content_admin_footer");
+
+		$this->session->unset_userdata('update_confirm');
+	}
 }
