@@ -95,7 +95,7 @@
                 <a href="<?php echo base_url()?>admin/kesiswaan"><i class="fa fa-user"></i> Kesiswaan</a>
             </li>
             <li>
-                <a href="<?php echo base_url()?>admin/program"><i class="fa fa-book"></i> Program Penerimaan Peserta Didik Baru</a>
+                <a href="<?php echo base_url()?>admin/program"><i class="fa fa-book"></i> Penerimaan Peserta Didik Baru</a>
             </li>
             <?php }?>
             <li>

@@ -81,6 +81,11 @@
 				<span>KB & TK<br/>TUNAS KASIH</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-kbtk">
+				<?php if(isset($instansi_program['kbtk']) && $instansi_program['kbtk'] == 1): ?>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/program'; ?> ">
+							Penerimaan <br/> Peserta Didik Baru</a>
+					</li>
+				<?php endif; ?>
 				<li class="dropdown-header" role="presentation">Profil</li>
 					<li class="dropdown-profil" role="presentation">
 						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/profil/visi_misi'; ?> ">Visi & Misi</a>
@@ -102,11 +107,6 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/kontak'; ?> ">Hubungi Kami</a></li>
-				<?php if(isset($instansi_program['kbtk']) && $instansi_program['kbtk'] == 1): ?>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/program'; ?> ">
-						Program Penerimaan <br/> Peserta Didik Baru</a>
-				</li>
-				<?php endif; ?>
 			</ul>
 		</div>	
 
@@ -115,6 +115,11 @@
 				<span>SDKI<br/>&nbsp</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-sdki">
+				<?php if(isset($instansi_program['sdki']) && $instansi_program['sdki'] == 1): ?>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/program'; ?> ">
+							Penerimaan <br/> Peserta Didik Baru</a>
+					</li>
+				<?php endif; ?>
 				<li class="dropdown-header" role="presentation">Profil</li>
 					<li class="dropdown-profil" role="presentation">
 						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/profil/visi_misi'; ?> ">Visi & Misi</a>
@@ -136,11 +141,6 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/kontak'; ?> ">Hubungi Kami</a></li>
-				<?php if(isset($instansi_program['sdki']) && $instansi_program['sdki'] == 1): ?>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/program'; ?> ">
-						Program Penerimaan <br/> Peserta Didik Baru</a>
-				</li>
-				<?php endif; ?>
 			</ul>
 		</div>	
 
@@ -149,6 +149,11 @@
 				<span>SMPKI<br/>&nbsp</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-smpki">
+				<?php if(isset($instansi_program['smpki']) && $instansi_program['smpki'] == 1): ?>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/program'; ?> ">
+							Penerimaan <br/> Peserta Didik Baru</a>
+					</li>
+				<?php endif; ?>
 				<li class="dropdown-header" role="presentation">Profil</li>
 					<li class="dropdown-profil" role="presentation">
 						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/profil/visi_misi'; ?> ">Visi & Misi</a>
@@ -170,11 +175,6 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/kontak'; ?> ">Hubungi Kami</a></li>
-				<?php if(isset($instansi_program['smpki']) && $instansi_program['smpki'] == 1): ?>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/program'; ?> ">
-						Program Penerimaan <br/> Peserta Didik Baru</a>
-				</li>
-				<?php endif; ?>
 			</ul>
 		</div>	
 
@@ -183,6 +183,11 @@
 				<span>SMAKI<br/>BERASRAMA</span>
 			</button>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-smaki">
+				<?php if(isset($instansi_program['smaki']) && $instansi_program['smaki'] == 1): ?>
+					<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/program'; ?> ">
+							Penerimaan <br/> Peserta Didik Baru</a>
+					</li>
+				<?php endif; ?>
 				<li class="dropdown-header" role="presentation">Profil</li>
 					<li class="dropdown-profil" role="presentation">
 						<a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/profil/visi_misi'; ?> ">Visi & Misi</a>
@@ -204,11 +209,6 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/kontak'; ?> ">Hubungi Kami</a></li>
-				<?php if(isset($instansi_program['smaki']) && $instansi_program['smaki'] == 1): ?>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/program'; ?> ">
-						Program Penerimaan <br/> Peserta Didik Baru</a>
-				</li>
-				<?php endif; ?>
 			</ul>
 		</div>		
 
