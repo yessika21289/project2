@@ -713,4 +713,31 @@ class Admin extends MY_Controller {
 
 		$this->session->unset_userdata('update_confirm');
 	}
+
+	public function program() {
+		$this->load->model('ypki');
+		$data = $this->session->all_userdata();
+		$instansi = $this->session->userdata('instansi');
+		$data['program'] = $this->ypki->getProgram($instansi);
+
+		if(isset($_POST['submit'])) {
+			if(!empty($data['program'])) {
+				if($this->ypki->updateProgram($instansi, $_POST)) {
+					$data['program'] = $this->ypki->getProgram($instansi);
+					$data['update_confirm'] = 1;
+				}
+				else $data['update_confirm'] = 0;
+			} else {
+				if($this->ypki->addProgram($instansi, $_POST)) {
+					$data['program'] = $this->ypki->getProgram($instansi);
+					$data['update_confirm'] = 1;
+				}
+				else $data['update_confirm'] = 0;
+			}
+		}
+
+		$this->load->view("content_admin_header", $data);
+		$this->load->view("content_admin_program");
+		$this->load->view("content_admin_footer");
+	}
 }

@@ -37,6 +37,10 @@
 
 	<div id="navigator-bar">
 
+		<?php
+			$this->load->model("ypki");
+			$instansi_program = $this->ypki->getAllProgram();
+		?>
 		<div class="dropdown">
 			<button class="dropdown-toggle" id="drop-ypki" data-hover="dropdown">
 					<span>YPKI<br/>MAGELANG</span>
@@ -65,6 +69,11 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/kontak'; ?> ">Hubungi Kami</a></li>
+				<?php if(isset($instansi_program['kbtk']) && $instansi_program['kbtk'] == 1): ?>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'kbtk/program'; ?> ">
+						Program Penerimaan <br/> Peserta Didik Baru</a>
+				</li>
+				<?php endif; ?>
 			</ul>
 		</div>	
 
@@ -82,6 +91,11 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/kontak'; ?> ">Hubungi Kami</a></li>
+				<?php if(isset($instansi_program['sdki']) && $instansi_program['sdki'] == 1): ?>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'sdki/program'; ?> ">
+						Program Penerimaan <br/> Peserta Didik Baru</a>
+				</li>
+				<?php endif; ?>
 			</ul>
 		</div>	
 
@@ -99,6 +113,11 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/kontak'; ?> ">Hubungi Kami</a></li>
+				<?php if(isset($instansi_program['smpki']) && $instansi_program['smpki'] == 1): ?>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smpki/program'; ?> ">
+						Program Penerimaan <br/> Peserta Didik Baru</a>
+				</li>
+				<?php endif; ?>
 			</ul>
 		</div>	
 
@@ -116,6 +135,11 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/kesiswaan'; ?> ">Kesiswaan</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/dokumentasi'; ?> ">Dokumentasi</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/kontak'; ?> ">Hubungi Kami</a></li>
+				<?php if(isset($instansi_program['smaki']) && $instansi_program['smaki'] == 1): ?>
+				<li role="presentation"><a role="menuitem" tabindex="-1" href=" <?php echo base_url().'smaki/program'; ?> ">
+						Program Penerimaan <br/> Peserta Didik Baru</a>
+				</li>
+				<?php endif; ?>
 			</ul>
 		</div>		
 

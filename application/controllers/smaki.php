@@ -514,6 +514,30 @@ class Smaki extends CI_Controller {
 		$this->load->view("footer");
 	}
 
+	public function program()
+	{
+		$this->load->model("ypki");
+
+		$data = $this->session->all_userdata();
+
+		$data['html_title'] = "Program Penerimaan Peserta Didik Baru - SMA Kristen Indonesia";
+		$data['instansi'] = "smaki";
+
+		$program = $this->ypki->getProgram($data['instansi']);
+		$data['instansi_program'] = $this->ypki->getAllProgram();
+		if(!empty($program)) {
+			$program = $program[0];
+			$data['program']['smaki'] = $program->aktif;
+			$program->program = parse($program->program);
+			$data['program'] = $program;
+		}
+
+		$this->load->view("header", $data);
+		$this->load->view("navigator");
+		$this->load->view("content_program");
+		$this->load->view("footer");
+	}
+
 	public function search($cmd, $key, $page = NULL)
 	{
 		if ($cmd == NULL) {
