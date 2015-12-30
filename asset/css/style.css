@@ -845,3 +845,7 @@ footer
 	border: 1px #CCC solid;
 	width: 300px;
 }
+
+i.fa {
+	margin-right: 10px;
+}

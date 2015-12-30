@@ -1,6 +1,8 @@
 <?php
+if(isset($instansi)) {
 	$this->load->model('ypki');
 	$kontak = $this->ypki->getKontak($instansi);
+}
 ?>
 <?php if(!empty($kontak)): ?>
 	<footer>
