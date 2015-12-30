@@ -27,13 +27,13 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#drop-album"><i class="fa fa-fw fa-image"></i> Album <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="javascript:;" data-toggle="collapse" data-target="#drop-album"><i class="fa fa-fw fa-image"></i> Dokumentasi <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="drop-album" class="<?php echo (isset($active_album) || isset($active_album_baru)) ? 'collapse in' : 'collapse'?>">
                     <li>
-                        <a href="<?php echo base_url()?>admin/album/baru">Album Baru</a>
+                        <a href="<?php echo base_url()?>admin/album/baru">Dokumentasi Baru</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url()?>admin/album">Lihat Semua Album</a>
+                        <a href="<?php echo base_url()?>admin/album">Lihat Semua Dokumentasi</a>
                     </li>
                 </ul>
             </li>

@@ -8,9 +8,9 @@
                 <h1 class="page-header">
                     <?php
                         if (isset($berita_edit))
-                            echo "Ubah Berita";
+                            echo "Ubah Dokumentasi";
                         else
-                            echo "Album";
+                            echo "Dokumentasi";
                     ?>
                 </h1>
                 <ol class="breadcrumb">
@@ -18,14 +18,14 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li>
-                        <i class="fa fa-file-text"></i>  <a href="<?php echo base_url()?>admin/album">Album</a>
+                        <i class="fa fa-file-text"></i>  <a href="<?php echo base_url()?>admin/album">Dokumentasi</a>
                     </li>
                     <li class="active">
                         <?php
                             if (isset($berita_edit))
-                                echo "<i class='fa fa-pencil'></i> Ubah Berita";
+                                echo "<i class='fa fa-pencil'></i> Ubah Dokumentasi";
                             else
-                                echo "<i class='fa fa-plus'></i> Album Baru";
+                                echo "<i class='fa fa-plus'></i> Dokumentasi Baru";
                         ?>
                     </li>
                 </ol>
@@ -43,7 +43,7 @@
             <div class="col-xs-10">
                 <div class="alert alert-success alert-dismissible" role="alert">
                   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Berita baru berhasil ditambahkan. <a href="<?php echo $read_link; ?>" target="lihatBerita">Lihat berita</a> 
+                  <strong>Sukses!</strong> Dokumen baru berhasil ditambahkan. <a href="<?php echo $read_link; ?>" target="lihatBerita">Lihat Dokumen</a>
                 </div>
             </div>
         </div>
@@ -140,7 +140,7 @@
                             
                             <input type="hidden" name="directory" id="directory" value="<?php echo $album['directory'];?>"/>
                             <input type="hidden" name="image_form_submit" value="1"/>
-                            <h4>Judul Album: <?php echo $album['judul'];?></h4>
+                            <h4>Judul Dokumentasi: <?php echo $album['judul'];?></h4>
                                 <label>Pilih Gambar</label>
                                 <input type="file" name="images[]" id="images" multiple >
                             <div class="uploading none">

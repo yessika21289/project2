@@ -10,7 +10,7 @@
                         if (isset($berita_edit))
                             echo "Ubah Berita";
                         else
-                            echo "Album Baru";
+                            echo "Dokumentasi Baru";
                     ?>
                 </h1>
                 <ol class="breadcrumb">
@@ -18,14 +18,14 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li>
-                        <i class="fa fa-file-text"></i>  <a href="<?php echo base_url()?>admin/album">Album</a>
+                        <i class="fa fa-file-text"></i>  <a href="<?php echo base_url()?>admin/album">Dokumentasi</a>
                     </li>
                     <li class="active">
                         <?php
                             if (isset($berita_edit))
                                 echo "<i class='fa fa-pencil'></i> Ubah Berita";
                             else
-                                echo "<i class='fa fa-plus'></i> Album Baru";
+                                echo "<i class='fa fa-plus'></i> Dokumentasi Baru";
                         ?>
                     </li>
                 </ol>
@@ -124,9 +124,9 @@
                     ?>
 
                     <div class="form-group">
-                        <label>Nama Album</label>
+                        <label>Nama Dokumentasi</label>
                             <input name="judul" class="form-control input-judul" value="<?php echo $judul; ?>">
-                            <p class="text-right help-block error-judul">* nama album tidak boleh kosong</p>
+                            <p class="text-right help-block error-judul">* nama dokumentasi tidak boleh kosong</p>
                     </div>
 
                     <input type="hidden" name="instansi" value="<?php echo $instansi; ?>">
@@ -135,9 +135,9 @@
                         <button type="button" class="btn btn-default">Cancel</button>
                         <?php
                             if (isset($album_edit))
-                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Nama Album Berita</button>";
+                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='update'>Ubah Nama Dokumentasi</button>";
                             else
-                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='submit'>Buat Album</button>";
+                                echo "<button type='submit' class='btn btn-primary input-submit' disabled name='submit'>Buat Dokumentasi</button>";
                         ?>
                     </div>
 
