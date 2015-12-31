@@ -8,16 +8,25 @@
 				</span>
             </div>
         </div>
-        <?php if(!empty($kontak)): ?>
-        <span style="font-family: Arial; font-weight: bold; font-size: 15pt; color: #999; border-bottom: 1px groove;">ALAMAT</span><br/>
-        <?php echo $kontak->alamat; ?>
+        <?php if(!empty($kontak)):
 
-        <br/><br/>
-        <i class="fa fa-phone"></i> <?php echo $kontak->telepon1.', '.$kontak->telepon2; ?><br/>
-        <i class="fa fa-fax"></i> <?php echo $kontak->fax; ?><br/>
-        <i class="fa fa-envelope"></i> <?php echo $kontak->email; ?><br/>
-        <i class="fa fa-globe"></i> <?php echo $kontak->website; ?><br/>
-        <?php endif; ?>
+            if(!empty($kontak->telepon1) && !empty($kontak->telepon2))
+                $telepon = $kontak->telepon1.', '.$kontak->telepon2;
+            else
+                $telepon = !empty($kontak->telepon1) ? $kontak->telepon1 : $kontak->telepon2;
+
+            if(!empty($kontak->alamat))
+                echo '<span style="font-family: Arial; font-weight: bold; font-size: 15pt; color: #999; border-bottom: 1px groove;">ALAMAT</span>
+                        <br/>'.$kontak->alamat.'<br/><br/>';
+            if(!empty($telepon))
+                echo '<i class="fa fa-phone"></i>' .$telepon. '<br/>';
+            if(!empty($kontak->fax))
+                echo '<i class="fa fa-fax"></i>' .$kontak->fax. '<br/>';
+            if(!empty($kontak->email))
+                echo '<i class="fa fa-envelope"></i>' .$kontak->email. '<br/>';
+            if(!empty($kontak->website))
+                echo '<i class="fa fa-globe"></i><a href="http://'.$kontak->website.'">' .$kontak->website. '</a><br/>';
+        endif; ?>
     </div>
 
 

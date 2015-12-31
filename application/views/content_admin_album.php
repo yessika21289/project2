@@ -6,10 +6,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Album
+                    Dokumentasi
                     <a href="<?php echo base_url()?>admin/album/baru">
                         <button type="button" class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Buat Album Baru
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Buat Dokumentasi Baru
                         </button>
                     </a>
                 </h1>
@@ -18,7 +18,7 @@
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-file-text"></i> Album
+                        <i class="fa fa-file-text"></i> Dokumentasi
                     </li>
                 </ol>
             </div>
@@ -34,7 +34,7 @@
             <div class="col-xs-10">
                 <div class="alert alert-success alert-dismissible" role="alert">
                   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Album berhasil dihapus
+                  <strong>Sukses!</strong> Dokumentasi berhasil dihapus
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="col-xs-10">
                 <div class="alert alert-danger alert-dismissible" role="alert">
                   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Gagal!</strong> Terjadi kesalahan. Album gagal dihapus
+                  <strong>Gagal!</strong> Terjadi kesalahan. Dokumentasi gagal dihapus
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@
                             <h4 class="modal-title" id="myModalLabel">Konfirmasi Hapus</h4>
                           </div>
                           <div class="modal-body">
-                            Anda yakin untuk menghapus album <span class="judul">JUDUL ALBUM</span> ?
+                            Anda yakin untuk menghapus dokumentasi <span class="judul">JUDUL DOKUMENTASI</span> ?
                           </div>
                           <div class="modal-footer">
                             <a class="link_hapus" href=""><button type="button" class="btn btn-primary">Ya</button></a>

@@ -77,7 +77,7 @@
                     </div>
                     <a href="<?php echo base_url()?>admin/album">
                         <div class="panel-footer">
-                            <span class="pull-left">lihat semua album</span>
+                            <span class="pull-left">lihat semua dokumentasi</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>

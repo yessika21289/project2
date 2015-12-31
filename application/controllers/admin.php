@@ -46,7 +46,7 @@ class Admin extends MY_Controller {
 		{
 			redirect(base_url().'admin');	
 		}
-		
+
 	}
 
 	public function dashboard()
