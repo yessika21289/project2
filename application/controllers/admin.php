@@ -83,34 +83,6 @@ class Admin extends MY_Controller {
 		$this->load->view("content_admin_footer");
 	}
 
-	public function visi()
-	{
-		$this->load->model('ypki');
-
-		$data = $this->session->all_userdata();
-		$data['instansi'] = $this->session->userdata('instansi');
-
-		if( isset($_POST['submit']) )
-		{
-			if($this->ypki->updateVisi($data['instansi'], $_POST))
-			{
-				$data['update_confirm'] = 1;
-			}
-			else
-			{
-				$data['update_confirm'] = 0;				
-			}
-		}
-
-		$data['visi'] = $this->ypki->getVisi($data['instansi']);
-
-		$this->load->view("content_admin_header", $data);
-		$this->load->view("content_admin_visi");
-		$this->load->view("content_admin_footer");	
-
-		$this->session->unset_userdata('update_confirm');
-	}
-
 	public function berita($task = NULL)
 	{
 		$data = $this->session->all_userdata();

@@ -52,7 +52,7 @@
         }
         ?>
 
-        <div class="row">
+        <div class="row admin">
 
             <div class="col-xs-10">
 
@@ -63,6 +63,7 @@
                             foreach ($kurikulum as $key => $deskripsi) {
                                 $kur[$kurikulum[$key]->jenis] = $kurikulum[$key]->deskripsi;
                             }
+                            $pelajaran = (isset($kur['pelajaran'])) ? trim($kur['pelajaran']) : '';
                             $intrakurikuler = (isset($kur['intrakurikuler'])) ? trim($kur['intrakurikuler']) : '';
                             $ekstrakurikuler = (isset($kur['ekstrakurikuler'])) ? trim($kur['ekstrakurikuler']) : '';
                             $asrama = (isset($kur['asrama'])) ? trim($kur['asrama']) : '';
@@ -73,6 +74,10 @@
                             $asrama = '';
                         }
                     ?>
+                    <div class="form-group">
+                        <label>Jadwal Pelajaran</label>
+                        <textarea name="pelajaran" class="form-control input-konten editor" rows="10"><?php echo $pelajaran; ?></textarea>
+                    </div>
 
                     <div class="form-group">
                         <label>Intrakurikuler / Classroom Learning</label>

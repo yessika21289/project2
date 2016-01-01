@@ -52,7 +52,7 @@
             }
             ?>
 
-        <div class="row">
+        <div class="row admin">
 
             <div class="col-xs-10">
 
@@ -63,21 +63,18 @@
                             foreach ($kesiswaan as $key => $deskripsi) {
                                 $siswa[$kesiswaan[$key]->jenis] = $kesiswaan[$key]->deskripsi;
                             }
-                            $pelajaran = (isset($siswa['pelajaran'])) ? trim($siswa['pelajaran']) : '';
                             $administrasi = (isset($siswa['administrasi'])) ? trim($siswa['administrasi']) : '';
                             $osis = (isset($siswa['osis'])) ? trim($siswa['osis']) : '';
+                            $siswa = (isset($siswa['siswa'])) ? trim($siswa['siswa']) : '';
                         }
                         else{
                             $pelajaran = '';
                             $administrasi = '';
                             $osis = '';
+                            $siswa = '';
                         }
                     ?>
 
-                    <div class="form-group">
-                        <label>Jadwal Pelajaran</label>
-                        <textarea name="pelajaran" class="form-control input-konten editor" rows="10"><?php echo $pelajaran; ?></textarea>
-                    </div>
                     <div class="form-group">
                         <label>Administrasi</label>
                         <textarea name="administrasi" class="form-control input-konten editor" rows="10"><?php echo $administrasi; ?></textarea>
@@ -88,6 +85,11 @@
                         <textarea name="osis" class="form-control input-konten editor" rows="10"><?php echo $osis; ?></textarea>
                     </div>
                     <?php }?>
+
+                    <div class="form-group">
+                        <label>Siswa</label>
+                        <textarea name="siswa" class="form-control input-konten editor" rows="10"><?php echo $siswa; ?></textarea>
+                    </div>
 
                     <br/><br/>
 

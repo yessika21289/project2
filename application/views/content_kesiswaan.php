@@ -14,14 +14,14 @@
         <?php
         foreach ($kesiswaan as $jenis => $deskripsi) {
             switch ($jenis) {
-                case 'pelajaran':
-                    $dt = 'JADWAL PELAJARAN';
-                    break;
                 case 'administrasi':
                     $dt = 'ADMINISTRASI';
                     break;
                 case 'osis':
                     $dt = 'OSIS';
+                    break;
+                case 'siswa':
+                    $dt = 'SISWA';
                     break;
             }
             echo "<dt class='type'>".$dt."</dt><br/>";

@@ -23,9 +23,6 @@
                 case 'tenaga_pendidik':
                     $dt = 'STAFF TENAGA KEPENDIDIKAN';
                     break;
-                case 'siswa':
-                    $dt = 'SISWA';
-                    break;
             }
             echo "<dt class='type'>".$dt."</dt><br/>";
             echo "<dd>".$deskripsi."</dd>";

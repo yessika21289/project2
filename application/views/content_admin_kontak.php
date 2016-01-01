@@ -52,7 +52,7 @@
         }
         ?>
 
-        <div class="row">
+        <div class="row admin">
 
             <div class="col-xs-10">
 
@@ -98,7 +98,7 @@
 
                     <div class="text-right">
                         <button type="reset" class="btn btn-default">Reset</button>
-                        <button type='submit' class='btn btn-primary input-submit' name='submit'>Ganti Info Kontak</button>;
+                        <button type='submit' class='btn btn-primary input-submit' name='submit'>Ganti Info Kontak</button>
                     </div>
 
                 </form>

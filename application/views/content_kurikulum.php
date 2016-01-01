@@ -14,6 +14,9 @@
         <?php
         foreach ($kurikulum as $jenis => $deskripsi) {
             switch ($jenis) {
+                case 'pelajaran':
+                    $dt = 'JADWAL PELAJARAN';
+                    break;
                 case 'intrakurikuler':
                     $dt = 'INTRAKURIKULER / CLASSROOM LEARNING';
                     break;

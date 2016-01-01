@@ -470,6 +470,7 @@ class Smaki extends CI_Controller {
             foreach ($kurikulum as $key => $deskripsi) {
                 $kur[$kurikulum[$key]->jenis] = $kurikulum[$key]->deskripsi;
             }
+			$data['kurikulum']['pelajaran'] = (isset($kur['pelajaran'])) ? trim($kur['pelajaran']) : '';
             $data['kurikulum']['intrakurikuler'] = (isset($kur['intrakurikuler'])) ? trim($kur['intrakurikuler']) : '';
             $data['kurikulum']['ekstrakurikuler'] = (isset($kur['ekstrakurikuler'])) ? trim($kur['ekstrakurikuler']) : '';
             $data['kurikulum']['asrama'] = (isset($kur['asrama'])) ? trim($kur['asrama']) : '';
@@ -499,7 +500,6 @@ class Smaki extends CI_Controller {
             $data['personalia']['pimpinan'] = (isset($person['pimpinan'])) ? trim($person['pimpinan']) : '';
             $data['personalia']['pengajar'] = (isset($person['pengajar'])) ? trim($person['pengajar']) : '';
             $data['personalia']['tenaga_pendidik'] = (isset($person['tenaga_pendidik'])) ? trim($person['tenaga_pendidik']) : '';
-            $data['personalia']['siswa'] = (isset($person['siswa'])) ? trim($person['siswa']) : '';
 		}
 
 		$this->load->view("header", $data);
@@ -523,9 +523,9 @@ class Smaki extends CI_Controller {
             foreach ($kesiswaan as $key => $deskripsi) {
                 $siswa[$kesiswaan[$key]->jenis] = $kesiswaan[$key]->deskripsi;
             }
-            $data['kesiswaan']['pelajaran'] = (isset($siswa['pelajaran'])) ? trim($siswa['pelajaran']) : '';
             $data['kesiswaan']['administrasi'] = (isset($siswa['administrasi'])) ? trim($siswa['administrasi']) : '';
             $data['kesiswaan']['osis'] = (isset($siswa['osis'])) ? trim($siswa['osis']) : '';
+			$data['kesiswaan']['siswa'] = (isset($siswa['siswa'])) ? trim($siswa['siswa']) : '';
 		}
 
 		$this->load->view("header", $data);

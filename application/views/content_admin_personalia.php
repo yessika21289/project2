@@ -52,7 +52,7 @@
             }
             ?>
 
-        <div class="row">
+        <div class="row admin">
 
             <div class="col-xs-10">
 
@@ -66,13 +66,11 @@
                             $pimpinan = (isset($person['pimpinan'])) ? trim($person['pimpinan']) : '';
                             $pengajar = (isset($person['pengajar'])) ? trim($person['pengajar']) : '';
                             $tenaga_pendidik = (isset($person['tenaga_pendidik'])) ? trim($person['tenaga_pendidik']) : '';
-                            $siswa = (isset($person['siswa'])) ? trim($person['siswa']) : '';
                         }
                         else{
                             $pimpinan = '';
                             $pengajar = '';
                             $tenaga_pendidik = '';
-                            $siswa = '';
                         }
                     ?>
 
@@ -89,10 +87,6 @@
                     <div class="form-group">
                         <label>Staff Tenaga Kependidikan</label>
                         <textarea name="tenaga_pendidik" class="form-control input-konten editor" rows="10"><?php echo $tenaga_pendidik; ?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Siswa</label>
-                        <textarea name="siswa" class="form-control input-konten editor" rows="10"><?php echo $siswa; ?></textarea>
                     </div>
 
                     <br/><br/>

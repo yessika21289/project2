@@ -52,7 +52,7 @@
         }
         ?>
 
-        <div class="row">
+        <div class="row admin">
 
             <div class="col-xs-10">
 
