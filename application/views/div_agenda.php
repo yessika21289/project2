@@ -1,5 +1,5 @@
 <div id="agenda">
-	<div class="title">NEXT EVENTS</div>
+	<div class="title">AGENDA <?php echo strtoupper($instansi); ?></div>
 	
 		<?php
 
