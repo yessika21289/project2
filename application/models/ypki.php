@@ -1011,26 +1011,59 @@
 		}
 
 		public function updateFasilitas($instansi = "ypki", $post){
-			$sqlstr = "SELECT * FROM fasilitas WHERE instansi = '".$instansi."'";
-			$is_exist = $this->db->query($sqlstr);
-			$is_exist = $is_exist->result();
+			$this->db->update('fasilitas', array('aktif' => 0), array('instansi' => $instansi));
 
-			if($is_exist) {
-				foreach ($post as $jenis => $deskripsi) {
-					$sqlstr = "UPDATE fasilitas SET
-								deskripsi = '" . trim(strip_tags($deskripsi, $this->allowed_tags)) . "'
-								WHERE instansi = '" . $instansi . "' and jenis = '" . $jenis ."'";
-					$result = $this->db->query($sqlstr);
-				}
-			} else {
-				$id = 1;
-				foreach ($post as $jenis => $deskripsi) {
-					if($jenis == "submit") break;
+			foreach ($post as $jenis => $deskripsi) {
+				if($jenis != 'submit') {
+					if (!preg_match('/_aktif/', $jenis)) {
+						$is_exist = $this->db->get_where('fasilitas', array('jenis' => $jenis, 'instansi' => $instansi));
+						$is_exist = $is_exist->result();
 
-					$sqlstr = "INSERT INTO fasilitas
-								VALUES($id, '".$jenis."', '".trim(strip_tags($deskripsi, $this->allowed_tags))."' ,'".$instansi."')";
-					$result = $this->db->query($sqlstr);
-					$id++;
+						if ($is_exist) {
+							$this->db->where('instansi', $instansi);
+							$this->db->where('jenis', $jenis);
+							$this->db->update('fasilitas', array('deskripsi' => $deskripsi));
+						} else {
+							$this->db->where('instansi', $instansi);
+							$this->db->select_max('id');
+							$last_id = $this->db->get('fasilitas');
+							$last_id = $last_id->result();
+							$id = $last_id[0]->id + 1;
+
+							$insert_kurikulum = array(
+								'id' => $id,
+								'jenis' => $jenis,
+								'deskripsi' => $deskripsi,
+								'aktif' => 0,
+								'instansi' => $instansi
+							);
+							$this->db->insert('fasilitas', $insert_kurikulum);
+						}
+					} else {
+						$jns = str_replace('_aktif', '', $jenis);
+						$is_exist = $this->db->get_where('fasilitas', array('jenis' => $jns, 'instansi' => $instansi));
+						$is_exist = $is_exist->result();
+
+						if ($is_exist) {
+							$this->db->where('instansi', $instansi);
+							$this->db->where('jenis', $jns);
+							$this->db->update('fasilitas', array('aktif' => $deskripsi));
+						} else {
+							$this->db->where('instansi', $instansi);
+							$this->db->select_max('id');
+							$last_id = $this->db->get('fasilitas');
+							$last_id = $last_id->result();
+							$id = $last_id[0]->id + 1;
+
+							$insert_kurikulum = array(
+								'id' => $id,
+								'jenis' => $jns,
+								'aktif' => $deskripsi,
+								'instansi' => $instansi
+							);
+							$this->db->insert('fasilitas', $insert_kurikulum);
+						}
+					}
 				}
 			}
 			return true;
@@ -1044,26 +1077,59 @@
 		}
 
 		public function updateKurikulum($instansi = "ypki", $post){
-			$sqlstr = "SELECT * FROM kurikulum WHERE instansi = '".$instansi."'";
-			$is_exist = $this->db->query($sqlstr);
-			$is_exist = $is_exist->result();
+			$this->db->update('kurikulum', array('aktif' => 0), array('instansi' => $instansi));
 
-			if($is_exist) {
-				foreach ($post as $jenis => $deskripsi) {
-					$sqlstr = "UPDATE kurikulum SET
-								deskripsi = '" . trim(strip_tags($deskripsi, $this->allowed_tags)) . "'
-								WHERE instansi = '" . $instansi . "' and jenis = '" . $jenis ."'";
-					$result = $this->db->query($sqlstr);
-				}
-			} else {
-				$id = 1;
-				foreach ($post as $jenis => $deskripsi) {
-					if($jenis == "submit") break;
+			foreach ($post as $jenis => $deskripsi) {
+				if($jenis != 'submit') {
+					if (!preg_match('/_aktif/', $jenis)) {
+						$is_exist = $this->db->get_where('kurikulum', array('jenis' => $jenis, 'instansi' => $instansi));
+						$is_exist = $is_exist->result();
 
-					$sqlstr = "INSERT INTO kurikulum
-								VALUES($id, '".$jenis."', '".trim(strip_tags($deskripsi, $this->allowed_tags))."' ,'".$instansi."')";
-					$result = $this->db->query($sqlstr);
-					$id++;
+						if ($is_exist) {
+							$this->db->where('instansi', $instansi);
+							$this->db->where('jenis', $jenis);
+							$this->db->update('kurikulum', array('deskripsi' => $deskripsi));
+						} else {
+							$this->db->where('instansi', $instansi);
+							$this->db->select_max('id');
+							$last_id = $this->db->get('kurikulum');
+							$last_id = $last_id->result();
+							$id = $last_id[0]->id + 1;
+
+							$insert_kurikulum = array(
+								'id' => $id,
+								'jenis' => $jenis,
+								'deskripsi' => $deskripsi,
+								'aktif' => 0,
+								'instansi' => $instansi
+							);
+							$this->db->insert('kurikulum', $insert_kurikulum);
+						}
+					} else {
+						$jns = str_replace('_aktif', '', $jenis);
+						$is_exist = $this->db->get_where('kurikulum', array('jenis' => $jns, 'instansi' => $instansi));
+						$is_exist = $is_exist->result();
+
+						if ($is_exist) {
+							$this->db->where('instansi', $instansi);
+							$this->db->where('jenis', $jns);
+							$this->db->update('kurikulum', array('aktif' => $deskripsi));
+						} else {
+							$this->db->where('instansi', $instansi);
+							$this->db->select_max('id');
+							$last_id = $this->db->get('kurikulum');
+							$last_id = $last_id->result();
+							$id = $last_id[0]->id + 1;
+
+							$insert_kurikulum = array(
+								'id' => $id,
+								'jenis' => $jns,
+								'aktif' => $deskripsi,
+								'instansi' => $instansi
+							);
+							$this->db->insert('kurikulum', $insert_kurikulum);
+						}
+					}
 				}
 			}
 			return true;

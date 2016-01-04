@@ -13,26 +13,28 @@
         <dl>
         <?php
         foreach ($fasilitas as $jenis => $deskripsi) {
-            switch ($jenis) {
-                case 'olahraga':
-                    $dt = 'FASILITAS OLAHRAGA';
-                    break;
-                case 'komputer':
-                    $dt = 'LAB KOMPUTER';
-                    break;
-                case 'multimedia':
-                    $dt = 'RUANG MULTIMEDIA';
-                    break;
-                case 'aula':
-                    $dt = 'RUANG AULA / PERTEMUAN';
-                    break;
-                default:
-                    $dt = strtoupper(str_replace("_", " ", $jenis));
-                    break;
+            if($deskripsi) {
+                switch ($jenis) {
+                    case 'olahraga':
+                        $dt = 'FASILITAS OLAHRAGA';
+                        break;
+                    case 'komputer':
+                        $dt = 'LAB KOMPUTER';
+                        break;
+                    case 'multimedia':
+                        $dt = 'RUANG MULTIMEDIA';
+                        break;
+                    case 'aula':
+                        $dt = 'RUANG AULA / PERTEMUAN';
+                        break;
+                    default:
+                        $dt = strtoupper(str_replace("_", " ", $jenis));
+                        break;
+                }
+                echo "<dt class='type'>" . $dt . "</dt><br/>";
+                echo "<dd>" . $deskripsi . "</dd>";
+                echo "<br/>";
             }
-            echo "<dt class='type'>".$dt."</dt><br/>";
-            echo "<dd>".$deskripsi."</dd>";
-            echo "<br/>";
         }
         ?>
         </dl>

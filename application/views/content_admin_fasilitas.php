@@ -59,9 +59,20 @@
                 <form id="form-berita-baru" role="form" method="post" action="" enctype="multip art/form-data">
 
                     <?php
+                        $sekolah_aktif = '';
+                        $ruang_belajar_aktif = '';
+                        $laboratorium_aktif = '';
+                        $perpustakaan_aktif = '';
+                        $olahraga_aktif = '';
+                        $komputer_aktif = '';
+                        $fasilitas_lain_aktif = '';
+                        $multimedia_aktif = '';
+                        $aula_aktif = '';
+
                         if(!empty($fasilitas)) {
                             foreach ($fasilitas as $key => $deskripsi) {
                                 $fas[$fasilitas[$key]->jenis] = $fasilitas[$key]->deskripsi;
+                                ${$fasilitas[$key]->jenis.'_aktif'} = $fasilitas[$key]->aktif;
                             }
                             $sekolah = (isset($fas['sekolah'])) ? trim($fas['sekolah']) : '';
                             $ruang_belajar = (isset($fas['ruang_belajar'])) ? trim($fas['ruang_belajar']) : '';
@@ -87,47 +98,65 @@
                     ?>
 
                     <div class="form-group">
-                        <label>Sekolah</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="sekolah_aktif" value="1"
+                                <?php if($sekolah_aktif == 1) echo "checked"; ?> />
+                            Sekolah</label>
                         <textarea name="sekolah" class="form-control input-konten editor" rows="10"><?php echo $sekolah; ?></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Ruang Belajar</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="ruang_belajar_aktif" value="1"
+                                <?php if($ruang_belajar_aktif == 1) echo "checked"; ?> />
+                            Ruang Belajar</label>
                         <textarea name="ruang_belajar" class="form-control input-konten editor" rows="10"><?php echo $ruang_belajar; ?></textarea>
                     </div>
                     <?php if($instansi == "smpki" || $instansi == "smaki"){?>
                     <div class="form-group">
-                        <label>Laboratorium</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="laboratorium_aktif" value="1"
+                                <?php if($laboratorium_aktif == 1) echo "checked"; ?> />
+                            Laboratorium</label>
                         <textarea name="laboratorium" class="form-control input-konten editor" rows="10"><?php echo $laboratorium; ?></textarea>
                     </div>
                     <?php }?>
                     <div class="form-group">
-                        <label>Perpustakaan</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="perpustakaan_aktif" value="1"
+                                <?php if($perpustakaan_aktif == 1) echo "checked"; ?> />
+                            Perpustakaan</label>
                         <textarea name="perpustakaan" class="form-control input-konten editor" rows="10"><?php echo $perpustakaan; ?></textarea>
                     </div>
                     <?php if($instansi == "sdki" || $instansi == "smpki" || $instansi == "smaki"){?>
                     <div class="form-group">
-                        <label>Fasilitas Olahraga</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="olahraga_aktif" value="1"
+                                <?php if($olahraga_aktif == 1) echo "checked"; ?> />
+                            Fasilitas Olahraga</label>
                         <textarea name="olahraga" class="form-control input-konten editor" rows="10"><?php echo $olahraga; ?></textarea>
                     </div>
                     <?php }?>
                     <?php if($instansi == "sdki" || $instansi == "smpki" || $instansi == "smaki"){?>
                     <div class="form-group">
-                        <label>Lab Komputer</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="komputer_aktif" value="1"
+                                <?php if($komputer_aktif == 1) echo "checked"; ?> />
+                            Lab Komputer</label>
                         <textarea name="komputer" class="form-control input-konten editor" rows="10"><?php echo $komputer; ?></textarea>
                     </div>
                     <?php }?>
                     <div class="form-group">
-                        <label>Fasilitas Lain</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="fasilitas_lain_aktif" value="1"
+                                <?php if($fasilitas_lain_aktif == 1) echo "checked"; ?> />
+                            Fasilitas Lain</label>
                         <textarea name="fasilitas_lain" class="form-control input-konten editor" rows="10"><?php echo $fasilitas_lain; ?></textarea>
                     </div>
                     <?php if($instansi == "sdki" || $instansi == "smpki" || $instansi == "smaki"){?>
                     <div class="form-group">
-                        <label>Ruang Multimedia</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="multimedia_aktif" value="1"
+                                <?php if($multimedia_aktif == 1) echo "checked"; ?> />
+                            Ruang Multimedia</label>
                         <textarea name="multimedia" class="form-control input-konten editor" rows="10"><?php echo $multimedia; ?></textarea>
                     </div>
                     <?php }?>
                     <div class="form-group">
-                        <label>Ruang Aula / Pertemuan</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="aula_aktif" value="1"
+                                <?php if($aula_aktif == 1) echo "checked"; ?> />
+                            Ruang Aula / Pertemuan</label>
                         <textarea name="aula" class="form-control input-konten editor" rows="10"><?php echo $aula; ?></textarea>
                     </div>
 

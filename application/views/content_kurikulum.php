@@ -13,23 +13,26 @@
         <dl>
         <?php
         foreach ($kurikulum as $jenis => $deskripsi) {
-            switch ($jenis) {
-                case 'pelajaran':
-                    $dt = 'JADWAL PELAJARAN';
-                    break;
-                case 'intrakurikuler':
-                    $dt = 'INTRAKURIKULER / CLASSROOM LEARNING';
-                    break;
-                case 'ekstrakurikuler':
-                    $dt = 'EKSTRAKURIKULER dan PENGEMBANGAN DIRI';
-                    break;
-                case 'asrama':
-                    $dt = 'PROGRAM DAN KEGIATAN ASRAMA';
-                    break;
+            if($deskripsi) {
+                switch ($jenis) {
+                    case 'pelajaran':
+                        $dt = 'JADWAL PELAJARAN';
+                        break;
+                    case 'intrakurikuler':
+                        $dt = 'INTRAKURIKULER / CLASSROOM LEARNING';
+                        break;
+                    case 'ekstrakurikuler':
+                        $dt = 'EKSTRAKURIKULER dan PENGEMBANGAN DIRI';
+                        break;
+                    case 'asrama':
+                        $dt = 'PROGRAM DAN KEGIATAN ASRAMA';
+                        break;
+                }
+
+                echo "<dt class='type'>" . $dt . "</dt><br/>";
+                echo "<dd>" . $deskripsi . "</dd>";
+                echo "<br/>";
             }
-            echo "<dt class='type'>".$dt."</dt><br/>";
-            echo "<dd>".$deskripsi."</dd>";
-            echo "<br/>";
         }
         ?>
         </dl>

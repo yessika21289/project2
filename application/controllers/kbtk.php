@@ -438,16 +438,18 @@ class Kbtk extends CI_Controller {
 		if(!empty($fasilitas)) {
             foreach ($fasilitas as $key => $deskripsi) {
                 $fas[$fasilitas[$key]->jenis] = $fasilitas[$key]->deskripsi;
-            }
-            $data['fasilitas']['sekolah'] = (isset($fas['sekolah'])) ? trim($fas['sekolah']) : '';
-            $data['fasilitas']['ruang_belajar'] = (isset($fas['ruang_belajar'])) ? trim($fas['ruang_belajar']) : '';
-            $data['fasilitas']['laboratorium'] = (isset($fas['laboratorium'])) ? trim($fas['laboratorium']) : '';
-            $data['fasilitas']['perpustakaan'] = (isset($fas['perpustakaan'])) ? trim($fas['perpustakaan']) : '';
-            $data['fasilitas']['olahraga'] = (isset($fas['olahraga'])) ? trim($fas['olahraga']) : '';
-            $data['fasilitas']['komputer'] = (isset($fas['komputer'])) ? trim($fas['komputer']) : '';
-            $data['fasilitas']['fasilitas_lain'] = (isset($fas['fasilitas_lain'])) ? trim($fas['fasilitas_lain']) : '';
-            $data['fasilitas']['multimedia'] = (isset($fas['multimedia'])) ? trim($fas['multimedia']) : '';
-            $data['fasilitas']['aula'] = (isset($fas['aula'])) ? trim($fas['aula']) : '';
+				$aktif[$fasilitas[$key]->jenis] = $fasilitas[$key]->aktif;
+			}
+
+			$data['fasilitas']['sekolah'] = (isset($fas['sekolah']) && $aktif['sekolah']) ? trim($fas['sekolah']) : '';
+			$data['fasilitas']['ruang_belajar'] = (isset($fas['ruang_belajar']) && $aktif['ruang_belajar']) ? trim($fas['ruang_belajar']) : '';
+			$data['fasilitas']['laboratorium'] = (isset($fas['laboratorium']) && $aktif['laboratorium']) ? trim($fas['laboratorium']) : '';
+			$data['fasilitas']['perpustakaan'] = (isset($fas['perpustakaan']) && $aktif['perpustakaan']) ? trim($fas['perpustakaan']) : '';
+			$data['fasilitas']['olahraga'] = (isset($fas['olahraga']) && $aktif['olahraga']) ? trim($fas['olahraga']) : '';
+			$data['fasilitas']['komputer'] = (isset($fas['komputer']) && $aktif['komputer']) ? trim($fas['komputer']) : '';
+			$data['fasilitas']['fasilitas_lain'] = (isset($fas['fasilitas_lain']) && $aktif['fasilitas_lain']) ? trim($fas['fasilitas_lain']) : '';
+			$data['fasilitas']['multimedia'] = (isset($fas['multimedia']) && $aktif['multimedia']) ? trim($fas['multimedia']) : '';
+			$data['fasilitas']['aula'] = (isset($fas['aula']) && $aktif['aula']) ? trim($fas['aula']) : '';
 		}
 
 		$this->load->view("header", $data);
@@ -497,10 +499,13 @@ class Kbtk extends CI_Controller {
 		if(!empty($kurikulum)) {
             foreach ($kurikulum as $key => $deskripsi) {
                 $kur[$kurikulum[$key]->jenis] = $kurikulum[$key]->deskripsi;
-            }
-			$data['kurikulum']['pelajaran'] = (isset($kur['pelajaran'])) ? trim($kur['pelajaran']) : '';
-            $data['kurikulum']['intrakurikuler'] = (isset($kur['intrakurikuler'])) ? trim($kur['intrakurikuler']) : '';
-            $data['kurikulum']['ekstrakurikuler'] = (isset($kur['ekstrakurikuler'])) ? trim($kur['ekstrakurikuler']) : '';
+				$aktif[$kurikulum[$key]->jenis] = $kurikulum[$key]->aktif;
+			}
+			$data['kurikulum']['pelajaran'] = (isset($kur['pelajaran']) && $aktif['pelajaran'] == 1) ? trim($kur['pelajaran']) : '';
+			$data['kurikulum']['intrakurikuler'] = (isset($kur['intrakurikuler']) && $aktif['intrakurikuler'] == 1) ?
+				trim($kur['intrakurikuler']) : '';
+			$data['kurikulum']['ekstrakurikuler'] = (isset($kur['ekstrakurikuler']) && $aktif['ekstrakurikuler'] == 1) ?
+				trim($kur['ekstrakurikuler']) : '';
 		}
 
 		$this->load->view("header", $data);
