@@ -20,16 +20,16 @@ class Personalia extends CI_Controller {
 		$data['html_title'] = "Personalia - YPKI";
 		$data['instansi'] = "ypki";
 
-		$kurikulum = $this->ypki->getPersonalia($data['instansi']);
+		$personalia = $this->ypki->getPersonalia($data['instansi']);
 		
 		if(!empty($personalia)) {
             foreach ($personalia as $key => $deskripsi) {
                 $person[$personalia[$key]->jenis] = $personalia[$key]->deskripsi;
-            }
-            $pimpinan = (isset($person['pimpinan'])) ? trim($person['pimpinan']) : '';
-            $pengajar = (isset($person['pengajar'])) ? trim($person['pengajar']) : '';
-            $tenaga_pendidik = (isset($person['tenaga_pendidik'])) ? trim($person['tenaga_pendidik']) : '';
-            $siswa = (isset($person['siswa'])) ? trim($person['siswa']) : '';
+				$aktif[$personalia[$key]->jenis] = $personalia[$key]->aktif;
+			}
+			$data['personalia']['pimpinan'] = (isset($person['pimpinan']) && $aktif['pimpinan'] == 1) ? trim($person['pimpinan']) : '';
+			$data['personalia']['pengajar'] = (isset($person['pengajar']) && $aktif['pengajar'] == 1) ? trim($person['pengajar']) : '';
+			$data['personalia']['tenaga_pendidik'] = (isset($person['tenaga_pendidik']) && $aktif['tenaga_pendidik'] == 1) ? trim($person['tenaga_pendidik']) : '';
 		}
 
 		$this->load->view("header", $data);

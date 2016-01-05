@@ -13,20 +13,22 @@
         <dl>
         <?php
         foreach ($personalia as $jenis => $deskripsi) {
-            switch ($jenis) {
-                case 'pimpinan':
-                    $dt = 'STAFF PIMPINAN';
-                    break;
-                case 'pengajar':
-                    $dt = 'STAFF KEPENDIDIKAN / PENGAJAR';
-                    break;
-                case 'tenaga_pendidik':
-                    $dt = 'STAFF TENAGA KEPENDIDIKAN';
-                    break;
+            if ($deskripsi) {
+                switch ($jenis) {
+                    case 'pimpinan':
+                        $dt = 'STAFF PIMPINAN';
+                        break;
+                    case 'pengajar':
+                        $dt = 'STAFF KEPENDIDIKAN / PENGAJAR';
+                        break;
+                    case 'tenaga_pendidik':
+                        $dt = 'STAFF TENAGA KEPENDIDIKAN';
+                        break;
+                }
+                echo "<dt class='type'>" . $dt . "</dt><br/>";
+                echo "<dd>" . $deskripsi . "</dd>";
+                echo "<br/>";
             }
-            echo "<dt class='type'>".$dt."</dt><br/>";
-            echo "<dd>".$deskripsi."</dd>";
-            echo "<br/>";
         }
         ?>
         </dl>

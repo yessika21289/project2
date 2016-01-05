@@ -62,6 +62,7 @@
                         if(!empty($kesiswaan)){
                             foreach ($kesiswaan as $key => $deskripsi) {
                                 $siswa[$kesiswaan[$key]->jenis] = $kesiswaan[$key]->deskripsi;
+                                ${$kesiswaan[$key]->jenis.'_aktif'} = $kesiswaan[$key]->aktif;
                             }
                             $administrasi = (isset($siswa['administrasi'])) ? trim($siswa['administrasi']) : '';
                             $osis = (isset($siswa['osis'])) ? trim($siswa['osis']) : '';
@@ -76,18 +77,24 @@
                     ?>
 
                     <div class="form-group">
-                        <label>Administrasi</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="administrasi_aktif" value="1"
+                                <?php if($administrasi_aktif == 1) echo "checked"; ?> />
+                            Administrasi</label>
                         <textarea name="administrasi" class="form-control input-konten editor" rows="10"><?php echo $administrasi; ?></textarea>
                     </div>
                     <?php if($instansi == 'smpki' || $instansi == 'smaki'){?>
                     <div class="form-group">
-                        <label>OSIS</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="osis_aktif" value="1"
+                                <?php if($osis_aktif == 1) echo "checked"; ?> />
+                            OSIS</label>
                         <textarea name="osis" class="form-control input-konten editor" rows="10"><?php echo $osis; ?></textarea>
                     </div>
                     <?php }?>
 
                     <div class="form-group">
-                        <label>Siswa</label>
+                        <label style="font-weight: bold;"><input type="checkbox" name="siswa_aktif" value="1"
+                                <?php if($siswa_aktif == 1) echo "checked"; ?> />
+                            Siswa</label>
                         <textarea name="siswa" class="form-control input-konten editor" rows="10"><?php echo $siswa; ?></textarea>
                     </div>
 

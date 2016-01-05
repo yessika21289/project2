@@ -495,16 +495,16 @@ class Smpki extends CI_Controller {
 		$data['html_title'] = "Personalia - SMP Kristen Indonesia";
 		$data['instansi'] = "smpki";
 
-		$kurikulum = $this->ypki->getPersonalia($data['instansi']);
+		$personalia = $this->ypki->getPersonalia($data['instansi']);
 		
 		if(!empty($personalia)) {
             foreach ($personalia as $key => $deskripsi) {
                 $person[$personalia[$key]->jenis] = $personalia[$key]->deskripsi;
-            }
-            $pimpinan = (isset($person['pimpinan'])) ? trim($person['pimpinan']) : '';
-            $pengajar = (isset($person['pengajar'])) ? trim($person['pengajar']) : '';
-            $tenaga_pendidik = (isset($person['tenaga_pendidik'])) ? trim($person['tenaga_pendidik']) : '';
-            $siswa = (isset($person['siswa'])) ? trim($person['siswa']) : '';
+				$aktif[$personalia[$key]->jenis] = $personalia[$key]->aktif;
+			}
+			$data['personalia']['pimpinan'] = (isset($person['pimpinan']) && $aktif['pimpinan'] == 1) ? trim($person['pimpinan']) : '';
+			$data['personalia']['pengajar'] = (isset($person['pengajar']) && $aktif['pengajar'] == 1) ? trim($person['pengajar']) : '';
+			$data['personalia']['tenaga_pendidik'] = (isset($person['tenaga_pendidik']) && $aktif['tenaga_pendidik'] == 1) ? trim($person['tenaga_pendidik']) : '';
 		}
 
 		$this->load->view("header", $data);
@@ -527,10 +527,11 @@ class Smpki extends CI_Controller {
 		if(!empty($kesiswaan)) {
             foreach ($kesiswaan as $key => $deskripsi) {
                 $siswa[$kesiswaan[$key]->jenis] = $kesiswaan[$key]->deskripsi;
-            }
-            $data['kesiswaan']['administrasi'] = (isset($siswa['administrasi'])) ? trim($siswa['administrasi']) : '';
-            $data['kesiswaan']['osis'] = (isset($siswa['osis'])) ? trim($siswa['osis']) : '';
-			$data['kesiswaan']['siswa'] = (isset($siswa['siswa'])) ? trim($siswa['siswa']) : '';
+				$siswa[$kesiswaan[$key]->jenis] = $kesiswaan[$key]->aktif;
+			}
+			$data['kesiswaan']['administrasi'] = (isset($siswa['administrasi']) && $aktif['administrasi'] == 1) ? trim($siswa['administrasi']) : '';
+			$data['kesiswaan']['osis'] = (isset($siswa['osis']) && $aktif['osis'] == 1) ? trim($siswa['osis']) : '';
+			$data['kesiswaan']['siswa'] = (isset($siswa['siswa']) && $aktif['siswa'] == 1) ? trim($siswa['siswa']) : '';
 		}
 
 		$this->load->view("header", $data);

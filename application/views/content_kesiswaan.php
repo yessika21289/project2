@@ -13,20 +13,22 @@
         <dl>
         <?php
         foreach ($kesiswaan as $jenis => $deskripsi) {
-            switch ($jenis) {
-                case 'administrasi':
-                    $dt = 'ADMINISTRASI';
-                    break;
-                case 'osis':
-                    $dt = 'OSIS';
-                    break;
-                case 'siswa':
-                    $dt = 'SISWA';
-                    break;
+            if ($deskripsi) {
+                switch ($jenis) {
+                    case 'administrasi':
+                        $dt = 'ADMINISTRASI';
+                        break;
+                    case 'osis':
+                        $dt = 'OSIS';
+                        break;
+                    case 'siswa':
+                        $dt = 'SISWA';
+                        break;
+                }
+                echo "<dt class='type'>" . $dt . "</dt><br/>";
+                echo "<dd>" . $deskripsi . "</dd>";
+                echo "<br/>";
             }
-            echo "<dt class='type'>".$dt."</dt><br/>";
-            echo "<dd>".$deskripsi."</dd>";
-            echo "<br/>";
         }
         ?>
         </dl>
