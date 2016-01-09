@@ -26,11 +26,12 @@
             plugins: [
                 "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
+                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern jbimages"
             ],
 
-            toolbar1: "bold italic underline strikethrough subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink | media image",
+            toolbar1: "bold italic underline strikethrough subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink jbimages",
 
+            relative_urls: false,
             menubar: false,
             toolbar_items_size: 'small',
 
