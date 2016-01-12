@@ -398,6 +398,71 @@ class Admin extends MY_Controller {
 					$target_file = $target_dir.$filename;
 					if(move_uploaded_file($_FILES['images']['tmp_name'][$key],$target_file)){
 						//$images_arr[] = base_url().'/'.$target_file;
+
+						$this->load->library('image_lib');
+
+						$zoom_config['image_library'] = 'gd2';
+						$zoom_config['source_image']  = $target_file;
+						$zoom_config['width']	= 1024;
+						$zoom_config['height']	= 768;
+
+						$this->image_lib->initialize($zoom_config);
+
+						$this->image_lib->resize();
+
+						$size = getimagesize($target_file);
+						$img_width = $size[0];
+						$img_height = $size[1];
+
+						//==========COVER=========
+						if(!file_exists($target_dir.'cover.'.$filex[0]))
+						{
+							$crop1_config['image_library'] = 'gd2';
+							$crop1_config['source_image']  = $target_file;
+							$crop1_config['new_image'] = $target_dir.'cover.'.$filex[0];
+							if($img_width <= $img_height){
+								$crop1_config['width']	= 275;
+								$crop1_config['height']	= 275/$img_width*$img_height;
+							}
+							else{
+								$crop1_config['height']	= 215;
+								$crop1_config['width']	= 215/$img_height*$img_width;
+							}
+
+							$this->image_lib->initialize($crop1_config);
+
+							$this->image_lib->resize();
+
+							$size = getimagesize($target_dir.'cover.'.$filex[0]);
+							$img_width_cover = $size[0];
+							$img_height_cover = $size[1];
+
+							$crop2_config['image_library'] = 'gd2';
+							$crop2_config['source_image']	= $target_dir.'cover.'.$filex[0];
+							$crop2_config['maintain_ratio'] = FALSE;
+							if($img_width_cover <= $img_height_cover){
+								$crop2_config['y_axis']	= ($img_height_cover - 215) / 2;
+							}
+							else{
+								$crop2_config['x_axis']	= ($img_width_cover - 275) / 2;
+							}
+							$crop2_config['width']	= 275;
+							$crop2_config['height']	= 215;
+
+							$this->image_lib->initialize($crop2_config);
+
+							$this->image_lib->crop();
+						}
+
+						$thumb_config['image_library'] = 'gd2';
+						$thumb_config['source_image']  = $target_file;
+						$thumb_config['new_image'] = $target_dir.'thumb_'.$filename;
+						$thumb_config['width']	= 300;
+						$thumb_config['height']	= 300/$img_width*$img_height;
+
+						$this->image_lib->initialize($thumb_config);
+
+						$this->image_lib->resize();
 					}
 					
 					//display images without stored
