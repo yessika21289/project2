@@ -29,7 +29,7 @@
                 "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern jbimages"
             ],
 
-            toolbar1: "bold italic underline strikethrough subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink jbimages",
+            toolbar1: "bold italic underline strikethrough subscript superscript | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent blockquote | undo redo | link unlink | media image jbimages",
 
             relative_urls: false,
             menubar: false,
