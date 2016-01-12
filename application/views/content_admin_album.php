@@ -97,7 +97,7 @@
                         {
                             $list = $this->ypki->getAlbumByTahun($value, $instansi);
 
-                            if(date('Y') == $value)
+                            if($key == 0)
                                 echo "<ul class='list-group y".$value." vsb'>";
                             else
                                 echo "<ul class='list-group y".$value."'>";
