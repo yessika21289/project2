@@ -39,6 +39,12 @@ $(document).ready(function(){
 		$(".list-berita .y"+tahun).show();
 	});
 
+	$(".firman-select").change(function(){
+		var tahun = $(this).val();
+		$(".list-firman .list-group").hide();
+		$(".list-firman .y"+tahun).show();
+	});
+
 	$(".list-firman .list-group").hide();
 	$(".list-firman .vsb").show();
 

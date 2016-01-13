@@ -680,20 +680,20 @@ footer
 }
 
 .list-berita .list-group-item .col-xs-9 .date,
-.last-berita .list-group-item .col-xs-9 .date
+.list-firman .list-group-item .col-xs-9 .date
 {
 	font-weight: bolder;
 	color: rgb(168,203,25);	
 }
 
 .list-berita .list-group-item .col-xs-1,
-.last-berita .list-group-item .col-xs-1
+.list-firman .list-group-item .col-xs-1
 {
 	text-align: center;
 }
 
 .list-berita .list-group-item .col-xs-1 span.hapus,
-.last-berita .list-group-item .col-xs-1 span.hapus
+.list-firman .list-group-item .col-xs-1 span.hapus
 {
 	color: #337ab7;
 	cursor: pointer;

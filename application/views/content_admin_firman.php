@@ -213,13 +213,11 @@
                             if($v->id == $update_firman) echo "style='background-color: #c8e5bc;'";
                             echo ">";
                             echo "<div class='row'>";
-                            echo "<div class='col-xs-2' style='width:105px;'>";
-                            echo "<span class='date' id='t".$v->id."' >".substr($v->created,8,2)."/".$bulan."</span>&nbsp;&nbsp;&nbsp;&nbsp;";
+                            echo "<div class='col-xs-9'>";
+                            echo "<span class='date' id='t".$v->id."' >".substr($v->created,8,2)."/".$bulan."</span>";
+                            echo "<span id='j".$v->id."'> ".$v->firman."</span>";
                             if ($instansi == "ypki")
                                 echo "<span class='label label-default label-".$v->instansi."'>".$v->instansi."</span>";
-                            echo "</div>";
-                            echo "<div class='col-xs-8'>";
-                            echo "<span id='j".$v->id."'>".$v->firman."</span>";
                             echo "</div>";
                             echo "<div class='col-xs-1' style='text-align: center; margin-left:30px;'>";
                             echo "<a href='".base_url()."admin/firman/ubah/".$v->id."' title='ubah'>";
