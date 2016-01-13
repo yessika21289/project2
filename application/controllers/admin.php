@@ -749,11 +749,6 @@ class Admin extends MY_Controller {
 
 		$this->load->model('ypki');
 		$data['pesan'] = $this->ypki->getAllPesan($instansi);
-		
-		if(!isset($task) || $task == 'hapus')
-			$data['active_agenda'] = 1;
-		else
-			$data['active_agenda_baru'] = 1;
 
 		if(empty($task))
 		{

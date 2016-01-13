@@ -89,4 +89,4 @@
 </div>
 <!-- /#page-wrapper -->
 
-<input type="hidden" class="page-type" value="agenda" />
+<input type="hidden" class="page-type" value="pesan" />
