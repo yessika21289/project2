@@ -16,21 +16,17 @@
 						$count_file = 0;
 						while (($file = readdir($dh)) !== false){
 							if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store'){
-								if($image_src == ""){
+								if(strpos($file, 'cover') !== false){
 									$image_src = base_url().'/'.$dir.'/'.$file;
 								}
-								$count_file++;
+								elseif(strpos($file, 'thumb') !== false){
+									$count_file++;
+								}
 							}
 				    	}
 				    	closedir($dh);
 				  	}
 				}
-				//print_r(getimagesize($image_src));
-				$image_size = getimagesize($image_src);
-				if($image_size[0] <= $image_size[1])
-					$size = 'width="275"';
-				else
-					$size = 'height="215"';
 				if($instansi == "ypki")
 					echo '<a href="/dokumentasi/'.$dokumentasi->directory.'">';
 				else
@@ -41,7 +37,7 @@
 				echo '('.$count_file . ' foto)	';
 				echo '</div>';
 				echo '<div class="dokumentasi-list-image-wrapper">';
-				echo '<img src="'.$image_src.'" '.$size.'/><br/>';
+				echo '<img src="'.$image_src.'" /><br/>';
 				echo '</div>';
 				echo '</a>';
 				echo '</div>';
@@ -60,12 +56,16 @@
 			if ($dh = opendir($dir)){
 				while (($file = readdir($dh)) !== false){
                     $count=0;
-					if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store'){
+					if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store' &&
+                       strpos($file, 'cover') === false && strpos($file, 'thumb') === false){
 						$count++;
-						$image_src = base_url().$dir.'/'.$file;
+						$image_src_thumb = base_url().$dir.'/thumb_'.$file;
+						$image_src_zoom = base_url().$dir.'/'.$file;
 						echo '
                             <div class="grid-item">
-                            	<img src="'.$image_src.'" alt="">
+	                            <a href="'.$image_src_zoom.'" data-toggle="lightbox" data-title="'.$judul.'" data-gallery="'.$judul.'">
+	                            	<img src="'.$image_src_thumb.'" data-src="'.$file.'" alt="'.$judul.'">
+	                            </a>
                             </div>
                             ';
 					}

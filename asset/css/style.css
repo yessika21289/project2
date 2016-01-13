@@ -146,6 +146,11 @@ dt.type
 	padding-left: 20%;
 }
 
+#count-pesan-header
+{
+	color: red;
+}
+
 #content
 {
 	margin-top: 20px;

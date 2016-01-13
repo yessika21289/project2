@@ -158,7 +158,8 @@
                               if ($dh = opendir($dir)){
                                 $count=0;
                                 while (($file = readdir($dh)) !== false){
-                                  if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store'){
+                                  if($file != '' && $file != '.' && $file != '..' && $file != '.DS_Store' &&
+                                    strpos($file, 'cover') === false && strpos($file, 'thumb') === false){
                                     $count++;
                                     $image_src = base_url().'/'.$dir.'/'.$file;
                                     /*$size = getimagesize($image_src);

@@ -1305,6 +1305,62 @@
 	            ));
 	        return true;
 	    }
+
+	    public function addPesan($instansi, $post) {
+	        $this->db->insert('pesan',
+	            array(
+	                'nama' => $post['nama'],
+	                'email' => $post['email'],
+	                'telepon' => $post['phone'],
+	                'message' => $post['pesan'],
+	                'instansi' => $instansi,
+	                'waktu' => strtotime('now'),
+	                'flag_read' => 0
+	            ));
+	        return true;
+	    }
+
+	    public function getPesan($instansi) {
+	    	$this->db->where('flag_read', 0);
+	    	$this->db->where('instansi', $instansi);
+	    	$this->db->order_by('waktu', 'desc');
+	        $query = $this->db->get('pesan');
+	        return $query->result();
+	    }
+
+	    public function getAllPesan($instansi = "ypki"){
+			$sqlstr = "SELECT * FROM pesan WHERE instansi = '".$instansi."' ORDER BY waktu DESC";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function getPesanById($id) {
+	    	$this->db->where('id', $id);
+	    	$this->db->order_by('waktu', 'desc');
+	        $query = $this->db->get('pesan');
+	        return $query->result();
+	    }
+
+		public function getPesanByTahun($tahun, $instansi = "ypki"){
+			$sqlstr = "SELECT * FROM pesan WHERE instansi = '".$instansi."' AND FROM_UNIXTIME(waktu, '%Y') = '".$tahun."' ORDER BY waktu DESC";
+			$result = $this->db->query($sqlstr);
+			return $result->result();
+		}
+
+		public function getJumlahPesanByBulan($bulan, $instansi = "ypki"){
+			$sqlstr = "SELECT * FROM pesan WHERE instansi = '".$instansi."' AND FROM_UNIXTIME(waktu, '%m') = ".$bulan;
+			$result = $this->db->query($sqlstr);
+			return $result->num_rows();
+		}
+
+	    public function updateAllPesanFlagRead($instansi, $flag = 1) {
+	    	$this->db->where('instansi', $instansi);
+	        $this->db->update('pesan',
+	            array(
+	                'flag_read' => $flag
+	            ));
+	        return true;
+	    }
 	}
 	
 ?>
