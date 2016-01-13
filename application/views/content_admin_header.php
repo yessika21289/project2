@@ -67,10 +67,19 @@
                 }).submit();
             });
         });
+
+        function read_message_by_click(){
+            $.ajax({
+                'url': 'update_flag_read/1',
+                'success': function (result) {
+                    $('#count-pesan-header').empty();
+                }
+            })
+        }
     </script>
 </head>
 <body>
-	
+	<?php date_default_timezone_set('Asia/Jakarta');?>
 	<div id="wrapper">
 
         <!-- Navigation -->
@@ -115,55 +124,41 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="read_message_by_click()">
+                        <?php
+                            $this->load->helper('text');
+                            $pesan = $this->ypki->getPesan($instansi);
+                            $count_pesan = (count($pesan) > 0) ? count($pesan) : '';
+                            echo "<span id='count-pesan-header'>".$count_pesan."</span>";
+                        ?>
+                        <i class="fa fa-envelope"></i> <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>Tes Pesan</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                        <?php
+                            foreach ($pesan as $msg) {
+                        ?>
+                            <li class="message-preview">
+                                <a href="<?php echo base_url().'admin/pesan/baca/'.$msg->id;?>">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="media-heading"><strong><?php echo $msg->nama;?></strong>
+                                            </h5>
+                                            <p class="small text-muted"><i class="fa fa-clock-o"></i><?php echo date('D, d M Y, H:i',$msg->waktu);?></p>
+                                            <p><?php echo character_limiter($msg->message, 50);?></p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>Tes Pesan</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>Tes Pesan</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
+                        <?php }?>
+                        <?php if($count_pesan == ''){?>
+                                <li class="message-preview">
+                                <a href="#">
+                                    <h5 class="media-heading"><strong>No new message</strong></h5>
+                                </a>
+                            </li>
+                        <?php }?>
                         <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
+                            <a href="<?php echo base_url().'admin/pesan';?>">Read All Messages</a>
                         </li>
                     </ul>
                 </li>

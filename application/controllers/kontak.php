@@ -58,16 +58,41 @@ class Kontak extends CI_Controller {
 		$data['html_title'] = "Kontak - Yayasan Perguruan Kristen Indonesia";
 		$data['instansi'] = "ypki";
 
-		$kontak = $this->ypki->getKontak($data['instansi']);
-		if(!empty($kontak)) {
-			$kontak = $kontak[0];
-			$kontak->alamat = parse($kontak->alamat);
-			$data['kontak'] = $kontak;
-		}
+		$this->load->library('form_validation');
+		$this->form_validation->set_message('required','%s wajib diisi.');
+		$this->form_validation->set_message('valid_email','%s harus valid.');
+		$this->form_validation->set_message('numeric','%s harus angka.');
+		$this->form_validation->set_rules('nama', 'Nama', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('phone', 'Nomor telepon', 'numeric');
+		$this->form_validation->set_rules('pesan', 'Pesan', 'required');
 
-		$this->load->view("header", $data);
-		$this->load->view("navigator");
-		$this->load->view("content_kontak");
-		$this->load->view("footer");
+		if ($this->form_validation->run() == FALSE)
+        {
+
+			$kontak = $this->ypki->getKontak($data['instansi']);
+			if(!empty($kontak)) {
+				$kontak = $kontak[0];
+				$kontak->alamat = parse($kontak->alamat);
+				$data['kontak'] = $kontak;
+			}
+
+			$this->load->view("header", $data);
+			$this->load->view("navigator");
+			$this->load->view("content_kontak");
+			$this->load->view("footer");
+        }
+        else
+        {
+			$pesan = $this->ypki->addPesan($data['instansi'], $_POST);
+
+			if($pesan){
+				$this->session->set_flashdata('pesan_terkirim',1);
+			}
+			else{
+				$this->session->set_flashdata('pesan_terkirim',0);
+			}
+			redirect(base_url()."kontak");
+        }
 	}
 }

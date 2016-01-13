@@ -85,3 +85,9 @@ $(window).load(function(){
 	  columnWidth: 320
 	});	
 })
+
+//dokumentasi image zoom
+$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
