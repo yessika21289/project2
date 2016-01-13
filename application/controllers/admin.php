@@ -806,4 +806,41 @@ class Admin extends MY_Controller {
 
 		$this->session->unset_userdata('update_confirm');
 	}
+
+	public function pesan($task = NULL)
+	{
+		$instansi = $this->session->userdata('instansi');
+		$data = $this->session->all_userdata();
+
+		$this->load->model('ypki');
+		$data['pesan'] = $this->ypki->getAllPesan($instansi);
+
+		if(empty($task))
+		{
+			$this->load->view("content_admin_header", $data);
+			$this->load->view("content_admin_pesan");	
+		}
+		else if($task=="baca")
+		{
+			$this->load->view("content_admin_header", $data);
+
+			$id = $this->uri->segment(4);
+			$pesan = $this->ypki->getPesanById($id);
+			$data['pesan'] = $pesan[0];
+			$this->load->view("content_admin_baca_pesan", $data);
+		}
+
+		$this->load->view("content_admin_footer");		
+	}
+
+	public function update_flag_read($flag = 1)
+	{
+		$this->load->model('ypki');
+
+		$data = $this->session->all_userdata();
+		$data['instansi'] = $this->session->userdata('instansi');
+
+		$data['flag'] = $this->ypki->updateAllPesanFlagRead($data['instansi'], $flag);
+		return $flag;
+	}
 }

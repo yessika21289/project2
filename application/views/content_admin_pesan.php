@@ -6,64 +6,96 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Dokumentasi
-                    <a href="<?php echo base_url()?>admin/album/baru">
-                        <button type="button" class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Buat Dokumentasi Baru
-                        </button>
-                    </a>
+                    Pesan
                 </h1>
                 <ol class="breadcrumb">
                     <li>
                         <i class="fa fa-dashboard"></i>  <a href="<?php echo base_url()?>admin">Dashboard</a>
                     </li>
                     <li class="active">
-                        <i class="fa fa-file-text"></i> Dokumentasi
+                        <i class="fa fa-envelope"></i> Pesan
                     </li>
                 </ol>
             </div>
         <!-- /.row -->
+            <?php
+            /*$submit_confirm = !empty($this->session->flashdata('submit_confirm')) ? $this->session->flashdata('submit_confirm') : '';
+            $update_confirm = !empty($this->session->flashdata('update_confirm')) ? $this->session->flashdata('update_confirm') : '';
+            $delete_confirm = !empty($this->session->flashdata('delete_confirm')) ? $this->session->flashdata('delete_confirm') : '';
+            $new_agenda = !empty($this->session->flashdata('new_agenda')) ? $this->session->flashdata('new_agenda') : '';
+            $read_link = !empty($this->session->flashdata('read_link')) ? $this->session->flashdata('read_link') : '';
 
-        <?php
-            if (isset($delete_confirm))
+            if (isset($submit_confirm) && ($submit_confirm === 1 || $submit_confirm === 0))
             {
-                if ($delete_confirm == 1)
+                if ($submit_confirm == 1)
                 {
-        ?>
-        <div class="row">
-            <div class="col-xs-10">
-                <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Sukses!</strong> Dokumentasi berhasil dihapus
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
-                }
-                else if($delete_confirm == 0)
-                {
-        ?>
-        <div class="col-xs-10">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <strong>Gagal!</strong> Terjadi kesalahan. Dokumentasi gagal dihapus
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-        <?php
+                    echo '<div class="row">
+                        <div class="col-xs-10">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Sukses!</strong> Pesan baru berhasil dikirim.
+                            </div>
+                        </div>
+                    </div>';
                 }
             }
+            else if (isset($update_confirm)  && ($update_confirm === 1 || $update_confirm === 0))
+            {
+                if ($update_confirm == 1)
+                {
+                    echo '<div class="row">
+                            <div class="col-xs-10">
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <strong>Sukses!</strong> Agenda berhasil diubah. <a href="'.$read_link.'">Lihat agenda</a>
+                                </div>
+                            </div>
+                        </div>';
+                }
+                else if($update_confirm == 0)
+                {
+                    echo '<div class="col-xs-10">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <strong>Gagal!</strong> Terjadi kesalahan. Agenda tidak dapat diubah
+                            </div>
+                        </div>
+                    </div>';
+                }
+            }
+            elseif (isset($delete_confirm))
+            {
+                if ($delete_confirm === 1)
+                {
+                    echo '<div class="row">
+                        <div class="col-xs-10">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                              <strong>Sukses!</strong> Agenda berhasil dihapus
+                            </div>
+                        </div>
+                    </div>';
+                }
+                else if($delete_confirm === 0)
+                {
+                    echo '<div class="col-xs-10">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                              <strong>Gagal!</strong> Terjadi kesalahan. Agenda gagal dihapus
+                            </div>
+                        </div>
+                    </div>';
+                }
+            }*/
         ?>
 
         <?php
             $tahun_cek = array();
             $tahun = array();
             
-            foreach ($album as $key => $value)
+            foreach ($pesan as $key => $value)
             {
-                $y = substr($value->created,0,4);
+                $y = date('Y',$value->waktu);
                 if(!isset($tahun_cek[$y]))
                 {
                     $tahun_cek[$y] = 1;
@@ -74,7 +106,7 @@
             arsort($tahun);
         ?>
 
-        <div class="row admin">
+        <div class="row">
             <div class="col-lg-12">
                 <div class="form-group">
                     <label>Pilih tahun</label>
@@ -95,7 +127,7 @@
 
                         foreach ($tahun as $key => $value)
                         {
-                            $list = $this->ypki->getAlbumByTahun($value, $instansi);
+                            $list = $this->ypki->getPesanByTahun($value, $instansi);
 
                             if($key == 0)
                                 echo "<ul class='list-group y".$value." vsb'>";
@@ -106,7 +138,7 @@
                             $found = false;
                             foreach ($list as $k => $v)
                             {
-                                $bulan = substr($v->created, 5,2);
+                                $bulan = date('n', $v->waktu);
                                 while($m!=intval($bulan))
                                 {
                                     $m--;
@@ -131,28 +163,26 @@
 
                                 if(!$found)
                                 {
-                                    $jumlah = $this->ypki->getJumlahAlbumByBulan($bulan, $instansi);
+                                    $jumlah = $this->ypki->getJumlahPesanByBulan($bulan, $instansi);
 
                                     echo "<li class='list-group-item active'><span class='badge'>".$jumlah."</span>".$nama_bulan."</li>";
                                     $found = true;
                                 }
-                                    
-                                echo "<li class='list-group-item'>";          
+
+                                /*if($v->id == $new_agenda) echo "<li class='list-group-item' style='background-color: #dff0d8;'>";
+                                else echo "<li class='list-group-item'>";*/
+                                echo "<li class='list-group-item'>";
+
                                 echo "<div class='row'>";
                                 echo "<div class='col-xs-9'>";
-                                echo "<span class='date'>".substr($v->created,8,2)."/".$bulan."</span>";
+                                echo "<span class='date'>".date('d',$v->waktu)."/".$bulan."</span>";
                                 if ($instansi == "ypki")
                                     echo "  <span class='label label-default label-".$v->instansi."'>".$v->instansi."</span>";
-                                echo "<span id='j".$v->id."'> ".$v->judul."</span>";
+                                echo "<span id='j".$v->id."'> ".$v->nama."</span>";
                                 echo "</div>";
-                                /*echo "<div class='col-xs-1'>";
-                                $link = substr($v->created,0,4)."/".substr($v->created,5,2)."/".substr($v->created,8,2)."/".urlencode($v->judul);
-                                echo "<a href='".base_url()."berita/baca/".$link."' title='lihat' target='Berita'>";
-                                echo "<span class='glyphicon glyphicon-eye-open'></span></a>";
-                                echo "</div>";*/
                                 echo "<div class='col-xs-1'>";
-                                echo "<a href='".base_url()."admin/album/upload/".$v->directory."' title='ubah'>";
-                                echo "<span class='glyphicon glyphicon-pencil'></span></a>";
+                                echo "<a href='".base_url()."admin/pesan/baca/".$v->id."' title='ubah'>";
+                                echo "<span class='glyphicon glyphicon-eye-open'></span></a>";
                                 echo "</div>";
                                 echo "<div class='col-xs-1'>";
                                 echo "<span title='hapus' class='glyphicon glyphicon-remove hapus' id='r".$v->id."' data-toggle='modal' data-target='#myModal'></span>";
@@ -164,7 +194,7 @@
                         }
                     ?>
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -172,7 +202,7 @@
                             <h4 class="modal-title" id="myModalLabel">Konfirmasi Hapus</h4>
                           </div>
                           <div class="modal-body">
-                            Anda yakin untuk menghapus dokumentasi <span class="judul">JUDUL DOKUMENTASI</span> ?
+                            Anda yakin untuk menghapus agenda <span class="judul">JUDUL BERITA</span> ?
                           </div>
                           <div class="modal-footer">
                             <a class="link_hapus" href=""><button type="button" class="btn btn-primary">Ya</button></a>
@@ -180,7 +210,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -190,9 +220,6 @@
     </div>
     <!-- /.container-fluid -->
 
-
-
 </div>
 <!-- /#page-wrapper -->
-
-<input type="hidden" class="page-type" value="album" />
+<input type="hidden" class="page-type" value="agenda" />
