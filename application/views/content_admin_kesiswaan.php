@@ -59,6 +59,10 @@
                 <form id="form-berita-baru" role="form" method="post" action="" enctype="multip art/form-data">
 
                     <?php
+                        $administrasi_aktif = 0;
+                        $osis_aktif = 0;
+                        $siswa_aktif = 0;
+
                         if(!empty($kesiswaan)){
                             foreach ($kesiswaan as $key => $deskripsi) {
                                 $siswa[$kesiswaan[$key]->jenis] = $kesiswaan[$key]->deskripsi;
