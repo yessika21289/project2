@@ -431,13 +431,13 @@ dt.type
 footer
 {
 	font-family: 'OpenSansCond';
-	font-size: 18px;
+	font-size: 14pt;
 	color: #fff;
 	background-color: rgb(64,179,223);
 	width: 100%;
-	height: 55px;
+	height: 50px;
 	text-align: center;
-	padding-top: 20px;
+	padding-top: 12px;
 }
 
 #login
