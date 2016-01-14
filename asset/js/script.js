@@ -72,7 +72,7 @@ $(document).ready(function(){
 	        $('#navigator-bar').css({
 	            position: 'static'
 	        });
-	        $('#content').css('margin-top', 20);
+	        $('#content').css('margin-top', 10);
 	    }
 	});
 

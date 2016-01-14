@@ -32,13 +32,13 @@ dt.type
 
 #navigator #top-navigator
 {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 #navigator #top-navigator #logo img
 {
-	width: 200px;
-	height: 200px;
+	width: 120px;
+	height: 120px;
 	float: left;
 }
 
@@ -52,20 +52,21 @@ dt.type
 {
 	font-family: 'OpenSansCondBold';
 	color: rgb(23,100,154);
-	font-size: 40px;
-	padding-top: 50px;
+	font-size: 35px;
+	padding-top: 10px;
 }
 
 #navigator #top-navigator #title .sub
 {
-	margin-top: -20px;
+	margin-top: -10px;
 	font-family: 'OpenSansCond';
+	font-size: 40px;
 }
 
 #navigator #top-navigator #search form
 {
-	margin-top: 10px;
-	margin-right: 20px;
+	margin-top: -40px;
+	margin-right: 0px;
 	float: right;
 }
 
@@ -91,7 +92,7 @@ dt.type
 #navigator-bar
 {
 	font-family: 'OpenSansCond';
-	line-height: 0.8;
+	line-height: 1;
 	width: 960px;
 }
 
@@ -101,9 +102,9 @@ dt.type
 	color: white;
 	border: 0 solid;
 	width: 192px;
-	height: 60px;
-	font-size: 25px;
-	padding: 0;	
+	height: 50px;
+	font-size: 19px;
+	padding: 0;
 }
 
 #navigator-bar .dropdown.open button
@@ -129,7 +130,7 @@ dt.type
 
 #navigator-bar .dropdown .dropdown-menu li a
 {
-	font-size: 20px;
+	font-size: 18px;
 	color: white;
 }
 
@@ -153,8 +154,8 @@ dt.type
 
 #content
 {
-	margin-top: 20px;
-	min-height: 500px;
+	margin-top: 10px;
+	min-height: 450px;
 	display: inline-block;
 	width: 100%;
 }
@@ -228,7 +229,7 @@ dt.type
 
 #firman
 {
-	margin-top: 30px;
+	margin-top: 5px;
 }
 
 #firman .firman-img
@@ -255,15 +256,14 @@ dt.type
 #div-login .title
 {
 	font-family: 'OpenSansCond';
-	font-size: 30px;
+	font-size: 22px;
 	font-weight: bolder;
 	color: rgb(21,101,154);
 }
 
 #firman .content
 {
-	font-size: 14px;
-	
+	font-size: 12px;
 	font-style: italic;
 }
 
@@ -301,6 +301,7 @@ dt.type
 #berita .berita-item .badge
 {
 	font-weight: normal;
+	font-size: 8pt;
 	background-color: rgb(64,179,223);
 }
 
@@ -327,7 +328,7 @@ dt.type
 #berita .berita-item span.tanggal,
 #agenda .agenda-item span.tanggal
 {
-	font-weight: bolder;
+	font-weight: bold;
 	color: rgb(168,203,25);
 }
 
@@ -335,13 +336,14 @@ dt.type
 #agenda .agenda-item span.judul
 {
 	color: rgb(25,100,157);
+	font-size:10pt;
 }
 
 #berita .all-berita,
 #agenda .all-agenda
 {
 	text-align: right;
-	margin-top: 25px;
+	margin-top: 12px;
 }
 
 #berita .all-berita a,
@@ -353,7 +355,7 @@ dt.type
 
 #agenda
 {
-	margin-top: 30px;
+	margin-top: 5px;
 }
 
 #agenda .agenda-item
